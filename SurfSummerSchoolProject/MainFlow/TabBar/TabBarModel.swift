@@ -26,11 +26,11 @@ enum TabBarModel {
     var image: UIImage {
         switch self {
         case .main:
-            return #imageLiteral(resourceName: "mainTabBar")
+            return Constants.Image.mainTabBar
         case .favorite:
-            return #imageLiteral(resourceName: "favoriteTabBar")
+            return Constants.Image.favoriteTabBar
         case .profile:
-            return #imageLiteral(resourceName: "profileTabBar")
+            return Constants.Image.profileTabBar
         }
     }
         

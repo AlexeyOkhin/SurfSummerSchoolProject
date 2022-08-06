@@ -19,7 +19,9 @@ class TabBarConfigurator {
         return getTabBarController()
     }
 }
-//MARK: - extension for configure TabBar NavBar
+
+//MARK: - Private method
+
 private extension TabBarConfigurator {
     func getTabBarController() -> UITabBarController {
         let tabBarController = UITabBarController()
@@ -50,23 +52,16 @@ private extension TabBarConfigurator {
         case .favorite:
             return generationNavigationController(for: FavoriteViewController(), title: tab.title)
         case .profile:
-            return ProfileViewController()
+            return generationNavigationController(for: ProfileViewController(), title: tab.title)
         }
     }
     
     func generationNavigationController(for rootViewController: UIViewController, title: String?) -> UIViewController {
         let navigation = UINavigationController(rootViewController: rootViewController)
-        let barButton = createBarButton(systemItem: .search, tintColor: .black)
-        navigation.navigationBar.topItem?.rightBarButtonItem = barButton
+//        let barButton = createBarButton(image: Constants.Image.searchNavBar, tintColor: .black)
+//        navigation.navigationBar.topItem?.rightBarButtonItem = barButton
         navigation.navigationBar.topItem?.title = title
         navigation.navigationBar.backgroundColor = .white
         return navigation
     }
-    
-    func createBarButton(systemItem: UIBarButtonItem.SystemItem, tintColor: UIColor) -> UIBarButtonItem {
-        let barButton = UIBarButtonItem(systemItem: systemItem)
-        barButton.tintColor = tintColor
-        return barButton
-    }
-    
 }
