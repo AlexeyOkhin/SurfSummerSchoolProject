@@ -26,6 +26,11 @@ final class MainViewController: UIViewController {
         configureModel()
         model.getPosts()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.tabBarController?.tabBar.isHidden = false
+    }
 }
 
     //MARK: - Private Methods
@@ -41,7 +46,6 @@ private extension MainViewController {
         collectionView.contentInset = .init(top: 10, left: 16, bottom: 10, right: 16)
         collectionView.dataSource = self
         collectionView.delegate = self
-        
     }
         
     func configureModel() {
@@ -52,14 +56,17 @@ private extension MainViewController {
     
     func createBarButton(image: UIImage, tintColor: UIColor) -> UIBarButtonItem {
         let barButton = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(tapSearchButton(param:)))
-        //barButton.action = #selector(tapSearchButton)
         barButton.tintColor = tintColor
         return barButton
     }
     
     @objc func tapSearchButton(param: UIBarButtonItem) {
+        /// implement presenter routing
         print(#function)
         print("tapSearch")
+        let vc = SearchViewController()
+        vc.tabBarController?.tabBar.isHidden = true
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }

@@ -26,4 +26,8 @@ struct Constants {
         static let spacBetweenRows: CGFloat = 8
         static let spaceBetweenElements: CGFloat = 8
     }
+    
+    struct Color {
+        static let serchColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
+    }
 }
