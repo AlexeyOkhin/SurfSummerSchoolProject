@@ -18,10 +18,21 @@ class MainCollectionViewCell: UICollectionViewCell {
     //MARK: - Events
     
     var didFavoriteTapped: (() -> Void)?
+    
     //MARK: - Calculated
     
     var buttonImage: UIImage? {
         return isFavorite ? Constants.Image.favoriteTrue : Constants.Image.favoriteFalse
+    }
+    
+    //MARK: - Animation cell
+    
+    override var isHighlighted: Bool {
+        didSet {
+            UIView.animate(withDuration: 0.2) {
+                self.contentView.transform = self.isHighlighted ? CGAffineTransform(scaleX: 0.9, y: 0.9) : .identity
+            }
+        }
     }
     
     //MARK: - Properties
