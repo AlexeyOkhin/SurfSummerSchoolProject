@@ -17,7 +17,7 @@ final class MainViewController: UIViewController {
     
     private let model: MainModel = .init()
     
-    //MARK: - LifeCircle
+    //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ final class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.tabBarController?.tabBar.isHidden = false
+        tabBarController?.tabBar.isHidden = false
     }
 }
 
@@ -38,7 +38,8 @@ final class MainViewController: UIViewController {
 private extension MainViewController {
     
     func configureNavigationBar() {
-        navigationController?.navigationBar.topItem?.rightBarButtonItem = createBarButton(image: Constants.Image.searchNavBar, tintColor: .black)
+        tabBarController?.tabBar.isHidden = false
+        navigationItem.rightBarButtonItem = createBarButton(image: Constants.Image.searchNavBar, tintColor: .black)
     }
     
     func configureApireance() {
@@ -114,7 +115,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigationController?.pushViewController(DetailViewController(), animated: true)
+        
+        let detailVC = DetailViewController()
+        detailVC.model = model.items[indexPath.item]
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
 }

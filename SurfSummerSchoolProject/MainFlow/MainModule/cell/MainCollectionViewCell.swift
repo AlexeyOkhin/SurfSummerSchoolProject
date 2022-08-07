@@ -71,7 +71,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 
 }
 
-//MARK: - Private Methods
+    //MARK: - Private Methods
 
 private extension MainCollectionViewCell {
     

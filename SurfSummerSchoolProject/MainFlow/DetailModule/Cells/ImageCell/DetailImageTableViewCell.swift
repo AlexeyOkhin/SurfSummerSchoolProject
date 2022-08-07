@@ -7,13 +7,13 @@
 
 import UIKit
 
-class DetailImageViewCell: UITableViewCell {
+class DetailImageTableViewCell: UITableViewCell {
     
-//MARK: - UIView
+    //MARK: - UIView
     
     @IBOutlet private weak var cartImageView: UIImageView!
     
-//MARK: - Properties
+    //MARK: - Properties
     
     var image: UIImage? {
         didSet {
@@ -21,10 +21,14 @@ class DetailImageViewCell: UITableViewCell {
         }
     }
     
+    //MARK: - UITableViewCell
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
         cartImageView.layer.cornerRadius = 12
         cartImageView.contentMode = .scaleAspectFill
+        cartImageView.clipsToBounds = true
     }
     
 }

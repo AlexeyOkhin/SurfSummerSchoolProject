@@ -18,6 +18,7 @@ struct Constants {
         static let favoriteFalse = UIImage(named: "favoriteFalse") ?? UIImage(systemName: "questionmark.app.dashed")!
         static let favoriteTrue = UIImage(named: "favoriteTrue") ?? UIImage(systemName: "questionmark.app.dashed")!
         static let testKogi = UIImage(named: "testKorgi") ?? UIImage(systemName: "questionmark.app.dashed")!
+        static let arrowLeft = UIImage(named: "arrowLeft") ?? UIImage(systemName: "questionmark.app.dashed")!
     }
     
     //MARK: - Size for item collectionView
@@ -29,5 +30,6 @@ struct Constants {
     
     struct Color {
         static let serchColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
+        static let dateText = #colorLiteral(red: 0.7019607843, green: 0.7019607843, blue: 0.7019607843, alpha: 1)
     }
 }
