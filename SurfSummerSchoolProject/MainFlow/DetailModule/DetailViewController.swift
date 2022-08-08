@@ -67,7 +67,7 @@ private extension DetailViewController {
         
         tableView.register(DetailImageTableViewCell.self)
         tableView.register(DetailTitleTableViewCell.self)
-        tableView.register(DetailDescriptionTableViewCell.self)
+        tableView.register(DetailContentTableViewCell.self)
     }
 }
 
@@ -91,14 +91,13 @@ extension DetailViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailTitleTableViewCell.self)")
            
             if let cell = cell as? DetailTitleTableViewCell {
-                //tableView.rowHeight = 44
                 cell.title = model?.title
                 cell.date = model?.dateCreate
             }
             return cell ?? UITableViewCell()
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailDescriptionTableViewCell.self)")
-            if let cell = cell as? DetailDescriptionTableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailContentTableViewCell.self)")
+            if let cell = cell as? DetailContentTableViewCell {
                 cell.content = model?.content
             }
             return cell ?? UITableViewCell()
@@ -106,22 +105,5 @@ extension DetailViewController: UITableViewDataSource {
             return UITableViewCell()
         }
     }
-    
-    
 }
-
-//extension DetailViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//            return UITableView.automaticDimension
-//        }
-//
-//        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//            return UITableView.automaticDimension
-//        }
-//
-//        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//            cell.layoutIfNeeded()
-//        }
-//}
-
 
