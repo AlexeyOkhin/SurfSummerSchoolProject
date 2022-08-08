@@ -9,6 +9,7 @@ import UIKit
 struct Constants {
     
     //MARK: -  Images
+    
     struct Image {
         static let launchSurf = UIImage(named: "launchSurf") ?? UIImage(systemName: "questionmark.app.dashed")!
         static let mainTabBar = UIImage(named: "mainTabBar") ?? UIImage(systemName: "questionmark.app.dashed")!
@@ -23,11 +24,15 @@ struct Constants {
     }
     
     //MARK: - Size for item collectionView
+    
     struct Size {
         static let horisontalInset: CGFloat = 16
+        static let favoriteSpacBetweenRows: CGFloat = 24
         static let spacBetweenRows: CGFloat = 8
         static let spaceBetweenElements: CGFloat = 8
     }
+    
+    //MARK: - Colors
     
     struct Color {
         static let serchColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)

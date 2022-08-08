@@ -10,29 +10,29 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="FavoriteCollectionViewCell" customModule="SurfSummerSchoolProject" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="446" height="184"/>
+            <rect key="frame" x="0.0" y="0.0" width="335" height="543"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="446" height="184"/>
+                <rect key="frame" x="0.0" y="0.0" width="335" height="543"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zIU-13-eoo">
-                        <rect key="frame" x="0.0" y="0.0" width="446" height="103"/>
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="470"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="zIU-13-eoo" secondAttribute="height" multiplier="15:8" priority="250" id="Aww-le-6UQ"/>
+                            <constraint firstAttribute="width" secondItem="zIU-13-eoo" secondAttribute="height" multiplier="343:326" priority="250" id="Aww-le-6UQ"/>
                         </constraints>
                     </imageView>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="M8c-zb-ekf">
-                        <rect key="frame" x="0.0" y="119" width="446" height="20.5"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="M8c-zb-ekf">
+                        <rect key="frame" x="0.0" y="486" width="335" height="20.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKk-vg-TgR">
-                                <rect key="frame" x="0.0" y="0.0" width="396.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="800" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKk-vg-TgR">
+                                <rect key="frame" x="0.0" y="0.0" width="285.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZ4-uK-o7k">
-                                <rect key="frame" x="404.5" y="0.0" width="41.5" height="20.5"/>
+                                <rect key="frame" x="293.5" y="0.0" width="41.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -40,19 +40,19 @@
                         </subviews>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93t-Ci-bct">
-                        <rect key="frame" x="0.0" y="155.5" width="446" height="20.5"/>
+                        <rect key="frame" x="0.0" y="514.5" width="335" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eB9-Wr-IKe">
-                        <rect key="frame" x="414" y="10" width="22" height="22"/>
+                        <rect key="frame" x="303" y="10" width="22" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="22" id="Y9f-uw-XIA"/>
                             <constraint firstAttribute="height" constant="22" id="z3O-rH-kmq"/>
                         </constraints>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain"/>
                         <connections>
                             <action selector="favoriteButtonAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="btK-ie-t03"/>
                         </connections>
@@ -72,9 +72,9 @@
                 <constraint firstItem="eB9-Wr-IKe" firstAttribute="top" secondItem="zIU-13-eoo" secondAttribute="top" constant="10" id="eXu-XO-wXa"/>
                 <constraint firstAttribute="trailing" secondItem="zIU-13-eoo" secondAttribute="trailing" id="gQx-5X-I1V"/>
                 <constraint firstAttribute="trailing" secondItem="M8c-zb-ekf" secondAttribute="trailing" id="rqg-g7-5Yc"/>
-                <constraint firstItem="93t-Ci-bct" firstAttribute="top" secondItem="M8c-zb-ekf" secondAttribute="bottom" constant="16" id="tEz-3d-VhH"/>
+                <constraint firstItem="93t-Ci-bct" firstAttribute="top" secondItem="M8c-zb-ekf" secondAttribute="bottom" constant="8" id="tEz-3d-VhH"/>
             </constraints>
-            <size key="customSize" width="446" height="184"/>
+            <size key="customSize" width="335" height="543"/>
             <connections>
                 <outlet property="contentLabel" destination="93t-Ci-bct" id="Iv8-yb-rNW"/>
                 <outlet property="dateLabel" destination="fZ4-uK-o7k" id="Gf1-i4-cn5"/>
@@ -83,7 +83,7 @@
                 <outlet property="stackView" destination="M8c-zb-ekf" id="KqH-Yb-NqD"/>
                 <outlet property="titleLabel" destination="MKk-vg-TgR" id="cnv-zm-Kfs"/>
             </connections>
-            <point key="canvasLocation" x="-636.23188405797111" y="-198.88392857142856"/>
+            <point key="canvasLocation" x="-729.71014492753625" y="-157.70089285714286"/>
         </collectionViewCell>
     </objects>
 </document>

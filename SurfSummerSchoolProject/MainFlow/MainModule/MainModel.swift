@@ -17,7 +17,6 @@ final class MainModel {
     //MARK: - Propirties
     
     var items: [DetailItemModel] = [] {
-        
         didSet {
             self.didItemsUpdated?()
         }
