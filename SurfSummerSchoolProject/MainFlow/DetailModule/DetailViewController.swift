@@ -22,12 +22,17 @@ class DetailViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureAppearance()
-        tableView.reloadData()
+        //tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationBar()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
     }
 }
 
@@ -84,7 +89,7 @@ extension DetailViewController: UITableViewDataSource {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailImageTableViewCell.self)")
             if let cell = cell as? DetailImageTableViewCell {
-                cell.image = model?.image
+                cell.imageUrlInString = model?.imageUrlInString ?? ""
             }
             return cell ?? UITableViewCell()
         case 1:
@@ -92,7 +97,7 @@ extension DetailViewController: UITableViewDataSource {
            
             if let cell = cell as? DetailTitleTableViewCell {
                 cell.title = model?.title
-                cell.date = model?.dateCreate
+                cell.date = model?.dateCreation
             }
             return cell ?? UITableViewCell()
         case 2:

@@ -16,6 +16,7 @@ final class MainModel {
     
     //MARK: - Propirties
     
+    let pictureService = PicturesService()
     var items: [DetailItemModel] = [] {
         didSet {
             self.didItemsUpdated?()
@@ -24,18 +25,28 @@ final class MainModel {
     
     //MARK: - Method
     /// net service
-    func getPosts() {
-        items = Array(repeating: DetailItemModel.createDefoult(), count: 100)
-    }
+//    func getPosts() {
+//        items = Array(repeating: DetailItemModel.createDefoult(), count: 100)
+//    }
     
-    func getFavoritePosts() {
-        items = [
-        DetailItemModel(image: Constants.Image.testKogi, title: "Корги", isFavorite: true, dateCreate: "12.12.2021", content: "Для бариста и посетителей кофеен специальные кружки для кофе — это ещё один способ проконтролировать вкус напитка и приготовить его именно так, как нравится вам. Теперь, кроме регулировки"),
-        DetailItemModel(image: Constants.Image.testKogi, title: "Корги", isFavorite: true, dateCreate: "12.12.2021", content: "Для бариста и посетителей кофеен специальные кружки для кофе — это ещё один способ проконтролировать вкус напитка и приготовить его именно так, как нравится вам. Теперь, кроме регулировки"),
-        DetailItemModel(image: Constants.Image.testKogi, title: "Корги", isFavorite: true, dateCreate: "12.12.2021", content: "Для бариста и посетителей кофеен специальные кружки для кофе — это ещё один способ проконтролировать вкус напитка и приготовить его именно так, как нравится вам. Теперь, кроме регулировки"),
-        DetailItemModel(image: Constants.Image.testKogi, title: "Корги", isFavorite: true, dateCreate: "12.12.2021", content: "Для бариста и посетителей кофеен специальные кружки для кофе — это ещё один способ проконтролировать вкус напитка и приготовить его именно так, как нравится вам. Теперь, кроме регулировки")
-        ]
+    func loadPosts() {
+        pictureService.loadPictures { [weak self] result in
+            switch result {
+            case .success(let pictures):
+                self?.items = pictures.map { pictureModel in
+                    DetailItemModel(
+                        imageUrlInString: pictureModel.photoUrl,
+                        title: pictureModel.title,
+                        isFavorite: false, // TODO: - Need adding `FavoriteService`
+                        content: pictureModel.content,
+                        dateCreation: pictureModel.date
+                    )
+                }
+            case .failure(let error):
+                // TODO: - Implement error state there
+                break
+            }
+        }
     }
 }
-
 

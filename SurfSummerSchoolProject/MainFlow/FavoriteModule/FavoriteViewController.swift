@@ -22,7 +22,7 @@ class FavoriteViewController: UIViewController {
         configureNavigationBar()
         configureApireance()
         configureModel()
-        model.getFavoritePosts()
+        model.loadPosts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,7 +49,10 @@ private extension FavoriteViewController {
         
     func configureModel() {
         model.didItemsUpdated = { [weak self] in
-            self?.collectionView.reloadData()
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
+            
         }
     }
     
@@ -84,9 +87,9 @@ extension FavoriteViewController: UICollectionViewDataSource, UICollectionViewDe
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(FavoriteCollectionViewCell.self)", for: indexPath)
         if let cell = cell as? FavoriteCollectionViewCell {
             let item = model.items[indexPath.item]
-            cell.image = item.image
+            cell.imageUrlInString = item.imageUrlInString
             cell.title = item.title
-            cell.date = item.dateCreate
+            cell.date = item.dateCreation
             cell.content = item.content
         }
         return cell

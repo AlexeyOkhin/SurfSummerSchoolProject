@@ -30,9 +30,12 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     
     //MARK: -  Properties
     
-    var image: UIImage? {
+    var imageUrlInString: String = "" {
         didSet {
-            imageView.image = image
+            guard let url = URL(string: imageUrlInString) else {
+                return
+            }
+            imageView.loadImage(from: url)
         }
     }
     

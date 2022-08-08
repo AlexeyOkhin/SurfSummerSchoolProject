@@ -15,9 +15,12 @@ class DetailImageTableViewCell: UITableViewCell {
     
     //MARK: - Properties
     
-    var image: UIImage? {
+    var imageUrlInString: String = "" {
         didSet {
-            cartImageView.image = image
+            guard let url = URL(string: imageUrlInString) else {
+                return
+            }
+            imageView?.loadImage(from: url)
         }
     }
     
@@ -25,10 +28,14 @@ class DetailImageTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        configureAppearance()
+    }
+    
+    private func configureAppearance() {
         selectionStyle = .none
         cartImageView.layer.cornerRadius = 12
         cartImageView.contentMode = .scaleAspectFill
-        cartImageView.clipsToBounds = true
+        //cartImageView.clipsToBounds = true
     }
     
 }
