@@ -12,32 +12,26 @@ class SearchViewController: UIViewController, UIGestureRecognizerDelegate {
     //MARK: - IBOutlets
     
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var placeholderLabel: UILabel!
+    @IBOutlet weak var placeholderImage: UIImageView!
     
     //MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //configureNavigationBar()
         setupSearchBar()
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        searchBar.endEditing(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationBar()
+        setupPlaceholder()
     }
+
+    //MARK: - TouchesBegan
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print(#function)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        print(#function)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        searchBar.endEditing(true)
     }
 }
 
@@ -60,28 +54,32 @@ private extension SearchViewController {
         let backButton = UIBarButtonItem(image: Constants.Image.arrowLeft,
                                         style: .plain,
                                         target: navigationController,
-                                         action: #selector(UINavigationController.popViewController(animated:)))
+                                        action: #selector(UINavigationController.popViewController(animated:)))
         backButton.tintColor = .black
         navigationItem.leftBarButtonItem = backButton
         navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
-    //MARK: - setup serchController
+    //MARK: - Setup SerchBar
+    
     func setupSearchBar() {
-//        navigationController?.navigationBar.barTintColor = .white
-//        navigationController?.navigationBar.shadowImage = UIImage()
         navigationItem.titleView = searchBar
         navigationItem.hidesSearchBarWhenScrolling = false
-        searchBar.searchTextField.layer.cornerRadius = 22 //????
+        searchBar.searchTextField.layer.cornerRadius = 16 //???? 22
         searchBar.searchTextField.layer.masksToBounds = true
         searchBar.searchTextField.backgroundColor = Constants.Color.serchColor
         searchBar.placeholder = "Поиск"
         searchBar.delegate = self
-//        searchBar.hidesNavigationBarDuringPresentation = true
-//        searchBar.obscuresBackgroundDuringPresentation = false
-//        searchBar.searchBar.placeholder = "Поиск"
-//        searchBar.searchBar.delegate = self
         definesPresentationContext = true
+    }
+    
+    func setupPlaceholder() {
+        placeholderImage.image = Constants.Image.magnifire
+        
+        placeholderLabel.text = "Введите ваш запрос"
+        placeholderLabel.font = .systemFont(ofSize: 14)
+        placeholderLabel.textColor = Constants.Color.placeholderSearch
+        placeholderLabel.textAlignment = .center
     }
     
     
