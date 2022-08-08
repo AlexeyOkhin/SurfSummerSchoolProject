@@ -30,10 +30,6 @@ class DetailViewController: UIViewController, UIGestureRecognizerDelegate {
         configureNavigationBar()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        tableView.reloadData()
-    }
 }
 
 //MARK: - Private Method
