@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="SurfSummerSchoolProject" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="94t-wV-rUO" id="uMi-BD-gWA"/>
+                <outlet property="loadingIndicatorView" destination="8Xz-3n-wBb" id="EFH-Ee-u8w"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,12 +30,17 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="8Xz-3n-wBb">
+                    <rect key="frame" x="197" y="443" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="8Xz-3n-wBb" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="7Yd-gs-m8e"/>
                 <constraint firstItem="94t-wV-rUO" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ASl-tZ-X2i"/>
                 <constraint firstItem="94t-wV-rUO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BIf-Ai-GdX"/>
+                <constraint firstItem="8Xz-3n-wBb" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="Bdg-5o-LbO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="94t-wV-rUO" secondAttribute="bottom" id="Rkn-EC-79j"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="94t-wV-rUO" secondAttribute="trailing" id="q5u-pF-ucr"/>
             </constraints>

@@ -13,7 +13,7 @@ struct BaseTokenStorage: TokenStorage {
 
     func getToken() throws -> TokenContainer {
         TokenContainer(
-            token: "13dafde943a580620627b934bb12a39ed589514ef42b479e82a56b15451460fc"
+            token: "e72d81999f9cf59d3bea6099c0b0dd72c5e99c8e6415a43ac2b8401069303430"
         )
     }
 

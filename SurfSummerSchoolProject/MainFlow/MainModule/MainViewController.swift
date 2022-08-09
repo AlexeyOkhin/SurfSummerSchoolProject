@@ -12,6 +12,7 @@ final class MainViewController: UIViewController {
     //MARK: -  Views
     
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
     
     //MARK: - Private properties
     
@@ -22,6 +23,7 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
+        configureLoadingIndicator()
         configureApireance()
         configureModel()
         model.loadPosts()
@@ -37,6 +39,14 @@ final class MainViewController: UIViewController {
     
 private extension MainViewController {
     
+    func configureLoadingIndicator() {
+        loadingIndicatorView.isHidden = true
+        loadingIndicatorView.hidesWhenStopped = true
+        loadingIndicatorView.style = .large
+        loadingIndicatorView.startAnimating()
+        
+    }
+    
     func configureNavigationBar() {
         tabBarController?.tabBar.isHidden = false
         navigationItem.rightBarButtonItem = createBarButton(image: Constants.Image.searchNavBar, tintColor: .black)
@@ -50,8 +60,11 @@ private extension MainViewController {
     }
         
     func configureModel() {
+        self.loadingIndicatorView.startAnimating()
         model.didItemsUpdated = { [weak self] in
+            
             DispatchQueue.main.async {
+                self?.loadingIndicatorView.stopAnimating()
                 self?.collectionView.reloadData()
             }
         }
