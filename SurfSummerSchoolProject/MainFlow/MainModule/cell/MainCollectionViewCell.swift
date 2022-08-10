@@ -37,18 +37,23 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Properties
     
-    var title: String = "" {
+    var title: String? {
         didSet {
             titleLabel.text = title
         }
     }
     
-    var imageUrlInString: String = "" {
+    var imageUrlInString: String? {
         didSet {
-            guard let url = URL(string: imageUrlInString) else {
-                return
+            if let imageUrl = imageUrlInString {
+                guard let url = URL(string: imageUrl) else {
+                    return
+                }
+                imageView.loadImage(from: url)
+            } else {
+                print("not url \(#function)")
             }
-            imageView.loadImage(from: url)
+           
         }
     }
     
@@ -82,7 +87,7 @@ private extension MainCollectionViewCell {
         titleLabel.textColor = .black
         titleLabel.font = .systemFont(ofSize: 12)
         
-        imageView.layer.cornerRadius = 20
+        imageView.layer.cornerRadius = 12
         imageView.contentMode = .scaleAspectFill
         
         favoriteButton.tintColor = .white

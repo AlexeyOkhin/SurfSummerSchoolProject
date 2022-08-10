@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 struct BaseTokenStorage: TokenStorage {
     
     //MARK: - Nested Types
@@ -18,6 +16,7 @@ struct BaseTokenStorage: TokenStorage {
         static let tokenKey = "token"
         static let tokenDateKey = "tokenDate"
     }
+    
     //MARK: - Private Properties
     
     private var unprotectedStorage: UserDefaults {
@@ -28,29 +27,32 @@ struct BaseTokenStorage: TokenStorage {
 
     func getToken() throws -> TokenContainer {
             
-            let queryDictionaryForSavingToken: [CFString: AnyObject] = [
-                kSecAttrService: Constants.applicationNameInKeyChain as AnyObject,
-                kSecAttrAccount: Constants.tokenKey as AnyObject,
-                kSecClass: kSecClassGenericPassword,
-                kSecMatchLimit: kSecMatchLimitOne,
-                kSecReturnData: kCFBooleanTrue
-            ]
-            
-            var tokenInResult: AnyObject?
-            let status = SecItemCopyMatching(queryDictionaryForSavingToken as CFDictionary, &tokenInResult)
-            
-            guard let data = tokenInResult as? Data else {
-                throw Error.tokenWasNotFoundInKeyChainOrCantRepresentData
-            }
+        let queryDictionaryForSavingToken: [CFString: AnyObject] = [
+            kSecAttrService: Constants.applicationNameInKeyChain as AnyObject,
+            kSecAttrAccount: Constants.tokenKey as AnyObject,
+            kSecClass: kSecClassGenericPassword,
+            kSecMatchLimit: kSecMatchLimitOne,
+            kSecReturnData: kCFBooleanTrue
+        ]
         
-            let retrivingToken = try JSONDecoder().decode(String.self, from: data)
-            let tokenSavingDate = try getSavingTokenDate()
-             
-            return TokenContainer(token: retrivingToken, receivingDate: tokenSavingDate)
+        var tokenInResult: AnyObject?
+        let status = SecItemCopyMatching(queryDictionaryForSavingToken as CFDictionary, &tokenInResult)
+        
+        try throwErrorFromStatusIfNeeded(status)
+    
+        guard let data = tokenInResult as? Data else {
+            throw Error.tokenWasNotFoundInKeyChainOrCantRepresentData
+        }
+    
+        let retrivingToken = try JSONDecoder().decode(String.self, from: data)
+        let tokenSavingDate = try getSavingTokenDate()
+         
+        return TokenContainer(token: retrivingToken, receivingDate: tokenSavingDate)
     }
 
     func set(newToken: TokenContainer) throws {
         try removeTokenFromConteiner()
+        
         let tokenData = try? JSONEncoder().encode(newToken.token)
         let queryDictionaryForSavingToken: [CFString: AnyObject] = [
             kSecAttrService: Constants.applicationNameInKeyChain as AnyObject,
@@ -76,9 +78,12 @@ struct BaseTokenStorage: TokenStorage {
         let status = SecItemDelete(queryDictionaryForDeleteToken as CFDictionary)
         
         try throwErrorFromStatusIfNeeded(status)
+        
+        removeTokenSavingDate()
     }
 
 }
+
     //MARK: - Private Methods
 
 private extension BaseTokenStorage {
@@ -106,7 +111,7 @@ private extension BaseTokenStorage {
     }
     
     func throwErrorFromStatusIfNeeded(_ status: OSStatus) throws {
-        guard status == errSecSuccess else {
+        guard status == errSecSuccess || status == -25300 else {
             throw Error.unknownError(status: status)
         }
         guard status != -25299 else {

@@ -12,7 +12,7 @@ final class MainViewController: UIViewController {
     //MARK: -  Views
     
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
+    @IBOutlet private weak var loadingIndicatorView: UIActivityIndicatorView!
     
     //MARK: - Private properties
     
@@ -62,7 +62,7 @@ private extension MainViewController {
     func configureModel() {
         model.didItemsUpdated = { [weak self] in
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self?.loadingIndicatorView.stopAnimating()
                 self?.collectionView.reloadData()
             }
@@ -105,7 +105,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             cell.isFavorite = item.isFavorite
             cell.imageUrlInString = item.imageUrlInString
             cell.didFavoriteTapped = { [weak self] in
-                self?.model.items[indexPath.item].isFavorite.toggle()
+            self?.model.items[indexPath.item].isFavorite.toggle()
                 
             }
         }

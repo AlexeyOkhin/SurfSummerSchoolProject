@@ -24,9 +24,11 @@ struct AuthService {
                 do {
                     try dataTask.tokenStorage.set(newToken: TokenContainer(token: responseModel.token, receivingDate: .now))
                 } catch {
-                    print(error)
+                    // TODO: - Handle error if token not was received from server
+                    //print(error)
                 }
             }
+            onResponseWasReceived(result)
         }
     }
 
