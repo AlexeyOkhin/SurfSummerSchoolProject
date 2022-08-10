@@ -60,7 +60,6 @@ private extension MainViewController {
     }
         
     func configureModel() {
-        self.loadingIndicatorView.startAnimating()
         model.didItemsUpdated = { [weak self] in
             
             DispatchQueue.main.async {

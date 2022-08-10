@@ -15,11 +15,19 @@ struct AuthService {
         path: "auth/login"
     )
 
-    func performLoginRequest(
+    func performLoginRequestAndSaveToken(
         credentials: AuthRequestModel,
         _ onResponseWasReceived: @escaping (_ result: Result<AuthResponseModel, Error>) -> Void
     ) {
-        dataTask.performRequest(input: credentials, onResponseWasReceived)
+        dataTask.performRequest(input: credentials) { result in
+            if case let .success(responseModel) = result {
+                do {
+                    try dataTask.tokenStorage.set(newToken: TokenContainer(token: responseModel.token, receivingDate: .now))
+                } catch {
+                    print(error)
+                }
+            }
+        }
     }
 
 }
