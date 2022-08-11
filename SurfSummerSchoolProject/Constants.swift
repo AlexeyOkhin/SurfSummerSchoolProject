@@ -21,6 +21,7 @@ struct Constants {
         static let testKogi = UIImage(named: "testKorgi") ?? UIImage(systemName: "questionmark.app.dashed")!
         static let arrowLeft = UIImage(named: "arrowLeft") ?? UIImage(systemName: "questionmark.app.dashed")!
         static let magnifire = UIImage(named: "magnifire") ?? UIImage(systemName: "questionmark.app.dashed")!
+        static let emptyMain = UIImage(named: "emptyMain") ?? UIImage(systemName: "questionmark.app.dashed")!
     }
     
     //MARK: - Size for item collectionView

@@ -27,6 +27,7 @@ final class MainViewController: UIViewController {
         configureApireance()
         configureModel()
         model.loadPosts()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,17 +63,52 @@ private extension MainViewController {
     func configureModel() {
         model.didItemsUpdated = { [weak self] in
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self?.loadingIndicatorView.stopAnimating()
                 self?.collectionView.reloadData()
+                self?.checkForEmptyModel(model: self!.model)
             }
+            
         }
+    }
+    
+    func checkForEmptyModel(model: MainModel) {
+        if model.items.isEmpty {
+            showEmptyView()
+        }
+    }
+    
+    func showEmptyView() {
+        let imageEmpty = UIImageView()
+        imageEmpty.image = Constants.Image.emptyMain
+        
+        let emptyMessageLabel = UILabel(name: "Не удалось загрузить ленту \n Обновите экран или попробуйте позже")
+        emptyMessageLabel.textColor = Constants.Color.dateText
+        
+        let restartButton = UIButton(title: "Обновить", backgroundCollor: .black, titleColor: .white)
+        restartButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        restartButton.addTarget(self, action: #selector(restartAction), for: .touchUpInside)
+        
+        let emptyView = MainEmptyState(imageEmpty: imageEmpty, label: emptyMessageLabel, button: restartButton)
+        self.view.addSubview(emptyView)
+        
+        NSLayoutConstraint.activate([
+            emptyView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            emptyView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            emptyView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
+        ])
+        
     }
     
     func createBarButton(image: UIImage, tintColor: UIColor) -> UIBarButtonItem {
         let barButton = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(tapSearchButton(param:)))
         barButton.tintColor = tintColor
         return barButton
+    }
+    
+    @objc func restartAction() {
+        print(#function)
+        
     }
     
     @objc func tapSearchButton(param: UIBarButtonItem) {
