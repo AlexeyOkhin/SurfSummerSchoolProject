@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             runMainFlow()
         } else {
             // TODO: - Make Auth
-            let tempCredentials = AuthRequestModel(phone: "+78005003030", password: "qwerty")
+            let tempCredentials = AuthRequestModel(phone: "+79876543219", password: "qwerty")
             AuthService().performLoginRequestAndSaveToken(credentials: tempCredentials) { [weak self] result in
                 switch result {
                 case .success:

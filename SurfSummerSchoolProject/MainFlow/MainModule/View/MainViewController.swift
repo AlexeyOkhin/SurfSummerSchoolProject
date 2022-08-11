@@ -17,6 +17,8 @@ final class MainViewController: UIViewController {
     //MARK: - Private properties
     
     private let model: MainModel = .init()
+    private var isEmptyView = UIView()
+   
     
     //MARK: - LifeCycle
     
@@ -66,19 +68,19 @@ private extension MainViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self?.loadingIndicatorView.stopAnimating()
                 self?.collectionView.reloadData()
-                self?.checkForEmptyModel(model: self!.model)
+                self?.checkForEmptyModel(isModelEmpty: self?.model.items.isEmpty ?? true)
             }
             
         }
     }
     
-    func checkForEmptyModel(model: MainModel) {
+    func checkForEmptyModel(isModelEmpty: Bool) {
         if model.items.isEmpty {
             showEmptyView()
         }
     }
     
-    func showEmptyView() {
+    func createEmptyView() -> UIView {
         let imageEmpty = UIImageView()
         imageEmpty.image = Constants.Image.emptyMain
         
@@ -89,15 +91,21 @@ private extension MainViewController {
         restartButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         restartButton.addTarget(self, action: #selector(restartAction), for: .touchUpInside)
         
+        
         let emptyView = MainEmptyState(imageEmpty: imageEmpty, label: emptyMessageLabel, button: restartButton)
-        self.view.addSubview(emptyView)
+        
+        return emptyView
+    }
+    
+    func showEmptyView() {
+        isEmptyView = createEmptyView()
+        self.view.addSubview(isEmptyView)
         
         NSLayoutConstraint.activate([
-            emptyView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            emptyView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-            emptyView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
+            isEmptyView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            isEmptyView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            isEmptyView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
         ])
-        
     }
     
     func createBarButton(image: UIImage, tintColor: UIColor) -> UIBarButtonItem {
@@ -106,8 +114,14 @@ private extension MainViewController {
         return barButton
     }
     
+    //MARK: - Action for buttons
+    
     @objc func restartAction() {
         print(#function)
+        isEmptyView.removeFromSuperview()
+        configureLoadingIndicator()
+        configureModel()
+        model.loadPosts()
         
     }
     

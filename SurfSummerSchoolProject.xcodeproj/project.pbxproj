@@ -124,10 +124,10 @@
 		0CABD4BC28A4E2DB001F888D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0CE7634D289C02F500C633C5 /* Cell */,
+				0CABD4BF28A4E3CF001F888D /* MainEmptyState.swift */,
 				0CF52B9C289AFB9A0066DC84 /* MainViewController.swift */,
 				0CF52B9D289AFB9A0066DC84 /* MainViewController.xib */,
-				0CABD4BF28A4E3CF001F888D /* MainEmptyState.swift */,
+				0CE7634D289C02F500C633C5 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
