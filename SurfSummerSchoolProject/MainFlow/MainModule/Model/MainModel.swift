@@ -23,11 +23,6 @@ final class MainModel {
         }
     }
     
-    //MARK: - Method
-    /// net service
-//    func getPosts() {
-//        items = Array(repeating: DetailItemModel.createDefoult(), count: 100)
-//    }
     
     func loadPosts() {
         pictureService.loadPictures { [weak self] result in

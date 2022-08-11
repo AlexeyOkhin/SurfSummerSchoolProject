@@ -18,6 +18,12 @@ final class MainViewController: UIViewController {
     
     private let model: MainModel = .init()
     private var isEmptyView = UIView()
+    /// pull refresh
+    private lazy var newsPullRefresh: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(pullRefresh(sender:)), for: .valueChanged)
+        return refreshControl
+    }()
    
     
     //MARK: - LifeCycle
@@ -29,6 +35,7 @@ final class MainViewController: UIViewController {
         configureApireance()
         configureModel()
         model.loadPosts()
+        collectionView.refreshControl = newsPullRefresh
         
     }
     
@@ -115,6 +122,16 @@ private extension MainViewController {
     }
     
     //MARK: - Action for buttons
+    
+    /// pull refresh func
+    @objc private func pullRefresh(sender: UIRefreshControl) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.collectionView.reloadData()
+            self.checkForEmptyModel(isModelEmpty: self.model.items.isEmpty)
+        }
+        sender.endRefreshing()
+    }
     
     @objc func restartAction() {
         print(#function)
