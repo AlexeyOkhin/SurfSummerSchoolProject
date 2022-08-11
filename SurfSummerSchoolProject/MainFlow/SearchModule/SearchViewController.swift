@@ -11,36 +11,49 @@ class SearchViewController: UIViewController, UIGestureRecognizerDelegate {
     
     //MARK: - IBOutlets
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    //@IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var placeholderLabel: UILabel!
     @IBOutlet weak var placeholderImage: UIImageView!
+    
+    
+    //MARK: - Private Properties
+    
+    private var searchController = UISearchController(searchResultsController: MainViewController())
     
     //MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
+       // navigationItem.searchController = searchController
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationBar()
         setupPlaceholder()
+        
     }
 
     //MARK: - TouchesBegan
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        searchBar.endEditing(true)
+        searchController.searchBar.endEditing(true)
     }
 }
 
 //MARK: - SearchBar delegate
 
-extension SearchViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+extension SearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else {
+            return
+        }
+        
+        print(text)
     }
+    
+    
 }
 
 //MARK: - Private Methods
@@ -57,19 +70,21 @@ private extension SearchViewController {
                                         action: #selector(UINavigationController.popViewController(animated:)))
         backButton.tintColor = .black
         navigationItem.leftBarButtonItem = backButton
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        //navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     //MARK: - Setup SerchBar
     
     func setupSearchBar() {
-        navigationItem.titleView = searchBar
+        
+        navigationItem.titleView = searchController.searchBar
         navigationItem.hidesSearchBarWhenScrolling = false
-        searchBar.searchTextField.layer.cornerRadius = 16 //???? 22
-        searchBar.searchTextField.layer.masksToBounds = true
-        searchBar.searchTextField.backgroundColor = Constants.Color.serchColor
-        searchBar.placeholder = "Поиск"
-        searchBar.delegate = self
+        searchController.searchBar.searchTextField.layer.cornerRadius = 16 //???? 22
+        searchController.searchBar.searchTextField.layer.masksToBounds = true
+        searchController.searchBar.searchTextField.backgroundColor = Constants.Color.serchColor
+        searchController.searchBar.placeholder = "Поиск"
+        searchController.searchResultsUpdater = self
+        searchController.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
     }
     

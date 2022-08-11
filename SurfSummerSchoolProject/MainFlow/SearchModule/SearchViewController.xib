@@ -12,7 +12,6 @@
             <connections>
                 <outlet property="placeholderImage" destination="8iJ-MF-zeu" id="mnW-Lo-FSO"/>
                 <outlet property="placeholderLabel" destination="M1g-uC-ZTp" id="Bej-dM-P8P"/>
-                <outlet property="searchBar" destination="D2l-LK-5WS" id="c8T-K9-ZTB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,10 +20,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="D2l-LK-5WS">
-                    <rect key="frame" x="0.0" y="44" width="414" height="51"/>
-                    <textInputTraits key="textInputTraits"/>
-                </searchBar>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8iJ-MF-zeu">
                     <rect key="frame" x="193.5" y="264" width="27" height="27"/>
                     <constraints>
@@ -43,12 +38,9 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="M1g-uC-ZTp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="0A9-PF-vT8"/>
-                <constraint firstItem="D2l-LK-5WS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="PEQ-Xx-sli"/>
-                <constraint firstItem="D2l-LK-5WS" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="WSp-HQ-LcO"/>
                 <constraint firstItem="M1g-uC-ZTp" firstAttribute="top" secondItem="8iJ-MF-zeu" secondAttribute="bottom" constant="16" id="Yip-ZB-mh0"/>
                 <constraint firstItem="8iJ-MF-zeu" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="220" id="eNG-xw-BGT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="M1g-uC-ZTp" secondAttribute="trailing" constant="16" id="egk-DX-fFB"/>
-                <constraint firstItem="D2l-LK-5WS" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="jb6-oN-8lp"/>
                 <constraint firstItem="8iJ-MF-zeu" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="vfe-iW-Mm6"/>
             </constraints>
             <point key="canvasLocation" x="139" y="147"/>
