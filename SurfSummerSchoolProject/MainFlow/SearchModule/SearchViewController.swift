@@ -7,34 +7,31 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UIGestureRecognizerDelegate {
+final class SearchViewController: UIViewController {
     
     //MARK: - IBOutlets
     
-    //@IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var placeholderLabel: UILabel!
     @IBOutlet weak var placeholderImage: UIImageView!
     
-    
     //MARK: - Private Properties
     
-    private var searchController = UISearchController(searchResultsController: MainViewController())
+    private var searchController = UISearchController()
     
     //MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
-       // navigationItem.searchController = searchController
+        leftSwipeForPop()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationBar()
         setupPlaceholder()
-        
     }
-
+    
     //MARK: - TouchesBegan
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -42,17 +39,38 @@ class SearchViewController: UIViewController, UIGestureRecognizerDelegate {
     }
 }
 
-//MARK: - SearchBar delegate
+//MARK: - UISearchResultsUpdating LogicSearch
 
 extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else {
-            return
-        }
+        guard let searchText = searchController.searchBar.text else { return }
+        let resultSearchVC = searchController.searchResultsController as! MainViewController
+        resultSearchVC.searchBarIsEmpty = searchText.isEmpty
         
-        print(text)
+        if resultSearchVC.searchBarIsEmpty {
+            print("isEmpty")
+            resultSearchVC.filteredItems = []
+            resultSearchVC.collectionView.reloadData()
+        } else {
+            resultSearchVC.isFiltering = true
+            resultSearchVC.filteredItems = resultSearchVC.model.items.filter({ (item: DetailItemModel) -> Bool in
+                return item.title.lowercased().contains(searchText.lowercased())
+            })
+            
+            resultSearchVC.collectionView.reloadData()
+            
+        }
+        print(searchText)
     }
+}
+
+//MARK: - Extensions for Method
+
+extension SearchViewController: UIGestureRecognizerDelegate {
     
+    func leftSwipeForPop() {
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+    }
     
 }
 
@@ -65,24 +83,26 @@ private extension SearchViewController {
     func configureNavigationBar() {
         tabBarController?.tabBar.isHidden = true
         let backButton = UIBarButtonItem(image: Constants.Image.arrowLeft,
-                                        style: .plain,
-                                        target: navigationController,
-                                        action: #selector(UINavigationController.popViewController(animated:)))
+                                         style: .plain,
+                                         target: navigationController,
+                                         action: #selector(UINavigationController.popViewController(animated:)))
         backButton.tintColor = .black
         navigationItem.leftBarButtonItem = backButton
-        //navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     //MARK: - Setup SerchBar
     
     func setupSearchBar() {
-        
-        navigationItem.titleView = searchController.searchBar
+        searchController = UISearchController(searchResultsController: MainViewController())
+        let searchBar = searchController.searchBar
+        navigationItem.titleView = searchBar
         navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.searchBar.searchTextField.layer.cornerRadius = 16 //???? 22
-        searchController.searchBar.searchTextField.layer.masksToBounds = true
-        searchController.searchBar.searchTextField.backgroundColor = Constants.Color.serchColor
-        searchController.searchBar.placeholder = "Поиск"
+        searchBar.searchTextField.layer.cornerRadius = 22
+        searchBar.searchTextField.layer.masksToBounds = true
+        searchBar.searchTextField.backgroundColor = Constants.Color.serchColor
+        searchBar.placeholder = "Поиск"
+        searchBar.searchTextField.font = .systemFont(ofSize: 14)
+        searchBar.showsCancelButton = false
         searchController.searchResultsUpdater = self
         searchController.hidesNavigationBarDuringPresentation = false
         definesPresentationContext = true
@@ -96,6 +116,5 @@ private extension SearchViewController {
         placeholderLabel.textColor = Constants.Color.placeholderSearch
         placeholderLabel.textAlignment = .center
     }
-    
-    
 }
+

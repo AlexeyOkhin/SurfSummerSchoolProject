@@ -21,14 +21,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8iJ-MF-zeu">
-                    <rect key="frame" x="193.5" y="264" width="27" height="27"/>
+                    <rect key="frame" x="193.5" y="244" width="27" height="27"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="27" id="aDg-13-sAg"/>
                         <constraint firstAttribute="height" constant="27" id="rU3-07-8fW"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1g-uC-ZTp">
-                    <rect key="frame" x="16" y="307" width="382" height="21"/>
+                    <rect key="frame" x="16" y="287" width="382" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -39,7 +39,7 @@
             <constraints>
                 <constraint firstItem="M1g-uC-ZTp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="0A9-PF-vT8"/>
                 <constraint firstItem="M1g-uC-ZTp" firstAttribute="top" secondItem="8iJ-MF-zeu" secondAttribute="bottom" constant="16" id="Yip-ZB-mh0"/>
-                <constraint firstItem="8iJ-MF-zeu" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="220" id="eNG-xw-BGT"/>
+                <constraint firstItem="8iJ-MF-zeu" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="200" id="eNG-xw-BGT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="M1g-uC-ZTp" secondAttribute="trailing" constant="16" id="egk-DX-fFB"/>
                 <constraint firstItem="8iJ-MF-zeu" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="vfe-iW-Mm6"/>
             </constraints>

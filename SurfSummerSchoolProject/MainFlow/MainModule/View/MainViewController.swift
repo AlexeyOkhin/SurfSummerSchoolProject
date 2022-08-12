@@ -9,14 +9,19 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
-    //MARK: -  Views
+    //MARK: -  IBOutlet
     
-    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet private weak var loadingIndicatorView: UIActivityIndicatorView!
     
-    //MARK: - Private properties
+    //MARK: - Properties
     
-    private let model: MainModel = .init()
+    var searchBarIsEmpty = true
+    var filteredItems = [DetailItemModel]()
+    var isFiltering = false
+    //MARK: - Private Properties
+    
+    let model: MainModel = .init()
     private var isEmptyView = UIView()
     /// pull refresh
     private lazy var newsPullRefresh: UIRefreshControl = {
@@ -161,13 +166,22 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     ///DataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        model.items.count
+        if isFiltering {
+            return filteredItems.count
+        } else {
+            return model.items.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MainCollectionViewCell.self)", for: indexPath)
         if let cell = cell as? MainCollectionViewCell {
-            let item = model.items[indexPath.item]
+            var item: DetailItemModel
+            if isFiltering {
+                item = filteredItems[indexPath.item]
+            } else {
+                item = model.items[indexPath.item]
+            }
             cell.title = item.title
             cell.isFavorite = item.isFavorite
             cell.imageUrlInString = item.imageUrlInString
