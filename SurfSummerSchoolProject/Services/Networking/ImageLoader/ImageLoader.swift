@@ -5,8 +5,8 @@
 //  Created by Djinsolobzik on 08.08.2022.
 //
 
-import Foundation
 import UIKit
+
 
 struct ImageLoader {
 
@@ -15,12 +15,15 @@ struct ImageLoader {
 
     func loadImage(from url: URL, _ onLoadWasCompleted: @escaping (_ result: Result<UIImage, Error>) -> Void) {
         session.dataTask(with: url) { data, _, error in
-            if let error = error {
-                onLoadWasCompleted(.failure(error))
-            }
-            if let data = data, let image = UIImage(data: data) {
-                onLoadWasCompleted(.success(image))
-            }
+           
+                if let error = error {
+                    onLoadWasCompleted(.failure(error))
+                }
+                if let data = data, let image = UIImage(data: data) {
+                    onLoadWasCompleted(.success(image))
+                }
+            
+            
         }
         .resume()
     }
