@@ -15,7 +15,7 @@ extension UIImageView {
                 DispatchQueue.main.async {
                     self?.image = image
                 }
-            }
+            } 
         }
     }
 

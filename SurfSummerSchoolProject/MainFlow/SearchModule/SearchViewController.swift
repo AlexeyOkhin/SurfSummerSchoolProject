@@ -51,6 +51,7 @@ extension SearchViewController: UISearchResultsUpdating {
             print("isEmpty")
             resultSearchVC.filteredItems = []
             resultSearchVC.collectionView.reloadData()
+            
         } else {
             resultSearchVC.isFiltering = true
             resultSearchVC.filteredItems = resultSearchVC.model.items.filter({ (item: DetailItemModel) -> Bool in
@@ -94,6 +95,11 @@ private extension SearchViewController {
     
     func setupSearchBar() {
         searchController = UISearchController(searchResultsController: MainViewController())
+        searchController.searchResultsUpdater = nil
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        
         let searchBar = searchController.searchBar
         navigationItem.titleView = searchBar
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -103,9 +109,6 @@ private extension SearchViewController {
         searchBar.placeholder = "Поиск"
         searchBar.searchTextField.font = .systemFont(ofSize: 14)
         searchBar.showsCancelButton = false
-        searchController.searchResultsUpdater = self
-        searchController.hidesNavigationBarDuringPresentation = false
-        definesPresentationContext = true
     }
     
     func setupPlaceholder() {

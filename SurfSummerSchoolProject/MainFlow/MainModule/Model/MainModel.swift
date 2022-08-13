@@ -13,6 +13,7 @@ final class MainModel {
     //MARK: - Events
     
     var didItemsUpdated: (() -> Void)?
+    var errorState: String?
     
     //MARK: - Propirties
     
@@ -30,6 +31,7 @@ final class MainModel {
             case .success(let pictures):
                 self?.items = pictures.map { pictureModel in
                     DetailItemModel(
+                        id: pictureModel.id,
                         imageUrlInString: pictureModel.photoUrl,
                         title: pictureModel.title,
                         isFavorite: false, // TODO: - Need adding `FavoriteService`
@@ -39,7 +41,8 @@ final class MainModel {
                 }
             case .failure(let error):
                 // TODO: - Implement error state there
-                break
+                self?.errorState = error.localizedDescription as? String
+                print(self?.errorState)
             }
         }
     }

@@ -19,34 +19,40 @@ final class MainViewController: UIViewController {
     var searchBarIsEmpty = true
     var filteredItems = [DetailItemModel]()
     var isFiltering = false
+    
     //MARK: - Private Properties
     
     let model: MainModel = .init()
     private var isEmptyView = UIView()
     /// pull refresh
-    private lazy var newsPullRefresh: UIRefreshControl = {
+    private lazy var picturePullRefresh: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(pullRefresh(sender:)), for: .valueChanged)
         return refreshControl
     }()
-   
     
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationBar()
+        print(#function, #file)
         configureLoadingIndicator()
+        configureNavigationBar()
         configureApireance()
         configureModel()
         model.loadPosts()
-        collectionView.refreshControl = newsPullRefresh
+        collectionView.refreshControl = picturePullRefresh
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print(#function)
     }
 }
 
@@ -82,7 +88,6 @@ private extension MainViewController {
                 self?.collectionView.reloadData()
                 self?.checkForEmptyModel(isModelEmpty: self?.model.items.isEmpty ?? true)
             }
-            
         }
     }
     
@@ -102,7 +107,6 @@ private extension MainViewController {
         let restartButton = UIButton(title: "Обновить", backgroundCollor: .black, titleColor: .white)
         restartButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         restartButton.addTarget(self, action: #selector(restartAction), for: .touchUpInside)
-        
         
         let emptyView = MainEmptyState(imageEmpty: imageEmpty, label: emptyMessageLabel, button: restartButton)
         
@@ -149,8 +153,6 @@ private extension MainViewController {
     
     @objc func tapSearchButton(param: UIBarButtonItem) {
         /// implement presenter routing
-        print(#function)
-        print("tapSearch")
         let vc = SearchViewController()
         vc.tabBarController?.tabBar.isHidden = true
         navigationController?.pushViewController(vc, animated: true)
@@ -210,9 +212,16 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        print(#function)
+        let pictureItem: DetailItemModel
+                    if isFiltering {
+                        pictureItem = filteredItems[indexPath.item]
+                    } else {
+                        pictureItem = model.items[indexPath.item]
+                    }
+
         let detailVC = DetailViewController()
-        detailVC.model = model.items[indexPath.item]
+        detailVC.model = pictureItem
         navigationController?.pushViewController(detailVC, animated: true)
     }
     
