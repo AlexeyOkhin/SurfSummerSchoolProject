@@ -33,6 +33,7 @@ final class MainViewController: UIViewController {
         configureNavigationBar()
         configureLoadingIndicator()
         configureApireance()
+        showErrorMessage()
         configureModel()
         model.loadPosts()
         collectionView.refreshControl = newsPullRefresh
@@ -48,6 +49,20 @@ final class MainViewController: UIViewController {
     //MARK: - Private Methods
     
 private extension MainViewController {
+    
+    func showErrorMessage() {
+        model.didGetError = { [weak self] in
+            self?.navigationController?.navigationBar.titleTextAttributes = [
+                .foregroundColor: Constants.Color.errorNavBar,
+                .font: UIFont.systemFont(ofSize: 12)
+                
+            ]
+            self?.navigationController?.navigationBar.tintColor = .white
+            self?.title = self?.model.errorMessage
+            self?.navigationItem.rightBarButtonItem = nil
+            self?.navigationController?.navigationBar.backgroundColor = .systemPink
+        }
+    }
     
     func configureLoadingIndicator() {
         loadingIndicatorView.isHidden = true
@@ -129,6 +144,7 @@ private extension MainViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.collectionView.reloadData()
             self.checkForEmptyModel(isModelEmpty: self.model.items.isEmpty)
+            self.showErrorMessage()
         }
         sender.endRefreshing()
     }

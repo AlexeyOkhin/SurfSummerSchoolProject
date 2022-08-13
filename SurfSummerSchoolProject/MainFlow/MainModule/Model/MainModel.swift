@@ -13,6 +13,12 @@ final class MainModel {
     //MARK: - Events
     
     var didItemsUpdated: (() -> Void)?
+    var didGetError: (() -> Void)?
+    var errorMessage: String? {
+        didSet {
+            self.didGetError?()
+        }
+    }
     
     //MARK: - Propirties
     
@@ -38,10 +44,17 @@ final class MainModel {
                     )
                 }
             case .failure(let error):
+                
                 // TODO: - Implement error state there
-                break
+                
+                DispatchQueue.main.async {
+                    self?.errorMessage = error.localizedDescription
+                }
+                
             }
+            
         }
     }
 }
+
 

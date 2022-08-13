@@ -87,6 +87,16 @@ extension BaseNetworkTask where Input == EmptyModel {
 
 }
 
+//MARK: - For cleare cache for develop
+
+extension BaseNetworkTask {
+    
+    func cleareCache() {
+        urlCache.removeAllCachedResponses()
+    }
+    
+}
+
 //MARK: - Cache logic
 
 private extension BaseNetworkTask {
@@ -103,6 +113,7 @@ private extension BaseNetworkTask {
         let cachebleUrlResponse = CachedURLResponse(response: response, data: cacheData)
         urlCache.storeCachedResponse(cachebleUrlResponse, for: request)
     }
+    
 }
 // MARK: - Private Methods
 
