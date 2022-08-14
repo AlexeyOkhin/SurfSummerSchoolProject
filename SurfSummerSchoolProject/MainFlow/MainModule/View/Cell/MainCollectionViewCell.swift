@@ -29,40 +29,14 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     override var isHighlighted: Bool {
         didSet {
-            UIView.animate(withDuration: 0.2) {
-                self.contentView.transform = self.isHighlighted ? CGAffineTransform(scaleX: 0.96, y: 0.96) : .identity
-            }
+           animationTapCell()
         }
     }
     
     //MARK: - Properties
-    
-    var title: String? {
-        didSet {
-            titleLabel.text = title
-        }
-    }
-    
-    var imageUrlInString: String? {
-        didSet {
-            if let imageUrl = imageUrlInString {
-                guard let url = URL(string: imageUrl) else {
-                    return
-                }
-                imageView.loadImage(from: url)
-            } else {
-                print("not url \(#function)")
-            }
-           
-        }
-    }
-    
-    var isFavorite: Bool = false {
-        didSet {
-            favoriteButton.setImage(buttonImage, for: .normal)
-        }
-    }
-    
+
+    var isFavorite: Bool = false
+
     //MARK: - Actions
     
     @IBAction func favoriteAction(_ sender: UIButton) {
@@ -75,6 +49,20 @@ class MainCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         configureAppearence()
+    }
+    
+    //MARK: - Methods
+    
+    func configure(model: DetailItemModel) {
+        titleLabel.text = model.title
+        
+        let imageUrl = model.imageUrlInString
+        guard let url = URL(string: imageUrl) else {
+            return
+        }
+        imageView.loadImage(from: url)
+        isFavorite = model.isFavorite
+        favoriteButton.setImage(buttonImage, for: .normal)
     }
 
 }
@@ -92,7 +80,14 @@ private extension MainCollectionViewCell {
         
         favoriteButton.tintColor = .white
         
-        isFavorite = false
+        //isFavorite = false
+    }
+    
+    func animationTapCell() {
+        let cellReduction = CGAffineTransform(scaleX: 0.98, y: 0.98)
+        UIView.animate(withDuration: 0.2) {
+            self.contentView.transform = self.isHighlighted ? cellReduction : .identity
+        }
     }
 }
 

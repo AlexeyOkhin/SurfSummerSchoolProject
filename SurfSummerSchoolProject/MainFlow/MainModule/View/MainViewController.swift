@@ -53,14 +53,16 @@ private extension MainViewController {
     func showErrorMessage() {
         model.didGetError = { [weak self] in
             self?.navigationController?.navigationBar.titleTextAttributes = [
-                .foregroundColor: Constants.Color.errorNavBar,
+                .foregroundColor: UIColor.white,
                 .font: UIFont.systemFont(ofSize: 12)
-                
             ]
             self?.navigationController?.navigationBar.tintColor = .white
-            self?.title = self?.model.errorMessage
+            self?.navigationItem.prompt = self?.model.errorMessage
+            //self?.navigationController?.navigationBar.prefersLargeTitles = true
+            self?.view.backgroundColor = Constants.Color.errorNavBar
+            self?.title = "Попробуйте позже"
             self?.navigationItem.rightBarButtonItem = nil
-            self?.navigationController?.navigationBar.backgroundColor = .systemPink
+            self?.navigationController?.navigationBar.backgroundColor = Constants.Color.errorNavBar
         }
     }
     
@@ -184,12 +186,9 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MainCollectionViewCell.self)", for: indexPath)
         if let cell = cell as? MainCollectionViewCell {
             let item = model.items[indexPath.item]
-            cell.title = item.title
-            cell.isFavorite = item.isFavorite
-            cell.imageUrlInString = item.imageUrlInString
+            cell.configure(model: item)
             cell.didFavoriteTapped = { [weak self] in
             self?.model.items[indexPath.item].isFavorite.toggle()
-                
             }
         }
         return cell

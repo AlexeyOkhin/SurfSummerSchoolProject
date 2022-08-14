@@ -14,11 +14,6 @@ final class MainModel {
     
     var didItemsUpdated: (() -> Void)?
     var didGetError: (() -> Void)?
-    var errorMessage: String? {
-        didSet {
-            self.didGetError?()
-        }
-    }
     
     //MARK: - Propirties
     
@@ -26,6 +21,11 @@ final class MainModel {
     var items: [DetailItemModel] = [] {
         didSet {
             self.didItemsUpdated?()
+        }
+    }
+    var errorMessage: String? {
+        didSet {
+            self.didGetError?()
         }
     }
     
