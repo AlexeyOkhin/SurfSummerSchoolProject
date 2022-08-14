@@ -18,7 +18,7 @@ class FavoriteViewController: UIViewController {
     
     //MARK: - Private properties
     
-    private var itemsModel = MainModel.shared
+    //private var itemsModel = MainModel.shared
     private var favoriteModels: [DetailItemModel] = []
     //let model: MainModel = .init()
     
@@ -57,7 +57,7 @@ private extension FavoriteViewController {
     }
         
     func configureModel() {
-        favoriteModels = itemsModel.items.filter({ model in
+        favoriteModels = MainModel.shared.items.filter({ model in
             model.isFavorite == true
         })
         collectionView.reloadData()
@@ -95,6 +95,29 @@ extension FavoriteViewController: UICollectionViewDataSource, UICollectionViewDe
         if let cell = cell as? FavoriteCollectionViewCell {
             let item = favoriteModels[indexPath.item]
             cell.configure(model: item)
+            cell.didTappedFavorite = { [weak self] in
+                let alert = UIAlertController(title: "Внимание", message: "Вы точно хотите удалить из избранного?", preferredStyle: .alert)
+                let buttonActionCancel = UIAlertAction(title: "Нет", style: .cancel)
+                let buttonActionAccept = UIAlertAction(title: "Да, точно", style: .default) { _ in
+                    print("логика удаления из избранного")
+                    
+                    var manager = UserDefaults.standard.array(forKey: "picturesFavorite") as? [String] ?? [String]()
+                    if manager.contains(item.id) {
+                        let removeIdx = manager.lastIndex(where: {$0 == item.id})
+                        manager.remove(at: removeIdx!)
+                        print(manager.count)
+                        //cell.isFavorite.toggle()
+                       
+                        self?.favoriteModels.remove(at: indexPath.item)
+                        UserDefaults.standard.set(manager, forKey: "picturesFavorite")
+                        collectionView.reloadData()
+                    }
+                }
+                
+                alert.addAction(buttonActionCancel)
+                alert.addAction(buttonActionAccept)
+                self?.present(alert, animated: true)
+            }
         }
         return cell
     }

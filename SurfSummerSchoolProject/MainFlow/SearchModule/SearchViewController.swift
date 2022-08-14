@@ -54,7 +54,7 @@ extension SearchViewController: UISearchResultsUpdating {
             
         } else {
             resultSearchVC.isFiltering = true
-            resultSearchVC.filteredItems = resultSearchVC.model.items.filter({ (item: DetailItemModel) -> Bool in
+            resultSearchVC.filteredItems = MainModel.shared.items.filter({ (item: DetailItemModel) -> Bool in
                 return item.title.lowercased().contains(searchText.lowercased())
             })
             

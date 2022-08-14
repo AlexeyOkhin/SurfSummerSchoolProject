@@ -22,7 +22,7 @@ final class MainViewController: UIViewController {
     
     //MARK: - Private Properties
     
-    let model = MainModel.shared
+    //let model = MainModel.shared
     
     private var isEmptyView = UIView()
     /// pull refresh
@@ -41,8 +41,8 @@ final class MainViewController: UIViewController {
         configureNavigationBar()
         configureApireance()
         showErrorMessage()
-        model.loadPosts()
         configureModel()
+        MainModel.shared.loadPosts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,13 +56,13 @@ final class MainViewController: UIViewController {
 private extension MainViewController {
     
     func showErrorMessage() {
-        model.didGetError = { [weak self] in
+        MainModel.shared.didGetError = { [weak self] in
             self?.navigationController?.navigationBar.titleTextAttributes = [
                 .foregroundColor: UIColor.white,
                 .font: UIFont.systemFont(ofSize: 12)
             ]
             self?.navigationController?.navigationBar.tintColor = .white
-            self?.navigationItem.prompt = self?.model.errorMessage
+            self?.navigationItem.prompt = MainModel.shared.errorMessage
             self?.view.backgroundColor = Constants.Color.errorNavBar
             self?.title = "Попробуйте позже"
             self?.navigationItem.rightBarButtonItem = nil
@@ -92,18 +92,18 @@ private extension MainViewController {
     }
         
     func configureModel() {
-        model.didItemsUpdated = { [weak self] in
+        MainModel.shared.didItemsUpdated = { [weak self] in
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 self?.loadingIndicatorView.stopAnimating()
-                self?.checkForEmptyModel(isModelEmpty: self?.model.items.isEmpty ?? true)
+                self?.checkForEmptyModel(isModelEmpty: MainModel.shared.items.isEmpty)
                 self?.collectionView.reloadData()
             }
         }
     }
     
     func checkForEmptyModel(isModelEmpty: Bool) {
-        if model.items.isEmpty {
+        if MainModel.shared.items.isEmpty {
             showEmptyView()
         }
     }
@@ -148,7 +148,7 @@ private extension MainViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.collectionView.reloadData()
-            self.checkForEmptyModel(isModelEmpty: self.model.items.isEmpty)
+            self.checkForEmptyModel(isModelEmpty: MainModel.shared.items.isEmpty)
             self.showErrorMessage()
         }
         sender.endRefreshing()
@@ -161,7 +161,7 @@ private extension MainViewController {
         configureNavigationBar()
         showErrorMessage()
         configureModel()
-        model.loadPosts()
+        MainModel.shared.loadPosts()
     }
     
     @objc func tapSearchButton(param: UIBarButtonItem) {
@@ -182,7 +182,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         if isFiltering {
             return filteredItems.count
         } else {
-            return model.items.count
+            return MainModel.shared.items.count
         }
     }
     
@@ -194,7 +194,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             if isFiltering {
                 item = filteredItems[indexPath.item]
             } else {
-                item = model.items[indexPath.item]
+                item = MainModel.shared.items[indexPath.item]
             }
             cell.configure(model: item)
             cell.didFavoriteTapped = { [weak self] in
@@ -204,10 +204,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                     manager.remove(at: removeIdx!)
                     print(manager.count)
                     cell.isFavorite.toggle()
-                    self?.model.items[indexPath.item].isFavorite = false
+                    MainModel.shared.items[indexPath.item].isFavorite = false
                 } else {
                     cell.isFavorite.toggle()
-                    self?.model.items[indexPath.item].isFavorite = true
+                    MainModel.shared.items[indexPath.item].isFavorite = true
                     manager.append(item.id)
                     print(manager.count)
                 
@@ -241,7 +241,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                     if isFiltering {
                         pictureItem = filteredItems[indexPath.item]
                     } else {
-                        pictureItem = model.items[indexPath.item]
+                        pictureItem = MainModel.shared.items[indexPath.item]
                     }
 
         let detailVC = DetailViewController()

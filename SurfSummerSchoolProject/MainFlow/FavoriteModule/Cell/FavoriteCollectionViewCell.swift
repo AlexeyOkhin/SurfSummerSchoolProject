@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoriteCollectionViewCell: UICollectionViewCell {
+final class FavoriteCollectionViewCell: UICollectionViewCell {
     
     //MARK: -  IBOutlets
     
@@ -17,6 +17,8 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var stackView: UIStackView!
+    
+    var didTappedFavorite: (() -> Void)?
     
     //MARK: - Animation cell
     
@@ -29,7 +31,9 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     //MARK: - Actions
     
     @IBAction func favoriteButtonAction(_ sender: UIButton) {
+        didTappedFavorite?()
     }
+    
     
     //MARK: -  UICollectionViewCell
     
