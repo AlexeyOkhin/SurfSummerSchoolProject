@@ -30,7 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         runLaunchScreen()
         
         if let tokenContainer = try? tokenStorage.getToken(), !tokenContainer.isExpired {
-            runMainFlow()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8, execute: {
+                self.runMainFlow()
+            })
+            
         } else {
             // TODO: - Make Auth
             let tempCredentials = AuthRequestModel(phone: "+79876543219", password: "qwerty")
@@ -55,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func runLaunchScreen() {
         let launchScreenViewController = UIStoryboard(name: "LaunchScreen", bundle: .main).instantiateInitialViewController()
-        
+
         window?.rootViewController = launchScreenViewController
     }
 

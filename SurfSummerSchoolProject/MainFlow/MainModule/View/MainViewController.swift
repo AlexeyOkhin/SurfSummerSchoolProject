@@ -17,12 +17,13 @@ final class MainViewController: UIViewController {
     //MARK: - Properties
     
     var searchBarIsEmpty = true
-    var filteredItems = [DetailItemModel]()
     var isFiltering = false
+    var filteredItems = [DetailItemModel]()
     
     //MARK: - Private Properties
     
-    let model: MainModel = .init()
+    let model = MainModel.shared
+    
     private var isEmptyView = UIView()
     /// pull refresh
     private lazy var picturePullRefresh: UIRefreshControl = {
@@ -35,25 +36,18 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(#function, #file)
+        collectionView.refreshControl = picturePullRefresh
         configureLoadingIndicator()
         configureNavigationBar()
         configureApireance()
         showErrorMessage()
-        configureModel()
         model.loadPosts()
-        collectionView.refreshControl = picturePullRefresh
-        
+        configureModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        print(#function)
     }
 }
 
@@ -69,7 +63,6 @@ private extension MainViewController {
             ]
             self?.navigationController?.navigationBar.tintColor = .white
             self?.navigationItem.prompt = self?.model.errorMessage
-            //self?.navigationController?.navigationBar.prefersLargeTitles = true
             self?.view.backgroundColor = Constants.Color.errorNavBar
             self?.title = "Попробуйте позже"
             self?.navigationItem.rightBarButtonItem = nil
@@ -101,10 +94,10 @@ private extension MainViewController {
     func configureModel() {
         model.didItemsUpdated = { [weak self] in
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 self?.loadingIndicatorView.stopAnimating()
-                self?.collectionView.reloadData()
                 self?.checkForEmptyModel(isModelEmpty: self?.model.items.isEmpty ?? true)
+                self?.collectionView.reloadData()
             }
         }
     }
@@ -165,9 +158,10 @@ private extension MainViewController {
         print(#function)
         isEmptyView.removeFromSuperview()
         configureLoadingIndicator()
+        configureNavigationBar()
+        showErrorMessage()
         configureModel()
         model.loadPosts()
-        
     }
     
     @objc func tapSearchButton(param: UIBarButtonItem) {
@@ -176,7 +170,6 @@ private extension MainViewController {
         vc.tabBarController?.tabBar.isHidden = true
         navigationController?.pushViewController(vc, animated: true)
     }
-    
 }
     
     //MARK: -  UIcollection delegate dataSource
@@ -195,6 +188,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MainCollectionViewCell.self)", for: indexPath)
+        
         if let cell = cell as? MainCollectionViewCell {
             var item: DetailItemModel
             if isFiltering {
@@ -204,9 +198,24 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             }
             cell.configure(model: item)
             cell.didFavoriteTapped = { [weak self] in
-            self?.model.items[indexPath.item].isFavorite.toggle()
+                var manager = UserDefaults.standard.array(forKey: "picturesFavorite") as? [String] ?? [String]()
+                if manager.contains(item.id) {
+                    let removeIdx = manager.lastIndex(where: {$0 == item.id})
+                    manager.remove(at: removeIdx!)
+                    print(manager.count)
+                    cell.isFavorite.toggle()
+                    self?.model.items[indexPath.item].isFavorite = false
+                } else {
+                    cell.isFavorite.toggle()
+                    self?.model.items[indexPath.item].isFavorite = true
+                    manager.append(item.id)
+                    print(manager.count)
+                
+                }
+                UserDefaults.standard.set(manager, forKey: "picturesFavorite")
             }
         }
+        
         return cell
     }
     

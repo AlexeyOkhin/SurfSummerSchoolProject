@@ -16,7 +16,11 @@ class DetailViewController: UIViewController {
     //MARK: - Properties
     
     var model: DetailItemModel?
-    let arrayWithTypeOfCells: [UITableViewCell] = [DetailImageTableViewCell(), DetailTitleTableViewCell(), DetailContentTableViewCell()]
+    let arrayWithTypeOfCells: [UITableViewCell] = [
+                                DetailImageTableViewCell(),
+                                DetailTitleTableViewCell(),
+                                DetailContentTableViewCell()
+    ]
     
     //MARK: - LifeCycle
     

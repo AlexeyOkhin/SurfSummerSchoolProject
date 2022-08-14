@@ -42,6 +42,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     
     func configure(model: DetailItemModel) {
         titleLabel.text = model.title
+        dateLabel.text = model.dateCreation
         contentLabel.text = model.content
         let imageUrl = model.imageUrlInString
         guard let url = URL(string: imageUrl) else {

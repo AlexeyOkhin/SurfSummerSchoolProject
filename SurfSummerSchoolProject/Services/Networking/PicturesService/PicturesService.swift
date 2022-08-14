@@ -18,8 +18,8 @@ struct PicturesService {
     func loadPictures(_ onResponseWasReceived: @escaping (_ result: Result<[PictureResponseModel], Error>) -> Void) {
         dataTask.performRequest(onResponseWasReceived)
         
-        //MARK: - for developed cath error
+        //MARK: - for developed cache error
         
-        dataTask.cleareCache()
+        //dataTask.cleareCache()
     }
 }

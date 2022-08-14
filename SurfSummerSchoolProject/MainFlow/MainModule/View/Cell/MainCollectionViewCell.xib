@@ -35,7 +35,7 @@
                             <constraint firstAttribute="height" constant="24" id="c0C-wm-i0Z"/>
                         </constraints>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain"/>
+                        <buttonConfiguration key="configuration" style="plain" image="favoriteFalse"/>
                         <connections>
                             <action selector="favoriteAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="E8F-p5-Yw3"/>
                         </connections>
@@ -63,4 +63,7 @@
             <point key="canvasLocation" x="115.94202898550725" y="219.64285714285714"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="favoriteFalse" width="22" height="20"/>
+    </resources>
 </document>

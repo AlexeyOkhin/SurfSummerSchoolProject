@@ -11,6 +11,10 @@
 		0CABD4C228A4FC1B001F888D /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CABD4C128A4FC1B001F888D /* UIButton + Extension.swift */; };
 		0CABD4C428A50FDB001F888D /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CABD4C328A50FDB001F888D /* UILabel + Extension.swift */; };
 		0CC14BE728A81E2D00B9AA4A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 0CC14BE628A81E2D00B9AA4A /* .gitignore */; };
+		0CC14BEB28A8F73C00B9AA4A /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC14BEA28A8F73B00B9AA4A /* FavoritesManager.swift */; };
+		0CC14BED28A8F79A00B9AA4A /* FavoriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC14BEC28A8F79A00B9AA4A /* FavoriteModel.swift */; };
+		0CC14BF128A8FA9400B9AA4A /* FavoriteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC14BF028A8FA9400B9AA4A /* FavoriteStorage.swift */; };
+		0CC14BF328A8FB1600B9AA4A /* FavoriteConteiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC14BF228A8FB1600B9AA4A /* FavoriteConteiner.swift */; };
 		0CCE86A5289F846600765F62 /* DetailTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCE86A3289F846600765F62 /* DetailTitleTableViewCell.swift */; };
 		0CCE86A6289F846600765F62 /* DetailTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CCE86A4289F846600765F62 /* DetailTitleTableViewCell.xib */; };
 		0CCE86AC289F8A7300765F62 /* UITableView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCE86AB289F8A7300765F62 /* UITableView + Extension.swift */; };
@@ -63,6 +67,10 @@
 		0CABD4C128A4FC1B001F888D /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
 		0CABD4C328A50FDB001F888D /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
 		0CC14BE628A81E2D00B9AA4A /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		0CC14BEA28A8F73B00B9AA4A /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
+		0CC14BEC28A8F79A00B9AA4A /* FavoriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteModel.swift; sourceTree = "<group>"; };
+		0CC14BF028A8FA9400B9AA4A /* FavoriteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStorage.swift; sourceTree = "<group>"; };
+		0CC14BF228A8FB1600B9AA4A /* FavoriteConteiner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteConteiner.swift; sourceTree = "<group>"; };
 		0CCE86A3289F846600765F62 /* DetailTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTitleTableViewCell.swift; sourceTree = "<group>"; };
 		0CCE86A4289F846600765F62 /* DetailTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTitleTableViewCell.xib; sourceTree = "<group>"; };
 		0CCE86AB289F8A7300765F62 /* UITableView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extension.swift"; sourceTree = "<group>"; };
@@ -149,6 +157,34 @@
 				0CCE86AD289F8D9400765F62 /* DetailItemModel.swift */,
 			);
 			path = DTO;
+			sourceTree = "<group>";
+		};
+		0CC14BE828A8F70800B9AA4A /* FavoritesManager */ = {
+			isa = PBXGroup;
+			children = (
+				0CC14BEA28A8F73B00B9AA4A /* FavoritesManager.swift */,
+				0CC14BEC28A8F79A00B9AA4A /* FavoriteModel.swift */,
+			);
+			path = FavoritesManager;
+			sourceTree = "<group>";
+		};
+		0CC14BEE28A8FA5C00B9AA4A /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				0CF3D72228A190F500B4709D /* TokenStorage.swift */,
+				0CF3D72428A1910E00B4709D /* TokenContainer.swift */,
+				0CF3D72628A1912000B4709D /* BaseTokenStorage.swift */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
+		0CC14BEF28A8FA7400B9AA4A /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				0CC14BF028A8FA9400B9AA4A /* FavoriteStorage.swift */,
+				0CC14BF228A8FB1600B9AA4A /* FavoriteConteiner.swift */,
+			);
+			path = Favorite;
 			sourceTree = "<group>";
 		};
 		0CCE86A1289F813400765F62 /* TitleCell */ = {
@@ -298,6 +334,7 @@
 		0CF3D72028A190A300B4709D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				0CC14BE828A8F70800B9AA4A /* FavoritesManager */,
 				0CF3D72128A190D300B4709D /* Storage */,
 				0CF3D70B28A17BC300B4709D /* Networking */,
 			);
@@ -307,9 +344,8 @@
 		0CF3D72128A190D300B4709D /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				0CF3D72228A190F500B4709D /* TokenStorage.swift */,
-				0CF3D72428A1910E00B4709D /* TokenContainer.swift */,
-				0CF3D72628A1912000B4709D /* BaseTokenStorage.swift */,
+				0CC14BEF28A8FA7400B9AA4A /* Favorite */,
+				0CC14BEE28A8FA5C00B9AA4A /* Token */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -486,11 +522,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CD425F0289EE55300240C71 /* DetailViewController.swift in Sources */,
+				0CC14BF328A8FB1600B9AA4A /* FavoriteConteiner.swift in Sources */,
 				0CF3D71F28A1903D00B4709D /* AuthRequestModel.swift in Sources */,
 				0CF3D71528A17CC200B4709D /* NetworkMethod.swift in Sources */,
 				0CF3D71328A17CA000B4709D /* NetworkTask.swift in Sources */,
 				0CD425E5289E728F00240C71 /* UICollectionView + Extension.swift in Sources */,
 				0CF3D71D28A1901D00B4709D /* AuthResponseModel.swift in Sources */,
+				0CC14BF128A8FA9400B9AA4A /* FavoriteStorage.swift in Sources */,
 				0CABD4C428A50FDB001F888D /* UILabel + Extension.swift in Sources */,
 				0CF3D72D28A1922000B4709D /* ImageLoader.swift in Sources */,
 				0CF3D71728A17CD600B4709D /* BaseNetworkTask.swift in Sources */,
@@ -502,6 +540,7 @@
 				0CCE86AE289F8D9400765F62 /* DetailItemModel.swift in Sources */,
 				0CF3D71928A17CE500B4709D /* EmptyModel.swift in Sources */,
 				0CD425E9289E747B00240C71 /* SearchViewController.swift in Sources */,
+				0CC14BED28A8F79A00B9AA4A /* FavoriteModel.swift in Sources */,
 				0CD425EC289E749C00240C71 /* SearchPresenter.swift in Sources */,
 				0CF52BA6289AFBC40066DC84 /* ProfileViewController.swift in Sources */,
 				0CF3D72528A1910E00B4709D /* TokenContainer.swift in Sources */,
@@ -511,6 +550,7 @@
 				0CF3D72B28A191F400B4709D /* PicturesService.swift in Sources */,
 				0CF52B97289A72DE0066DC84 /* TabBarModel.swift in Sources */,
 				0CF3D72728A1912000B4709D /* BaseTokenStorage.swift in Sources */,
+				0CC14BEB28A8F73C00B9AA4A /* FavoritesManager.swift in Sources */,
 				0CF3D71B28A1844700B4709D /* AuthService.swift in Sources */,
 				0CF52B7F289A70210066DC84 /* AppDelegate.swift in Sources */,
 				0CE7634A289BC19100C633C5 /* MainModel.swift in Sources */,

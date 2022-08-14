@@ -8,12 +8,19 @@
 import UIKit
 
 class FavoriteViewController: UIViewController {
-
+    
+    //MARK: -  IBOutlets
+    
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    //MARK: - Properties
+    
     
     //MARK: - Private properties
     
-    private let model: MainModel = .init()
+    private var itemsModel = MainModel.shared
+    private var favoriteModels: [DetailItemModel] = []
+    //let model: MainModel = .init()
     
     //MARK: - LifeCycle
     
@@ -22,12 +29,14 @@ class FavoriteViewController: UIViewController {
         configureNavigationBar()
         configureApireance()
         configureModel()
-        model.loadPosts()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
+        configureModel()
+        print(#function)
     }
 }
 
@@ -48,12 +57,10 @@ private extension FavoriteViewController {
     }
         
     func configureModel() {
-        model.didItemsUpdated = { [weak self] in
-            DispatchQueue.main.async {
-                self?.collectionView.reloadData()
-            }
-            
-        }
+        favoriteModels = itemsModel.items.filter({ model in
+            model.isFavorite == true
+        })
+        collectionView.reloadData()
     }
     
     func createBarButton(image: UIImage, tintColor: UIColor) -> UIBarButtonItem {
@@ -80,13 +87,13 @@ extension FavoriteViewController: UICollectionViewDataSource, UICollectionViewDe
     ///DataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        model.items.count
+        favoriteModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(FavoriteCollectionViewCell.self)", for: indexPath)
         if let cell = cell as? FavoriteCollectionViewCell {
-            let item = model.items[indexPath.item]
+            let item = favoriteModels[indexPath.item]
             cell.configure(model: item)
         }
         return cell
@@ -107,7 +114,7 @@ extension FavoriteViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let detailVC = DetailViewController()
-        detailVC.model = model.items[indexPath.item]
+        detailVC.model = favoriteModels[indexPath.item]
         navigationController?.pushViewController(detailVC, animated: true)
     }
     

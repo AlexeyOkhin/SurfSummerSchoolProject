@@ -10,14 +10,12 @@ import UIKit
 
 final class MainModel {
     
-    //MARK: - Events
-    
-    var didItemsUpdated: (() -> Void)?
-    var didGetError: (() -> Void)?
-    
     //MARK: - Propirties
     
+    static let shared = MainModel.init()
+    
     let pictureService = PicturesService()
+    
     var items: [DetailItemModel] = [] {
         didSet {
             self.didItemsUpdated?()
@@ -28,6 +26,11 @@ final class MainModel {
             self.didGetError?()
         }
     }
+    //MARK: - Events
+    
+    var didItemsUpdated: (() -> Void)?
+    var didGetError: (() -> Void)?
+    
     
     
     func loadPosts() {
@@ -39,7 +42,7 @@ final class MainModel {
                         id: pictureModel.id,
                         imageUrlInString: pictureModel.photoUrl,
                         title: pictureModel.title,
-                        isFavorite: false, // TODO: - Need adding `FavoriteService`
+                        isFavorite: FavoritesManager.shared.rowsWhichAreChecked.contains(pictureModel.id) ? true : false, // TODO: - Need adding `FavoriteService`
                         content: pictureModel.content,
                         dateCreation: pictureModel.date
                     )
