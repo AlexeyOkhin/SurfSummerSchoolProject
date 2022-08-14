@@ -95,7 +95,7 @@ private extension SearchViewController {
     
     func setupSearchBar() {
         searchController = UISearchController(searchResultsController: MainViewController())
-        searchController.searchResultsUpdater = nil
+        searchController.searchResultsUpdater = self
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.obscuresBackgroundDuringPresentation = false
         definesPresentationContext = true

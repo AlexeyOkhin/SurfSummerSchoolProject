@@ -178,7 +178,6 @@ private extension MainViewController {
     
 }
     
-    
     //MARK: -  UIcollection delegate dataSource
     
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -196,7 +195,12 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MainCollectionViewCell.self)", for: indexPath)
         if let cell = cell as? MainCollectionViewCell {
-            let item = model.items[indexPath.item]
+            var item: DetailItemModel
+            if isFiltering {
+                item = filteredItems[indexPath.item]
+            } else {
+                item = model.items[indexPath.item]
+            }
             cell.configure(model: item)
             cell.didFavoriteTapped = { [weak self] in
             self?.model.items[indexPath.item].isFavorite.toggle()
