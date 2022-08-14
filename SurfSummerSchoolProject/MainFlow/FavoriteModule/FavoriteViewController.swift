@@ -87,10 +87,7 @@ extension FavoriteViewController: UICollectionViewDataSource, UICollectionViewDe
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(FavoriteCollectionViewCell.self)", for: indexPath)
         if let cell = cell as? FavoriteCollectionViewCell {
             let item = model.items[indexPath.item]
-            cell.imageUrlInString = item.imageUrlInString
-            cell.title = item.title
-            cell.date = item.dateCreation
-            cell.content = item.content
+            cell.configure(model: item)
         }
         return cell
     }
