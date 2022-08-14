@@ -31,6 +31,8 @@ struct Constants {
         static let favoriteSpacBetweenRows: CGFloat = 24
         static let spacBetweenRows: CGFloat = 8
         static let spaceBetweenElements: CGFloat = 8
+        static let aspectRatioMain: CGFloat = 1.46
+        static let aspectRatioFavarite: CGFloat = 1.16
     }
     
     //MARK: - Colors

@@ -80,7 +80,7 @@ private extension MainCollectionViewCell {
         
         favoriteButton.tintColor = .white
         
-        //isFavorite = false
+        isFavorite = false
     }
     
     func animationTapCell() {

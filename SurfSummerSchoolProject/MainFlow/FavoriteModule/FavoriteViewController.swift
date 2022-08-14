@@ -99,7 +99,7 @@ extension FavoriteViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemWidth = (view.frame.width - Constants.Size.horisontalInset * 2)
-        let itemHeight = itemWidth * 1.16
+        let itemHeight = itemWidth * Constants.Size.aspectRatioFavarite
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
