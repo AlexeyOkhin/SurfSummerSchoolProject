@@ -36,7 +36,7 @@ class FavoriteViewController: UIViewController {
 private extension FavoriteViewController {
     
     func configureNavigationBar() {
-        //tabBarController?.tabBar.isHidden = false
+        title = "Избранное"
         navigationItem.rightBarButtonItem = createBarButton(image: Constants.Image.searchNavBar, tintColor: .black)
     }
     

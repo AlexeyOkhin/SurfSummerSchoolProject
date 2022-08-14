@@ -37,7 +37,7 @@ private extension TabBarConfigurator {
         
         allTab.forEach { tab in
             let controller = getCurrentViewController(tab: tab)
-            let tabBarItem = UITabBarItem(title: tab.title, image: tab.image, selectedImage: tab.selectedImage)
+            let tabBarItem = UITabBarItem(title: tab.properties.title, image: tab.properties.image, selectedImage: tab.properties.image)
             controller.tabBarItem = tabBarItem
             viewControllers.append(controller)
         }
@@ -48,19 +48,16 @@ private extension TabBarConfigurator {
     func getCurrentViewController(tab: TabBarModel) -> UIViewController {
         switch tab {
         case .main:
-            return generationNavigationController(for: MainViewController(), title: tab.title)
+            return generationNavigationController(for: MainViewController())
         case .favorite:
-            return generationNavigationController(for: FavoriteViewController(), title: tab.title)
+            return generationNavigationController(for: FavoriteViewController())
         case .profile:
-            return generationNavigationController(for: ProfileViewController(), title: tab.title)
+            return ProfileViewController()
         }
     }
     
-    func generationNavigationController(for rootViewController: UIViewController, title: String?) -> UIViewController {
+    func generationNavigationController(for rootViewController: UIViewController) -> UIViewController {
         let navigation = UINavigationController(rootViewController: rootViewController)
-//        let barButton = createBarButton(image: Constants.Image.searchNavBar, tintColor: .black)
-//        navigation.navigationBar.topItem?.rightBarButtonItem = barButton
-        navigation.navigationBar.topItem?.title = title
         navigation.navigationBar.backgroundColor = .white
         return navigation
     }

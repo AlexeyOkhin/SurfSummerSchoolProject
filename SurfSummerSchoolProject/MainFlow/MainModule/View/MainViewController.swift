@@ -86,6 +86,7 @@ private extension MainViewController {
     }
     
     func configureNavigationBar() {
+        title = "Главная"
         tabBarController?.tabBar.isHidden = false
         navigationItem.rightBarButtonItem = createBarButton(image: Constants.Image.searchNavBar, tintColor: .black)
     }
