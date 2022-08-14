@@ -10,6 +10,7 @@
 		0CABD4C028A4E3CF001F888D /* MainEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CABD4BF28A4E3CF001F888D /* MainEmptyState.swift */; };
 		0CABD4C228A4FC1B001F888D /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CABD4C128A4FC1B001F888D /* UIButton + Extension.swift */; };
 		0CABD4C428A50FDB001F888D /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CABD4C328A50FDB001F888D /* UILabel + Extension.swift */; };
+		0CC14BE728A81E2D00B9AA4A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 0CC14BE628A81E2D00B9AA4A /* .gitignore */; };
 		0CCE86A5289F846600765F62 /* DetailTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCE86A3289F846600765F62 /* DetailTitleTableViewCell.swift */; };
 		0CCE86A6289F846600765F62 /* DetailTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CCE86A4289F846600765F62 /* DetailTitleTableViewCell.xib */; };
 		0CCE86AC289F8A7300765F62 /* UITableView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCE86AB289F8A7300765F62 /* UITableView + Extension.swift */; };
@@ -61,6 +62,7 @@
 		0CABD4BF28A4E3CF001F888D /* MainEmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEmptyState.swift; sourceTree = "<group>"; };
 		0CABD4C128A4FC1B001F888D /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
 		0CABD4C328A50FDB001F888D /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
+		0CC14BE628A81E2D00B9AA4A /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		0CCE86A3289F846600765F62 /* DetailTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTitleTableViewCell.swift; sourceTree = "<group>"; };
 		0CCE86A4289F846600765F62 /* DetailTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTitleTableViewCell.xib; sourceTree = "<group>"; };
 		0CCE86AB289F8A7300765F62 /* UITableView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extension.swift"; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 		0CF52B72289A70210066DC84 = {
 			isa = PBXGroup;
 			children = (
+				0CC14BE628A81E2D00B9AA4A /* .gitignore */,
 				0CF52B7D289A70210066DC84 /* SurfSummerSchoolProject */,
 				0CF52B7C289A70210066DC84 /* Products */,
 			);
@@ -470,6 +473,7 @@
 				0CF52BA7289AFBC40066DC84 /* ProfileViewController.xib in Resources */,
 				0CF52B88289A70270066DC84 /* Assets.xcassets in Resources */,
 				0CF3D70A28A16AA900B4709D /* FavoriteCollectionViewCell.xib in Resources */,
+				0CC14BE728A81E2D00B9AA4A /* .gitignore in Resources */,
 				0CD425EA289E747B00240C71 /* SearchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

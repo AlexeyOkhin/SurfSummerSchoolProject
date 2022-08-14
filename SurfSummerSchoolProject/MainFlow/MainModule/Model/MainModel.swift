@@ -13,7 +13,7 @@ final class MainModel {
     //MARK: - Events
     
     var didItemsUpdated: (() -> Void)?
-    var errorState: String?
+    var didGetError: (() -> Void)?
     
     //MARK: - Propirties
     
@@ -21,6 +21,11 @@ final class MainModel {
     var items: [DetailItemModel] = [] {
         didSet {
             self.didItemsUpdated?()
+        }
+    }
+    var errorMessage: String? {
+        didSet {
+            self.didGetError?()
         }
     }
     
@@ -40,11 +45,17 @@ final class MainModel {
                     )
                 }
             case .failure(let error):
+                
                 // TODO: - Implement error state there
-                self?.errorState = error.localizedDescription as? String
-                print(self?.errorState)
+                
+                DispatchQueue.main.async {
+                    self?.errorMessage = error.localizedDescription
+                }
+                
             }
+            
         }
     }
 }
+
 

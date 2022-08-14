@@ -39,6 +39,7 @@ final class MainViewController: UIViewController {
         configureLoadingIndicator()
         configureNavigationBar()
         configureApireance()
+        showErrorMessage()
         configureModel()
         model.loadPosts()
         collectionView.refreshControl = picturePullRefresh
@@ -59,6 +60,22 @@ final class MainViewController: UIViewController {
     //MARK: - Private Methods
     
 private extension MainViewController {
+    
+    func showErrorMessage() {
+        model.didGetError = { [weak self] in
+            self?.navigationController?.navigationBar.titleTextAttributes = [
+                .foregroundColor: UIColor.white,
+                .font: UIFont.systemFont(ofSize: 12)
+            ]
+            self?.navigationController?.navigationBar.tintColor = .white
+            self?.navigationItem.prompt = self?.model.errorMessage
+            //self?.navigationController?.navigationBar.prefersLargeTitles = true
+            self?.view.backgroundColor = Constants.Color.errorNavBar
+            self?.title = "Попробуйте позже"
+            self?.navigationItem.rightBarButtonItem = nil
+            self?.navigationController?.navigationBar.backgroundColor = Constants.Color.errorNavBar
+        }
+    }
     
     func configureLoadingIndicator() {
         loadingIndicatorView.isHidden = true
@@ -138,6 +155,7 @@ private extension MainViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.collectionView.reloadData()
             self.checkForEmptyModel(isModelEmpty: self.model.items.isEmpty)
+            self.showErrorMessage()
         }
         sender.endRefreshing()
     }
@@ -178,18 +196,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MainCollectionViewCell.self)", for: indexPath)
         if let cell = cell as? MainCollectionViewCell {
-            var item: DetailItemModel
-            if isFiltering {
-                item = filteredItems[indexPath.item]
-            } else {
-                item = model.items[indexPath.item]
-            }
-            cell.title = item.title
-            cell.isFavorite = item.isFavorite
-            cell.imageUrlInString = item.imageUrlInString
+            let item = model.items[indexPath.item]
+            cell.configure(model: item)
             cell.didFavoriteTapped = { [weak self] in
             self?.model.items[indexPath.item].isFavorite.toggle()
-                
             }
         }
         return cell

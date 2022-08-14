@@ -9,18 +9,24 @@ import UIKit
 
 class DetailContentTableViewCell: UITableViewCell {
     
+    //MARK: - IBOutlets
+    
     @IBOutlet weak var contentLabel: UILabel!
     
-    var content: String? {
-        didSet {
-            contentLabel.text = content
-        }
-    }
+    //MARK: - UITableViewCell
     
     override func awakeFromNib() {
         super.awakeFromNib()
         configureAppearance()
     }
+    
+    //MARK: - Methods
+    
+    func configure(model: DetailItemModel) {
+        contentLabel.text = model.content
+    }
+    
+    //MARK: - Private Methods
     
     private func configureAppearance() {
         selectionStyle = .none

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UIGestureRecognizerDelegate {
+class DetailViewController: UIViewController {
     
     //MARK: -  IBOutlet
     
@@ -16,26 +16,25 @@ class DetailViewController: UIViewController, UIGestureRecognizerDelegate {
     //MARK: - Properties
     
     var model: DetailItemModel?
+    let arrayWithTypeOfCells: [UITableViewCell] = [DetailImageTableViewCell(), DetailTitleTableViewCell(), DetailContentTableViewCell()]
     
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureAppearance()
-        //tableView.reloadData()
+        leftSwipeForPop()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationBar()
     }
-    
 }
 
 //MARK: - Private Method
 
 private extension DetailViewController {
-    
     
     func configureAppearance() {
         configureTableView()
@@ -49,7 +48,6 @@ private extension DetailViewController {
                                         action: #selector(UINavigationController.popViewController(animated:)))
         backButton.tintColor = .black
         navigationItem.leftBarButtonItem = backButton
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     func configureTableView() {
@@ -77,34 +75,44 @@ private extension DetailViewController {
 extension DetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        arrayWithTypeOfCells.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let model = model else { return UITableViewCell()}
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailImageTableViewCell.self)")
             if let cell = cell as? DetailImageTableViewCell {
-                cell.imageUrlInString = model?.imageUrlInString ?? ""
+                cell.configure(model: model)
             }
             return cell ?? UITableViewCell()
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailTitleTableViewCell.self)")
            
             if let cell = cell as? DetailTitleTableViewCell {
-                cell.title = model?.title
-                cell.date = model?.dateCreation
+                cell.configure(model: model)
             }
             return cell ?? UITableViewCell()
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailContentTableViewCell.self)")
             if let cell = cell as? DetailContentTableViewCell {
-                cell.content = model?.content
+                cell.configure(model: model)
             }
             return cell ?? UITableViewCell()
         default:
             return UITableViewCell()
         }
     }
+}
+
+    //MARK: - Methods
+
+extension DetailViewController: UIGestureRecognizerDelegate {
+    
+    func leftSwipeForPop() {
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+    }
+    
 }
 

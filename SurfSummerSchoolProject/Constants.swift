@@ -39,5 +39,6 @@ struct Constants {
         static let serchColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
         static let dateText = #colorLiteral(red: 0.7019607843, green: 0.7019607843, blue: 0.7019607843, alpha: 1)
         static let placeholderSearch = #colorLiteral(red: 0.7438805699, green: 0.7438805699, blue: 0.7438805699, alpha: 1)
+        static let errorNavBar = #colorLiteral(red: 0.9714686275, green: 0.4395110607, blue: 0.4181905985, alpha: 1)
     }
 }

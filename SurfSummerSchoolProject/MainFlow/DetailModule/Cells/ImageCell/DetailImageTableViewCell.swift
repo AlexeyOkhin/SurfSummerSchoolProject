@@ -13,17 +13,6 @@ class DetailImageTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var cartImageView: UIImageView!
     
-    //MARK: - Properties
-    
-    var imageUrlInString: String = "" {
-        didSet {
-            guard let url = URL(string: imageUrlInString) else {
-                return
-            }
-            cartImageView?.loadImage(from: url)
-        }
-    }
-    
     //MARK: - UITableViewCell
     
     override func awakeFromNib() {
@@ -31,11 +20,16 @@ class DetailImageTableViewCell: UITableViewCell {
         configureAppearance()
     }
     
+    func configure(model: DetailItemModel) {
+        guard let url = URL(string: model.imageUrlInString) else {
+            return
+        }
+        cartImageView?.loadImage(from: url)
+    }
+
     private func configureAppearance() {
         selectionStyle = .none
         cartImageView.layer.cornerRadius = 12
         cartImageView.contentMode = .scaleAspectFill
-        //cartImageView.clipsToBounds = true
     }
-    
 }
