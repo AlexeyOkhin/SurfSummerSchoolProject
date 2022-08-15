@@ -58,7 +58,6 @@ private extension ProfileViewController {
             stackView.topAnchor.constraint(equalTo: photoCard.bottomAnchor, constant: 26),
             stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            
         ])
         
         NSLayoutConstraint.activate([
@@ -66,12 +65,20 @@ private extension ProfileViewController {
             exitButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
             exitButton.heightAnchor.constraint(equalToConstant: 48),
             exitButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -24)
-            
         ])
     }
+    
     @objc func exitAction() {
-        print("EXIT FUNC")
+        let alert = UIAlertController(title: "Внимание", message: "Вы точно хотите выйти из приложения?", preferredStyle: .alert)
+        let buttonActionCancel = UIAlertAction(title: "Нет", style: .cancel)
+        let buttonActionAccept = UIAlertAction(title: "Да, точно", style: .default) { _ in
+            print("Logic Exit")
+        }
+        alert.addAction(buttonActionCancel)
+        alert.addAction(buttonActionAccept)
+        self.present(alert, animated: true)
     }
+    
     
     func setData() {
         
