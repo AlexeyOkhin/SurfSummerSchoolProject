@@ -10,12 +10,11 @@ import UIKit
 class PhotoCard: UIView {
     let photoImageView: UIImageView = {
         let image = UIImageView()
-        image.contentMode = .center
+        image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.borderColor = UIColor.black.cgColor
-        //image.layer.cornerRadius = 12
-        //image.layer.borderWidth = 1
+        image.layer.cornerRadius = 12
        return image
     }()
     
@@ -47,6 +46,7 @@ class PhotoCard: UIView {
     
     private func setupConstraints() {
         self.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             photoImageView.topAnchor.constraint(equalTo: self.topAnchor),
             photoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
@@ -57,13 +57,13 @@ class PhotoCard: UIView {
         NSLayoutConstraint.activate([
             fioLabel.topAnchor.constraint(equalTo: self.topAnchor),
             fioLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 16),
-            fioLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            //fioLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
         ])
         
         NSLayoutConstraint.activate([
             aboutLabel.topAnchor.constraint(equalTo: fioLabel.bottomAnchor, constant: 8),
             aboutLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 16),
-            aboutLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 24)
+            //aboutLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -24)
         ])
         
         
@@ -82,10 +82,10 @@ class PhotoCard: UIView {
         fioLabel.text = name
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        photoImageView.layer.masksToBounds = true
-        photoImageView.layer.cornerRadius = 12
-
-    }
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        photoImageView.layer.masksToBounds = true
+//        photoImageView.layer.cornerRadius = 12
+//
+//    }
 }
