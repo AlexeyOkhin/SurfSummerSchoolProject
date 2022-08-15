@@ -8,33 +8,22 @@
 import UIKit
 
 enum TabBarModel {
+    struct TabProperties {
+        let title: String
+        let image: UIImage
+    }
     case main
     case favorite
     case profile
     
-    var title: String {
+    var properties: TabProperties {
         switch self {
         case .main:
-            return "Главная"
+            return TabProperties(title: "Главная", image: Constants.Image.mainTabBar)
         case .favorite:
-            return "Избранное"
+            return TabProperties(title: "Избранное", image: Constants.Image.favoriteTabBar)
         case .profile:
-            return "Профиль"
+            return TabProperties(title: "Профиль", image: Constants.Image.profileTabBar)
         }
-    }
-    
-    var image: UIImage {
-        switch self {
-        case .main:
-            return #imageLiteral(resourceName: "profileTabBar")
-        case .favorite:
-            return #imageLiteral(resourceName: "favoriteTabBar")
-        case .profile:
-            return #imageLiteral(resourceName: "mainTabBar")
-        }
-    }
-        
-    var selectedImage: UIImage {
-        return image
     }
 }

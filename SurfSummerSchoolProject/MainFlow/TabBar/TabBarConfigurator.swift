@@ -11,7 +11,7 @@ class TabBarConfigurator {
     
     //MARK: - Private property
     
-    private let allTab: [TabBarModel] = [.main, .profile, .favorite]
+    private let allTab: [TabBarModel] = [.main, .favorite, .profile]
     
     //MARK: - Internal func
     
@@ -19,6 +19,8 @@ class TabBarConfigurator {
         return getTabBarController()
     }
 }
+
+//MARK: - Private method
 
 private extension TabBarConfigurator {
     func getTabBarController() -> UITabBarController {
@@ -35,7 +37,7 @@ private extension TabBarConfigurator {
         
         allTab.forEach { tab in
             let controller = getCurrentViewController(tab: tab)
-            let tabBarItem = UITabBarItem(title: tab.title, image: tab.image, selectedImage: tab.selectedImage)
+            let tabBarItem = UITabBarItem(title: tab.properties.title, image: tab.properties.image, selectedImage: tab.properties.image)
             controller.tabBarItem = tabBarItem
             viewControllers.append(controller)
         }
@@ -46,11 +48,17 @@ private extension TabBarConfigurator {
     func getCurrentViewController(tab: TabBarModel) -> UIViewController {
         switch tab {
         case .main:
-            return MainViewController()
+            return generationNavigationController(for: MainViewController())
         case .favorite:
-            return FavoriteViewController()
+            return generationNavigationController(for: FavoriteViewController())
         case .profile:
             return ProfileViewController()
         }
+    }
+    
+    func generationNavigationController(for rootViewController: UIViewController) -> UIViewController {
+        let navigation = UINavigationController(rootViewController: rootViewController)
+        navigation.navigationBar.backgroundColor = .white
+        return navigation
     }
 }

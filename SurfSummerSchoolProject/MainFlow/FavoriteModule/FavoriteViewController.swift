@@ -8,22 +8,137 @@
 import UIKit
 
 class FavoriteViewController: UIViewController {
-
+    
+    //MARK: -  IBOutlets
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    //MARK: - Properties
+    
+    
+    //MARK: - Private properties
+    
+    //private var itemsModel = MainModel.shared
+    private var favoriteModels: [DetailItemModel] = []
+    //let model: MainModel = .init()
+    
+    //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureNavigationBar()
+        configureApireance()
+        configureModel()
+        
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+        configureModel()
+        print(#function)
     }
-    */
+}
 
+    //MARK: - Private Methods
+    
+private extension FavoriteViewController {
+    
+    func configureNavigationBar() {
+        title = "Избранное"
+        navigationItem.rightBarButtonItem = createBarButton(image: Constants.Image.searchNavBar, tintColor: .black)
+    }
+    
+    func configureApireance() {
+        collectionView.register(FavoriteCollectionViewCell.self)
+        collectionView.contentInset = .init(top: 10, left: 16, bottom: 10, right: 16)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+    }
+        
+    func configureModel() {
+        favoriteModels = MainModel.shared.items.filter({ model in
+            model.isFavorite == true
+        })
+        collectionView.reloadData()
+    }
+    
+    func createBarButton(image: UIImage, tintColor: UIColor) -> UIBarButtonItem {
+        let barButton = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(tapSearchButton(param:)))
+        barButton.tintColor = tintColor
+        return barButton
+    }
+    
+    @objc func tapSearchButton(param: UIBarButtonItem) {
+        /// implement presenter routing
+        print(#function)
+        print("tapSearch")
+        let vc = SearchViewController()
+        vc.tabBarController?.tabBar.isHidden = true
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+    
+    
+    //MARK: -  UICollectionViewController DataSource
+    
+extension FavoriteViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    ///DataSource
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        favoriteModels.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(FavoriteCollectionViewCell.self)", for: indexPath)
+        if let cell = cell as? FavoriteCollectionViewCell {
+            let item = favoriteModels[indexPath.item]
+            cell.configure(model: item)
+            cell.didTappedFavorite = { [weak self] in
+                let alert = UIAlertController(title: "Внимание", message: "Вы точно хотите удалить из избранного?", preferredStyle: .alert)
+                let buttonActionCancel = UIAlertAction(title: "Нет", style: .cancel)
+                let buttonActionAccept = UIAlertAction(title: "Да, точно", style: .default) { _ in
+                    print("логика удаления из избранного")
+                    
+                    var manager = UserDefaults.standard.array(forKey: "picturesFavorite") as? [String] ?? [String]()
+                    if manager.contains(item.id) {
+                        let removeIdx = manager.lastIndex(where: {$0 == item.id})
+                        manager.remove(at: removeIdx!)
+                        print(manager.count)
+                        //cell.isFavorite.toggle()
+                       
+                        self?.favoriteModels.remove(at: indexPath.item)
+                        UserDefaults.standard.set(manager, forKey: "picturesFavorite")
+                        collectionView.reloadData()
+                    }
+                }
+                
+                alert.addAction(buttonActionCancel)
+                alert.addAction(buttonActionAccept)
+                self?.present(alert, animated: true)
+            }
+        }
+        return cell
+    }
+    
+    ///FlowLayout delegate
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemWidth = (view.frame.width - Constants.Size.horisontalInset * 2)
+        let itemHeight = itemWidth * Constants.Size.aspectRatioFavarite
+        return CGSize(width: itemWidth, height: itemHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return Constants.Size.favoriteSpacBetweenRows
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let detailVC = DetailViewController()
+        detailVC.model = favoriteModels[indexPath.item]
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
 }
