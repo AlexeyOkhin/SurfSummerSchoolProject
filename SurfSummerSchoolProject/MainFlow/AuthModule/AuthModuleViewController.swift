@@ -85,7 +85,9 @@ class AuthorizationViewController: UIViewController {
             guard let textLoginTF = loginTF.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
             guard let textPasswordTF = passwordTF.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
             
-            // logic
+            let mainTabBar = TabBarConfigurator().configure()
+            mainTabBar.modalPresentationStyle = .fullScreen
+            present(mainTabBar, animated: true)// logic
         }
     }
     

@@ -22,6 +22,10 @@ struct Constants {
         static let arrowLeft = UIImage(named: "arrowLeft") ?? UIImage(systemName: "questionmark.app.dashed")!
         static let magnifire = UIImage(named: "magnifire") ?? UIImage(systemName: "questionmark.app.dashed")!
         static let emptyMain = UIImage(named: "emptyMain") ?? UIImage(systemName: "questionmark.app.dashed")!
+        static let surfAuthBackground = UIImage(named: "surfAuthBackground") ?? UIImage(systemName: "questionmark.app.dashed")!
+        static let loadingIndicator = UIImage(named: "loadingIndicator") ?? UIImage(systemName: "questionmark.app.dashed")!
+        static let openEye = UIImage(named: "openEye") ?? UIImage(systemName: "questionmark.app.dashed")!
+        static let closeEye = UIImage(named: "closeEye") ?? UIImage(systemName: "questionmark.app.dashed")!
     }
     
     //MARK: - Size for item collectionView
