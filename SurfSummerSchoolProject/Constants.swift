@@ -46,5 +46,11 @@ struct Constants {
         static let dateText = #colorLiteral(red: 0.7019607843, green: 0.7019607843, blue: 0.7019607843, alpha: 1)
         static let placeholderSearch = #colorLiteral(red: 0.7438805699, green: 0.7438805699, blue: 0.7438805699, alpha: 1)
         static let errorNavBar = #colorLiteral(red: 0.9714686275, green: 0.4395110607, blue: 0.4181905985, alpha: 1)
+        static let textField = #colorLiteral(red: 0.9843137255, green: 0.9843137255, blue: 0.9843137255, alpha: 1)
+        static let deviderTF = #colorLiteral(red: 0.8745098039, green: 0.8745098039, blue: 0.8745098039, alpha: 1)
+        static let placeHolderTF = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        static let errorLabel = #colorLiteral(red: 1, green: 0, blue: 0.1803921569, alpha: 1)
+        
+        
     }
 }
