@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C14B4CF28ACF4BB00C8422F /* TestAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14B4CD28ACF4BB00C8422F /* TestAuthViewController.swift */; };
 		0C14B4D028ACF4BB00C8422F /* TestAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C14B4CE28ACF4BB00C8422F /* TestAuthViewController.xib */; };
+		0C14B4D228AD0DB400C8422F /* UITextField + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14B4D128AD0DB400C8422F /* UITextField + Extensions.swift */; };
 		0CA1D83F28AAB80A00B262AD /* AuthModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA1D83D28AAB80A00B262AD /* AuthModuleViewController.swift */; };
 		0CA1D84228AABB4900B262AD /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA1D84128AABB4900B262AD /* LoginTextField.swift */; };
 		0CA1D84428AABB6100B262AD /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA1D84328AABB6100B262AD /* PasswordTextField.swift */; };
@@ -67,6 +68,7 @@
 /* Begin PBXFileReference section */
 		0C14B4CD28ACF4BB00C8422F /* TestAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAuthViewController.swift; sourceTree = "<group>"; };
 		0C14B4CE28ACF4BB00C8422F /* TestAuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestAuthViewController.xib; sourceTree = "<group>"; };
+		0C14B4D128AD0DB400C8422F /* UITextField + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extensions.swift"; sourceTree = "<group>"; };
 		0CA1D83D28AAB80A00B262AD /* AuthModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModuleViewController.swift; sourceTree = "<group>"; };
 		0CA1D84128AABB4900B262AD /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 		0CA1D84328AABB6100B262AD /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				0CCE86AB289F8A7300765F62 /* UITableView + Extension.swift */,
 				0CABD4C128A4FC1B001F888D /* UIButton + Extension.swift */,
 				0CABD4C328A50FDB001F888D /* UILabel + Extension.swift */,
+				0C14B4D128AD0DB400C8422F /* UITextField + Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 				0CF3D70428A160F300B4709D /* DetailContentTableViewCell.swift in Sources */,
 				0CA1D83F28AAB80A00B262AD /* AuthModuleViewController.swift in Sources */,
 				0CCE86AC289F8A7300765F62 /* UITableView + Extension.swift in Sources */,
+				0C14B4D228AD0DB400C8422F /* UITextField + Extensions.swift in Sources */,
 				0CCE86AE289F8D9400765F62 /* DetailItemModel.swift in Sources */,
 				0CF3D71928A17CE500B4709D /* EmptyModel.swift in Sources */,
 				0CD425E9289E747B00240C71 /* SearchViewController.swift in Sources */,
