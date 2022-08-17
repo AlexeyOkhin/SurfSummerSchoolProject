@@ -14,15 +14,13 @@
                 <outlet property="deviderPasswordLabel" destination="U2O-ek-mt5" id="VZK-Jz-hEq"/>
                 <outlet property="errorLoginLabel" destination="6fz-Zl-H9h" id="qdP-f0-8Ka"/>
                 <outlet property="errorPasswordLabel" destination="X4g-e3-pSz" id="Sjm-Bs-ofM"/>
-                <outlet property="keybordUpConstraint" destination="vYH-bO-wc5" id="z3g-Df-2rY"/>
+                <outlet property="keyboardUpConstraint" destination="vYH-bO-wc5" id="z3g-Df-2rY"/>
                 <outlet property="loadingIndicatorImage" destination="av3-ap-UMp" id="WdS-Ak-cJk"/>
                 <outlet property="loginButton" destination="7FT-lH-lmg" id="zFi-zf-1Ms"/>
                 <outlet property="loginFloatingLabel" destination="D7H-f7-Xh4" id="LQe-az-j4q"/>
-                <outlet property="loginLeftConstraint" destination="hHT-5R-RVf" id="Gar-jt-Gpk"/>
                 <outlet property="loginTF" destination="eKy-6A-ycR" id="tlE-1b-OaY"/>
                 <outlet property="loginTopConstraint" destination="W7y-Ya-bZZ" id="KlS-xd-Ejz"/>
                 <outlet property="passwordFloatingLabel" destination="hXR-Pr-ONu" id="gob-jE-R6D"/>
-                <outlet property="passwordLeftConstraint" destination="qfb-Lp-6dt" id="hx5-43-ybH"/>
                 <outlet property="passwordSecurityButton" destination="rm2-5T-axf" id="vRz-eh-PG3"/>
                 <outlet property="passwordTF" destination="219-s5-9GY" id="z2x-eW-ixB"/>
                 <outlet property="passwordTopConstraint" destination="NSs-cb-Qp9" id="BCh-Gm-Zfd"/>
@@ -135,6 +133,9 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain"/>
+                    <connections>
+                        <action selector="shadowPasswordAction:" destination="-1" eventType="touchUpInside" id="Py0-DU-lOj"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
