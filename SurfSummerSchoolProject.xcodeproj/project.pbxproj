@@ -10,10 +10,6 @@
 		0C14B4CF28ACF4BB00C8422F /* TestAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14B4CD28ACF4BB00C8422F /* TestAuthViewController.swift */; };
 		0C14B4D028ACF4BB00C8422F /* TestAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C14B4CE28ACF4BB00C8422F /* TestAuthViewController.xib */; };
 		0C14B4D228AD0DB400C8422F /* UITextField + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14B4D128AD0DB400C8422F /* UITextField + Extensions.swift */; };
-		0CA1D83F28AAB80A00B262AD /* AuthModuleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA1D83D28AAB80A00B262AD /* AuthModuleViewController.swift */; };
-		0CA1D84228AABB4900B262AD /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA1D84128AABB4900B262AD /* LoginTextField.swift */; };
-		0CA1D84428AABB6100B262AD /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA1D84328AABB6100B262AD /* PasswordTextField.swift */; };
-		0CA1D84828AABBB500B262AD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA1D84728AABBB500B262AD /* LoginView.swift */; };
 		0CABD4C028A4E3CF001F888D /* MainEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CABD4BF28A4E3CF001F888D /* MainEmptyState.swift */; };
 		0CABD4C228A4FC1B001F888D /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CABD4C128A4FC1B001F888D /* UIButton + Extension.swift */; };
 		0CABD4C428A50FDB001F888D /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CABD4C328A50FDB001F888D /* UILabel + Extension.swift */; };
@@ -69,10 +65,6 @@
 		0C14B4CD28ACF4BB00C8422F /* TestAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAuthViewController.swift; sourceTree = "<group>"; };
 		0C14B4CE28ACF4BB00C8422F /* TestAuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestAuthViewController.xib; sourceTree = "<group>"; };
 		0C14B4D128AD0DB400C8422F /* UITextField + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extensions.swift"; sourceTree = "<group>"; };
-		0CA1D83D28AAB80A00B262AD /* AuthModuleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModuleViewController.swift; sourceTree = "<group>"; };
-		0CA1D84128AABB4900B262AD /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
-		0CA1D84328AABB6100B262AD /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
-		0CA1D84728AABBB500B262AD /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0CABD4BF28A4E3CF001F888D /* MainEmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEmptyState.swift; sourceTree = "<group>"; };
 		0CABD4C128A4FC1B001F888D /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
 		0CABD4C328A50FDB001F888D /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
@@ -140,22 +132,10 @@
 		0CA1D83C28AAB7B300B262AD /* AuthModule */ = {
 			isa = PBXGroup;
 			children = (
-				0CA1D83D28AAB80A00B262AD /* AuthModuleViewController.swift */,
-				0CA1D84728AABBB500B262AD /* LoginView.swift */,
-				0CA1D84628AABB8F00B262AD /* Elements */,
 				0C14B4CD28ACF4BB00C8422F /* TestAuthViewController.swift */,
 				0C14B4CE28ACF4BB00C8422F /* TestAuthViewController.xib */,
 			);
 			path = AuthModule;
-			sourceTree = "<group>";
-		};
-		0CA1D84628AABB8F00B262AD /* Elements */ = {
-			isa = PBXGroup;
-			children = (
-				0CA1D84128AABB4900B262AD /* LoginTextField.swift */,
-				0CA1D84328AABB6100B262AD /* PasswordTextField.swift */,
-			);
-			path = Elements;
 			sourceTree = "<group>";
 		};
 		0CABD4BC28A4E2DB001F888D /* View */ = {
@@ -536,7 +516,6 @@
 				0CF3D72328A190F500B4709D /* TokenStorage.swift in Sources */,
 				0CABD4C228A4FC1B001F888D /* UIButton + Extension.swift in Sources */,
 				0CF3D70428A160F300B4709D /* DetailContentTableViewCell.swift in Sources */,
-				0CA1D83F28AAB80A00B262AD /* AuthModuleViewController.swift in Sources */,
 				0CCE86AC289F8A7300765F62 /* UITableView + Extension.swift in Sources */,
 				0C14B4D228AD0DB400C8422F /* UITextField + Extensions.swift in Sources */,
 				0CCE86AE289F8D9400765F62 /* DetailItemModel.swift in Sources */,
@@ -560,11 +539,8 @@
 				0CF52BA2289AFBB10066DC84 /* FavoriteViewController.swift in Sources */,
 				0CE7634C289BF44C00C633C5 /* Constants.swift in Sources */,
 				0CD425F6289EF3BC00240C71 /* DetailImageTableViewCell.swift in Sources */,
-				0CA1D84428AABB6100B262AD /* PasswordTextField.swift in Sources */,
 				0CF3D70928A16AA900B4709D /* FavoriteCollectionViewCell.swift in Sources */,
 				0CF3D72F28A1928400B4709D /* UIImageView+ImageLoader.swift in Sources */,
-				0CA1D84828AABBB500B262AD /* LoginView.swift in Sources */,
-				0CA1D84228AABB4900B262AD /* LoginTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
