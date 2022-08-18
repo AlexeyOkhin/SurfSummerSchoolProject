@@ -8,7 +8,7 @@
 import Foundation
 
 struct AuthService {
-
+    
     let dataTask = BaseNetworkTask<AuthRequestModel, AuthResponseModel>(
         inNeedInjectToken: false,
         method: .post,
@@ -23,7 +23,7 @@ struct AuthService {
             if case let .success(responseModel) = result {
                 do {
                     try dataTask.tokenStorage.set(newToken: TokenContainer(token: responseModel.token, receivingDate: .now))
-                    UserDefaults.standard.set(responseModel.user_info, forKey: "userInfo")
+                    UserDefaults.standard.set(responseModel.user_info.about, forKey: "userInfo")
                 } catch {
                     // TODO: - Handle error if token not was received from server
                     //print(error)

@@ -13,7 +13,7 @@ struct AuthResponseModel: Decodable {
     let user_info: UserInfo
 }
 
-struct UserInfo: Decodable {
+struct UserInfo: Codable {
     
     let id: String
     let phone: String

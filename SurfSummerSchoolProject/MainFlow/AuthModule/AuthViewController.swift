@@ -73,6 +73,25 @@ final class AuthViewController: UIViewController {
     
     //MARK: - Action Methods
     
+    @IBAction func loginButtonAction(_ sender: UIButton) {
+        let tempCredentials = AuthRequestModel(phone: loginTF.text ?? "", password: passwordTF.text ?? "")
+        AuthService().performLoginRequestAndSaveToken(credentials: tempCredentials) { [weak self] result in
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    let destinationVC = TabBarConfigurator().configure()
+                    self?.present(destinationVC, animated: true)
+                    let avatar = UserDefaults.standard.string(forKey: "userInfo")
+                    print(avatar)
+                }
+            case .failure:
+                print("no token \(#function)")
+                // TODO: - Handle error, if token was not received
+                break
+            }
+        }
+    }
+    
     @IBAction private func shadowPasswordAction(_ sender: UIButton) {
         passwordTF.isSecureTextEntry.toggle()
         passwordTF.isSecureTextEntry ? sender.setImage(Constants.Image.closeEye, for: .normal)
