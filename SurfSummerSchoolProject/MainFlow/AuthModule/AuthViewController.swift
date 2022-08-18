@@ -115,7 +115,6 @@ private extension AuthViewController {
         textField.delegate = self
         textField.leftPadding(size: 16)
         textField.backgroundColor = Constants.Color.textField
-        //textField.textContentType = .none
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
         textField.isSecureTextEntry = isSecureTextEntry
@@ -123,7 +122,6 @@ private extension AuthViewController {
         textField.returnKeyType = returnKeyType
         textField.font = .systemFont(ofSize: 18, weight: .regular)
         textField.tag = tag.rawValue
-
         textField.clipsToBounds = true
         textField.layer.cornerRadius = 10
         textField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
