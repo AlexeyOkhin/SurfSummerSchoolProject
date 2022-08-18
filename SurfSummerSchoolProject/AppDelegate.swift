@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func runMainFlow() {
        DispatchQueue.main.async {
             //self.window?.rootViewController = TabBarConfigurator().configure()
-           self.window?.rootViewController = TestAuthViewController()
+           self.window?.rootViewController = AuthViewController()
         }
     }
     

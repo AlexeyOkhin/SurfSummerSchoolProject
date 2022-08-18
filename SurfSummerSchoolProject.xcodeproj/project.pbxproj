@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C14B4CF28ACF4BB00C8422F /* TestAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14B4CD28ACF4BB00C8422F /* TestAuthViewController.swift */; };
-		0C14B4D028ACF4BB00C8422F /* TestAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C14B4CE28ACF4BB00C8422F /* TestAuthViewController.xib */; };
+		0C14B4CF28ACF4BB00C8422F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14B4CD28ACF4BB00C8422F /* AuthViewController.swift */; };
+		0C14B4D028ACF4BB00C8422F /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C14B4CE28ACF4BB00C8422F /* AuthViewController.xib */; };
 		0C14B4D228AD0DB400C8422F /* UITextField + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14B4D128AD0DB400C8422F /* UITextField + Extensions.swift */; };
 		0CABD4C028A4E3CF001F888D /* MainEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CABD4BF28A4E3CF001F888D /* MainEmptyState.swift */; };
 		0CABD4C228A4FC1B001F888D /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CABD4C128A4FC1B001F888D /* UIButton + Extension.swift */; };
@@ -62,8 +62,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0C14B4CD28ACF4BB00C8422F /* TestAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAuthViewController.swift; sourceTree = "<group>"; };
-		0C14B4CE28ACF4BB00C8422F /* TestAuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestAuthViewController.xib; sourceTree = "<group>"; };
+		0C14B4CD28ACF4BB00C8422F /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		0C14B4CE28ACF4BB00C8422F /* AuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthViewController.xib; sourceTree = "<group>"; };
 		0C14B4D128AD0DB400C8422F /* UITextField + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extensions.swift"; sourceTree = "<group>"; };
 		0CABD4BF28A4E3CF001F888D /* MainEmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEmptyState.swift; sourceTree = "<group>"; };
 		0CABD4C128A4FC1B001F888D /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
@@ -132,8 +132,8 @@
 		0CA1D83C28AAB7B300B262AD /* AuthModule */ = {
 			isa = PBXGroup;
 			children = (
-				0C14B4CD28ACF4BB00C8422F /* TestAuthViewController.swift */,
-				0C14B4CE28ACF4BB00C8422F /* TestAuthViewController.xib */,
+				0C14B4CD28ACF4BB00C8422F /* AuthViewController.swift */,
+				0C14B4CE28ACF4BB00C8422F /* AuthViewController.xib */,
 			);
 			path = AuthModule;
 			sourceTree = "<group>";
@@ -485,7 +485,7 @@
 				0CCE86A6289F846600765F62 /* DetailTitleTableViewCell.xib in Resources */,
 				0CD425F1289EE55300240C71 /* DetailViewController.xib in Resources */,
 				0CD425F7289EF3BC00240C71 /* DetailImageTableViewCell.xib in Resources */,
-				0C14B4D028ACF4BB00C8422F /* TestAuthViewController.xib in Resources */,
+				0C14B4D028ACF4BB00C8422F /* AuthViewController.xib in Resources */,
 				0CF52BA3289AFBB10066DC84 /* FavoriteViewController.xib in Resources */,
 				0CF3D70528A160F300B4709D /* DetailContentTableViewCell.xib in Resources */,
 				0CF52BA7289AFBC40066DC84 /* ProfileViewController.xib in Resources */,
@@ -526,7 +526,7 @@
 				0CF3D72528A1910E00B4709D /* TokenContainer.swift in Sources */,
 				0CE76350289C034B00C633C5 /* MainCollectionViewCell.swift in Sources */,
 				0CF52B9A289A74710066DC84 /* TabBarConfigurator.swift in Sources */,
-				0C14B4CF28ACF4BB00C8422F /* TestAuthViewController.swift in Sources */,
+				0C14B4CF28ACF4BB00C8422F /* AuthViewController.swift in Sources */,
 				0CABD4C028A4E3CF001F888D /* MainEmptyState.swift in Sources */,
 				0CF3D72B28A191F400B4709D /* PicturesService.swift in Sources */,
 				0CF52B97289A72DE0066DC84 /* TabBarModel.swift in Sources */,

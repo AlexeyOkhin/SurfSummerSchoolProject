@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TestAuthViewController: UIViewController {
+final class AuthViewController: UIViewController {
     
     private enum TextFieldTag: Int {
         case loginFieldTag
@@ -96,7 +96,7 @@ final class TestAuthViewController: UIViewController {
 
 //MARK: -  Private Method
 
-private extension TestAuthViewController {
+private extension AuthViewController {
     
     func configureFloatingLabel(for label: UILabel, with title: String) {
         label.textColor = Constants.Color.placeHolderTF
@@ -107,6 +107,7 @@ private extension TestAuthViewController {
     func configureErrorTextField(for label: UILabel) {
         label.font = .systemFont(ofSize: 12)
         label.textColor = Constants.Color.errorLabel
+        label.isHidden = true
     }
     
     private func configureAuthTextField(for textField: UITextField, with keyboardType: UIKeyboardType, isSecureTextEntry: Bool, returnKeyType: UIReturnKeyType, tag: TextFieldTag) {
@@ -134,7 +135,7 @@ private extension TestAuthViewController {
     }
     
     func configurePasswordSecurityButton() {
-        passwordSecurityButton.setImage(Constants.Image.openEye, for: .normal)
+        passwordSecurityButton.setImage(Constants.Image.closeEye, for: .normal)
         passwordSecurityButton.isHidden = true
         passwordSecurityButton.tintColor = Constants.Color.placeHolderTF
     }
@@ -186,7 +187,7 @@ private extension TestAuthViewController {
 
 //MARK: - Extensions for Delegate
 
-extension TestAuthViewController: UITextFieldDelegate {
+extension AuthViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
