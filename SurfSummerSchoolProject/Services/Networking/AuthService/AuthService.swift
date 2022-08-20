@@ -23,10 +23,9 @@ struct AuthService {
             if case let .success(responseModel) = result {
                 do {
                     try dataTask.tokenStorage.set(newToken: TokenContainer(token: responseModel.token, receivingDate: .now))
-                    UserDefaults.standard.set(responseModel.user_info.about, forKey: "userInfo")
+                    try UserInfoStorage().writeUserInfoIntoStorage(userInfo: responseModel.user_info)
                 } catch {
                     // TODO: - Handle error if token not was received from server
-                    //print(error)
                 }
             }
             onResponseWasReceived(result)

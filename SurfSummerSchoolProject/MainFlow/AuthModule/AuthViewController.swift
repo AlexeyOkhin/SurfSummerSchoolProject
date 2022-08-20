@@ -331,9 +331,8 @@ private extension AuthViewController {
                         let mainTabBar = TabBarConfigurator().configure()
                         mainTabBar.modalPresentationStyle = .fullScreen
                         self?.present(mainTabBar, animated: true)
-                        let avatar = UserDefaults.standard.string(forKey: "userInfo")
+                        //let avatar = UserDefaults.standard.string(forKey: "userInfo")
                         self?.loadingIndicatorImage.stopAnimationLoading()
-                        print(avatar)
                         
                     case .failure:
                         self?.loginButton.titleLabel?.isHidden = false

@@ -9,10 +9,18 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    let model: MainModel = .init()
+    private var infoItem: UserInfo?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        do {
+            infoItem = try UserInfoStorage().getUserInfo()
+        } catch {
+            
+        }
+        
+        print(infoItem)
+        
         
     }
 }
