@@ -79,8 +79,9 @@ final class AuthViewController: UIViewController {
             switch result {
             case .success:
                 DispatchQueue.main.async {
-                    let destinationVC = TabBarConfigurator().configure()
-                    self?.present(destinationVC, animated: true)
+                    let mainTabBar = TabBarConfigurator().configure()
+                    mainTabBar.modalPresentationStyle = .fullScreen
+                    self?.present(mainTabBar, animated: true)// logic
                     let avatar = UserDefaults.standard.string(forKey: "userInfo")
                     print(avatar)
                 }
