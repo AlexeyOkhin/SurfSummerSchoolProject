@@ -86,39 +86,14 @@ final class AuthViewController: UIViewController {
     
     //MARK: - Action Methods
     
-    @IBAction func loginButtonAction(_ sender: UIButton) {
-        if isInputCorrect() {
-            sender.titleLabel?.isHidden = true
-            let tempCredentials = AuthRequestModel(phone: loginTF.text ?? "", password: passwordTF.text ?? "")
-            AuthService().performLoginRequestAndSaveToken(credentials: tempCredentials) { [weak self] result in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                    switch result {
-                        
-                    case .success:
-                        let mainTabBar = TabBarConfigurator().configure()
-                        mainTabBar.modalPresentationStyle = .fullScreen
-                        self?.present(mainTabBar, animated: true)
-                        let avatar = UserDefaults.standard.string(forKey: "userInfo")
-                        self?.loadingIndicatorImage.stopAnimationLoading()
-                        print(avatar)
-                        
-                    case .failure:
-                        self?.loginButton.titleLabel?.isHidden = false
-                        self?.loadingIndicatorImage.stopAnimationLoading()
-                        self?.showErrorLogin(withMessage: "Логин или пароль введен неправильно")
-                        print("no token \(#function)")
-                        // TODO: - Handle error, if token was not received
-                        break
-                    }
-                }
-            )}
-        }
+    @IBAction private func loginButtonAction(_ sender: UIButton) {
+        registrationAttempt()
     }
     
     @IBAction private func shadowPasswordAction(_ sender: UIButton) {
         passwordTF.isSecureTextEntry.toggle()
         passwordTF.isSecureTextEntry ? sender.setImage(Constants.Image.closeEye, for: .normal)
-                                    : sender.setImage(Constants.Image.openEye, for: .normal)
+        : sender.setImage(Constants.Image.openEye, for: .normal)
     }
     
     @objc private func keyboardWillShow(notification: NSNotification) {
@@ -190,7 +165,7 @@ private extension AuthViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-
+    
     func removeKeyboardNotification() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: self.view.window)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: self.view.window)
@@ -294,7 +269,7 @@ private extension AuthViewController {
         } else {
             let pattern = "(\\d)(\\d{3})(\\d{3})(\\d{2})(\\d+)"
             number = number.replacingOccurrences(of: pattern, with: "$1 ($2) $3 $4 $5", options: .regularExpression, range: regRange)
-            }
+        }
         return "+" + number
     }
     
@@ -342,7 +317,37 @@ private extension AuthViewController {
             isError = false
         }
     }
-        
+    
+    func registrationAttempt() {
+        if isInputCorrect() {
+            view.endEditing(true)
+            loginButton.titleLabel?.isHidden = true
+            let tempCredentials = AuthRequestModel(phone: loginTF.text ?? "", password: passwordTF.text ?? "")
+            AuthService().performLoginRequestAndSaveToken(credentials: tempCredentials) { [weak self] result in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                    switch result {
+                        
+                    case .success:
+                        let mainTabBar = TabBarConfigurator().configure()
+                        mainTabBar.modalPresentationStyle = .fullScreen
+                        self?.present(mainTabBar, animated: true)
+                        let avatar = UserDefaults.standard.string(forKey: "userInfo")
+                        self?.loadingIndicatorImage.stopAnimationLoading()
+                        print(avatar)
+                        
+                    case .failure:
+                        self?.loginButton.titleLabel?.isHidden = false
+                        self?.loadingIndicatorImage.stopAnimationLoading()
+                        self?.showErrorLogin(withMessage: "Логин или пароль введен неправильно")
+                        print("no token \(#function)")
+                        // TODO: - Handle error, if token was not received
+                        break
+                    }
+                }
+                )}
+        }
+    }
+    
 }
 
 //MARK: - Extensions for Delegate
@@ -375,7 +380,12 @@ extension AuthViewController: UITextFieldDelegate {
         case .none:
             break
         }
-            return true
-        }
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        registrationAttempt()
+        return true
+    }
 }
 
