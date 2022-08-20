@@ -299,13 +299,13 @@ private extension AuthViewController {
         isShownError = true
         errorLoginView = UIView(frame: .zero)
         view.addSubview(errorLoginView)
-        errorLoginView.backgroundColor = Constants.Color.errorLabel
+        errorLoginView.backgroundColor = Constants.Color.errorNavBar
         errorLoginView.translatesAutoresizingMaskIntoConstraints = false
         
         titleLabel.text = message
         titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.textColor = .white
-        titleLabel.backgroundColor = Constants.Color.errorLabel
+        titleLabel.backgroundColor = Constants.Color.errorNavBar
         
         NSLayoutConstraint.activate([
             errorLoginView.topAnchor.constraint(equalTo: self.view.topAnchor),

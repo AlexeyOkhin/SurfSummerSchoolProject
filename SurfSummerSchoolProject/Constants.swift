@@ -50,7 +50,7 @@ struct Constants {
         static let serchColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
         static let dateText = #colorLiteral(red: 0.7019607843, green: 0.7019607843, blue: 0.7019607843, alpha: 1)
         static let placeholderSearch = #colorLiteral(red: 0.7438805699, green: 0.7438805699, blue: 0.7438805699, alpha: 1)
-        static let errorNavBar = #colorLiteral(red: 0.9714686275, green: 0.4395110607, blue: 0.4181905985, alpha: 1)
+        static let errorNavBar = #colorLiteral(red: 0.9529411765, green: 0.3450980392, blue: 0.3450980392, alpha: 1)
         static let textField = #colorLiteral(red: 0.9843137255, green: 0.9843137255, blue: 0.9843137255, alpha: 1)
         static let deviderTF = #colorLiteral(red: 0.8745098039, green: 0.8745098039, blue: 0.8745098039, alpha: 1)
         static let placeHolderTF = #colorLiteral(red: 0.7019607843, green: 0.7019607843, blue: 0.7019607843, alpha: 1)
