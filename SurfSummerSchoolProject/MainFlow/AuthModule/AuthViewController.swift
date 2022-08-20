@@ -209,6 +209,12 @@ private extension AuthViewController {
     func showErrorEmptyTextField() {
         errorLoginLabel.isHidden = !(loginTF.text?.isEmpty ?? true)
         errorPasswordLabel.isHidden = !(passwordTF.text?.isEmpty ?? true)
+        devidedLoginTextField.backgroundColor = loginTF.text?.isEmpty ?? true
+                                            ? Constants.Color.errorLabel
+                                            : Constants.Color.deviderTF
+        deviderPasswordTextField.backgroundColor = passwordTF.text?.isEmpty ?? true
+                                               ? Constants.Color.errorLabel
+                                               : Constants.Color.deviderTF
     }
     
     func isInputCorrect() -> Bool {
@@ -217,6 +223,8 @@ private extension AuthViewController {
             return false
         } else {
             loginButton.titleLabel?.isHidden = true
+            devidedLoginTextField.backgroundColor = Constants.Color.deviderTF
+            deviderPasswordTextField.backgroundColor = Constants.Color.deviderTF
             loadingIndicatorImage.startAnimationLoading()
             return true
         }
@@ -367,12 +375,14 @@ extension AuthViewController: UITextFieldDelegate {
         case .loginFieldTag:
             
             errorLoginLabel.isHidden = true
+            devidedLoginTextField.backgroundColor = Constants.Color.deviderTF
             movingUp(for: loginFloatingLabel, to: loginLabelMoveTopConstraint)
             formatedInputIn(textField: textField, replacementString: string, shouldChangeCharactersIn: range)
             return false
             
         case .passwordFieldTag:
             errorPasswordLabel.isHidden = true
+            deviderPasswordTextField.backgroundColor = Constants.Color.deviderTF
             movingUp(for: passwordFloatingLabel, to: passwordTitleLabelMoveTopConstraint)
             passwordSecurityButton.isHidden = false
             return inputRestrictFor(textField: textField, shouldChangeCharactersIn: range, replacementString: string, maxRestrict: maxPasswordLength)
