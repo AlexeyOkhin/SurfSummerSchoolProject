@@ -44,9 +44,14 @@ final class AuthViewController: UIViewController {
     
     //MARK: - Private Properties
     
+    private var errorLoginView: UIView = {
+        UIView(frame: .zero)
+    }()
+    
     private var regExp: NSRegularExpression?
     private let maxNumerCountInLogin = 11
     private let maxPasswordLength = 15
+    private var isShownError = false
     
     
     
@@ -100,6 +105,7 @@ final class AuthViewController: UIViewController {
                     case .failure:
                         self?.loginButton.titleLabel?.isHidden = false
                         self?.loadingIndicatorImage.stopAnimationLoading()
+                        self?.showErrorLogin(withMessage: "Логин или пароль введен неправильно")
                         print("no token \(#function)")
                         // TODO: - Handle error, if token was not received
                         break
@@ -296,6 +302,46 @@ private extension AuthViewController {
         let fullString = (textField.text ?? "") + string
         textField.text = formate(phoneNumber: fullString, shouldRemoveLastDigit: range.length == 1)
     }
+    
+    func inputRestrictFor(textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String, maxRestrict: Int) -> Bool {
+        let fullString = textField.text?.count ?? 0
+        if range.length + range.location > fullString {
+            return false
+        }
+        let inputLength = fullString + string.count - range.length
+        return inputLength <= maxRestrict
+    }
+    
+    func showErrorLogin(withMessage message: String) {
+        isShownError = true
+        errorLoginView = UIView(frame: .zero)
+        view.addSubview(errorLoginView)
+        errorLoginView.backgroundColor = Constants.Color.errorLabel
+        errorLoginView.translatesAutoresizingMaskIntoConstraints = false
+        
+        titleLabel.text = message
+        titleLabel.font = UIFont.systemFont(ofSize: 14)
+        titleLabel.textColor = .white
+        titleLabel.backgroundColor = Constants.Color.errorLabel
+        
+        NSLayoutConstraint.activate([
+            errorLoginView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            errorLoginView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            errorLoginView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            errorLoginView.bottomAnchor.constraint(equalTo: titleLabel.topAnchor)
+        ])
+    }
+    
+    func resetErrorLogin(if isError: inout Bool, setTitle: String ) {
+        if isError {
+            errorLoginView.removeFromSuperview()
+            titleLabel.text = setTitle
+            titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+            titleLabel.textColor = .black
+            titleLabel.backgroundColor = .white
+            isError = false
+        }
+    }
         
 }
 
@@ -308,19 +354,14 @@ extension AuthViewController: UITextFieldDelegate {
         movingDownLabelIfTextFieldIsEmpty(textField)
     }
     
-    fileprivate func inputRestrictFor(textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String, maxRestrict: Int) -> Bool {
-        let fullString = textField.text?.count ?? 0
-        if range.length + range.location > fullString {
-            return false
-        }
-        let inputLength = fullString + string.count - range.length
-        return inputLength <= maxRestrict
-    }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
+        resetErrorLogin(if: &isShownError, setTitle: "Вход")
+        
         switch TextFieldTag(rawValue: textField.tag) {
+            
         case .loginFieldTag:
+            
             errorLoginLabel.isHidden = true
             movingUp(for: loginFloatingLabel, to: loginLabelMoveTopConstraint)
             formatedInputIn(textField: textField, replacementString: string, shouldChangeCharactersIn: range)
