@@ -42,6 +42,12 @@ final class AuthViewController: UIViewController {
     
     @IBOutlet private weak var passwordSecurityButton: UIButton!
     
+    //MARK: - Private Properties
+    
+    private let maxNumerCountInLogin = 11
+    private var regExp: NSRegularExpression?
+    
+    
     //MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -50,8 +56,8 @@ final class AuthViewController: UIViewController {
         setKeyboardNotification()
         configureErrorTextField(for: errorLoginLabel)
         configureErrorTextField(for: errorPasswordLabel)
-        configureAuthTextField(for: loginTF, with: .phonePad, isSecureTextEntry: false, returnKeyType: .next, tag: .loginFieldTag)
-        configureAuthTextField(for: passwordTF, with: .default, isSecureTextEntry: true, returnKeyType: .done, tag: .passwordFieldTag)
+        configureAuthTextField(for: loginTF, with: .numberPad, isSecureTextEntry: false, tag: .loginFieldTag)
+        configureAuthTextField(for: passwordTF, with: .default, isSecureTextEntry: true, tag: .passwordFieldTag)
         configureFloatingLabel(for: loginFloatingLabel, with: "Логин")
         configureFloatingLabel(for: passwordFloatingLabel, with: "Пароль")
         configurePasswordSecurityButton()
@@ -80,8 +86,8 @@ final class AuthViewController: UIViewController {
             AuthService().performLoginRequestAndSaveToken(credentials: tempCredentials) { [weak self] result in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                     switch result {
-                    case .success:
                         
+                    case .success:
                         let mainTabBar = TabBarConfigurator().configure()
                         mainTabBar.modalPresentationStyle = .fullScreen
                         self?.present(mainTabBar, animated: true)
@@ -144,7 +150,7 @@ private extension AuthViewController {
         label.text = "Поле не может быть пустым"
     }
     
-    private func configureAuthTextField(for textField: UITextField, with keyboardType: UIKeyboardType, isSecureTextEntry: Bool, returnKeyType: UIReturnKeyType, tag: TextFieldTag) {
+    private func configureAuthTextField(for textField: UITextField, with keyboardType: UIKeyboardType, isSecureTextEntry: Bool, tag: TextFieldTag) {
         
         textField.delegate = self
         textField.leftPadding(size: 16)
@@ -153,7 +159,7 @@ private extension AuthViewController {
         textField.autocorrectionType = .no
         textField.isSecureTextEntry = isSecureTextEntry
         textField.keyboardType = keyboardType
-        textField.returnKeyType = returnKeyType
+        textField.returnKeyType = .done
         textField.font = .systemFont(ofSize: 18, weight: .regular)
         textField.tag = tag.rawValue
         textField.clipsToBounds = true
@@ -232,27 +238,6 @@ private extension AuthViewController {
             return true
         }
     }
-}
-
-//MARK: - Extensions for Delegate
-
-extension AuthViewController: UITextFieldDelegate {
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-        switch TextFieldTag(rawValue: textField.tag) {
-        case .loginFieldTag:
-            errorLoginLabel.isHidden = true
-            movingUp(for: loginFloatingLabel, to: loginLabelMoveTopConstraint)
-            
-        case .passwordFieldTag:
-            errorPasswordLabel.isHidden = true
-            movingUp(for: passwordFloatingLabel, to: passwordTitleLabelMoveTopConstraint)
-            passwordSecurityButton.isHidden = false
-        case .none:
-            break
-        }
-    }
     
     func movingDownLabelIfTextFieldIsEmpty(_ textField: UITextField) {
         switch TextFieldTag(rawValue: textField.tag) {
@@ -270,9 +255,70 @@ extension AuthViewController: UITextFieldDelegate {
         }
     }
     
+    func formate(phoneNumber: String, shouldRemoveLastDigit: Bool) -> String {
+        guard !(shouldRemoveLastDigit && phoneNumber.count <= 2) else { return "+" }
+        
+        do {
+            regExp = try NSRegularExpression(pattern: "[\\+\\s-\\(\\)]", options: .caseInsensitive)
+        } catch let error {
+            return error.localizedDescription
+        }
+        let range = NSString(string: phoneNumber).range(of: phoneNumber)
+        guard let regExp = regExp else { return ""}
+        var number = regExp.stringByReplacingMatches(in: phoneNumber,options: [], range: range, withTemplate: "")
+        
+        if number.count > maxNumerCountInLogin {
+            let maxIndex = number.index(number.startIndex, offsetBy: maxNumerCountInLogin)
+            number = String(number[number.startIndex..<maxIndex])
+        }
+        
+        if shouldRemoveLastDigit {
+            let maxIndex = number.index(number.startIndex, offsetBy: number.count - 1)
+            number = String(number[number.startIndex..<maxIndex])
+        }
+        
+        let maxIndex = number.index(number.startIndex, offsetBy: number.count)
+        let regRange = number.startIndex..<maxIndex
+        
+        if number.count < 7 {
+            let pattern = "(\\d)(\\d{3})(\\d+)"
+            number = number.replacingOccurrences(of: pattern, with: "$1 ($2) $3", options: .regularExpression, range: regRange)
+        } else {
+            let pattern = "(\\d)(\\d{3})(\\d{3})(\\d{2})(\\d+)"
+            number = number.replacingOccurrences(of: pattern, with: "$1 ($2) $3 $4 $5", options: .regularExpression, range: regRange)
+            }
+        return "+" + number
+    }
+        
+}
+
+//MARK: - Extensions for Delegate
+
+extension AuthViewController: UITextFieldDelegate {
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         movingDownLabelIfTextFieldIsEmpty(textField)
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        switch TextFieldTag(rawValue: textField.tag) {
+        case .loginFieldTag:
+            errorLoginLabel.isHidden = true
+            movingUp(for: loginFloatingLabel, to: loginLabelMoveTopConstraint)
+            let fullString = (textField.text ?? "") + string
+            textField.text = formate(phoneNumber: fullString, shouldRemoveLastDigit: range.length == 1)
+            return false
+            
+        case .passwordFieldTag:
+            errorPasswordLabel.isHidden = true
+            movingUp(for: passwordFloatingLabel, to: passwordTitleLabelMoveTopConstraint)
+            passwordSecurityButton.isHidden = false
+        case .none:
+            break
+        }
+            return true
+        }
 }
 
