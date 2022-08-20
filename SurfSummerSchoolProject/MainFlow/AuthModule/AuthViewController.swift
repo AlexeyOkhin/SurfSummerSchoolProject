@@ -57,6 +57,8 @@ final class AuthViewController: UIViewController {
         configurePasswordSecurityButton()
         configureDeviderTextField()
         configureLoginButton()
+        configureLoadingIndicator()
+        loadingIndicatorImage.startAnimationLoading(duration: 2)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -74,6 +76,7 @@ final class AuthViewController: UIViewController {
     //MARK: - Action Methods
     
     @IBAction func loginButtonAction(_ sender: UIButton) {
+        loadingIndicatorImage.startAnimationLoading(duration: 1)
         let tempCredentials = AuthRequestModel(phone: loginTF.text ?? "", password: passwordTF.text ?? "")
         AuthService().performLoginRequestAndSaveToken(credentials: tempCredentials) { [weak self] result in
             switch result {
@@ -117,6 +120,10 @@ final class AuthViewController: UIViewController {
 //MARK: -  Private Method
 
 private extension AuthViewController {
+    
+    func configureLoadingIndicator() {
+        loadingIndicatorImage.image = Constants.Image.loadingIndicator
+    }
     
     func configureFloatingLabel(for label: UILabel, with title: String) {
         label.textColor = Constants.Color.placeHolderTF
