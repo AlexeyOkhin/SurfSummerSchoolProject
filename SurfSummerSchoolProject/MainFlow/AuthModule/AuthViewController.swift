@@ -44,8 +44,10 @@ final class AuthViewController: UIViewController {
     
     //MARK: - Private Properties
     
-    private let maxNumerCountInLogin = 11
     private var regExp: NSRegularExpression?
+    private let maxNumerCountInLogin = 11
+    private let maxPasswordLength = 15
+    
     
     
     //MARK: - Life Cycle
@@ -289,6 +291,11 @@ private extension AuthViewController {
             }
         return "+" + number
     }
+    
+    func formatedInputIn(textField: UITextField, replacementString string: String, shouldChangeCharactersIn range: NSRange) {
+        let fullString = (textField.text ?? "") + string
+        textField.text = formate(phoneNumber: fullString, shouldRemoveLastDigit: range.length == 1)
+    }
         
 }
 
@@ -301,20 +308,29 @@ extension AuthViewController: UITextFieldDelegate {
         movingDownLabelIfTextFieldIsEmpty(textField)
     }
     
+    fileprivate func inputRestrictFor(textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String, maxRestrict: Int) -> Bool {
+        let fullString = textField.text?.count ?? 0
+        if range.length + range.location > fullString {
+            return false
+        }
+        let inputLength = fullString + string.count - range.length
+        return inputLength <= maxRestrict
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         switch TextFieldTag(rawValue: textField.tag) {
         case .loginFieldTag:
             errorLoginLabel.isHidden = true
             movingUp(for: loginFloatingLabel, to: loginLabelMoveTopConstraint)
-            let fullString = (textField.text ?? "") + string
-            textField.text = formate(phoneNumber: fullString, shouldRemoveLastDigit: range.length == 1)
+            formatedInputIn(textField: textField, replacementString: string, shouldChangeCharactersIn: range)
             return false
             
         case .passwordFieldTag:
             errorPasswordLabel.isHidden = true
             movingUp(for: passwordFloatingLabel, to: passwordTitleLabelMoveTopConstraint)
             passwordSecurityButton.isHidden = false
+            return inputRestrictFor(textField: textField, shouldChangeCharactersIn: range, replacementString: string, maxRestrict: maxPasswordLength)
         case .none:
             break
         }
