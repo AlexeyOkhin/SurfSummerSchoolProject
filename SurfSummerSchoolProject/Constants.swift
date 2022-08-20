@@ -39,7 +39,7 @@ struct Constants {
         static let aspectRatioFavarite: CGFloat = 1.16
         static let contentShiftNormal: CGFloat = 55
         static let contentShiftUp: CGFloat = 35
-        static let labelMoveUpConstraint: CGFloat = 4
+        static let labelMoveUpConstraint: CGFloat = 2
         static let labelMoveDownConstraint: CGFloat = 18
         
     }

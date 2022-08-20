@@ -46,7 +46,7 @@ final class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleLabel.text = "Вход"
+        configureTitle()
         setKeyboardNotification()
         configureErrorTextField(for: errorLoginLabel)
         configureErrorTextField(for: errorPasswordLabel)
@@ -57,8 +57,6 @@ final class AuthViewController: UIViewController {
         configurePasswordSecurityButton()
         configureDeviderTextField()
         configureLoginButton()
-        configureLoadingIndicator()
-        loadingIndicatorImage.startAnimationLoading(duration: 2)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -76,23 +74,30 @@ final class AuthViewController: UIViewController {
     //MARK: - Action Methods
     
     @IBAction func loginButtonAction(_ sender: UIButton) {
-        loadingIndicatorImage.startAnimationLoading(duration: 1)
-        let tempCredentials = AuthRequestModel(phone: loginTF.text ?? "", password: passwordTF.text ?? "")
-        AuthService().performLoginRequestAndSaveToken(credentials: tempCredentials) { [weak self] result in
-            switch result {
-            case .success:
-                DispatchQueue.main.async {
-                    let mainTabBar = TabBarConfigurator().configure()
-                    mainTabBar.modalPresentationStyle = .fullScreen
-                    self?.present(mainTabBar, animated: true)// logic
-                    let avatar = UserDefaults.standard.string(forKey: "userInfo")
-                    print(avatar)
+        if isInputCorrect() {
+            sender.titleLabel?.isHidden = true
+            let tempCredentials = AuthRequestModel(phone: loginTF.text ?? "", password: passwordTF.text ?? "")
+            AuthService().performLoginRequestAndSaveToken(credentials: tempCredentials) { [weak self] result in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                    switch result {
+                    case .success:
+                        
+                        let mainTabBar = TabBarConfigurator().configure()
+                        mainTabBar.modalPresentationStyle = .fullScreen
+                        self?.present(mainTabBar, animated: true)
+                        let avatar = UserDefaults.standard.string(forKey: "userInfo")
+                        self?.loadingIndicatorImage.stopAnimationLoading()
+                        print(avatar)
+                        
+                    case .failure:
+                        self?.loginButton.titleLabel?.isHidden = false
+                        self?.loadingIndicatorImage.stopAnimationLoading()
+                        print("no token \(#function)")
+                        // TODO: - Handle error, if token was not received
+                        break
+                    }
                 }
-            case .failure:
-                print("no token \(#function)")
-                // TODO: - Handle error, if token was not received
-                break
-            }
+            )}
         }
     }
     
@@ -121,8 +126,9 @@ final class AuthViewController: UIViewController {
 
 private extension AuthViewController {
     
-    func configureLoadingIndicator() {
-        loadingIndicatorImage.image = Constants.Image.loadingIndicator
+    func configureTitle() {
+        titleLabel.text = "Вход"
+        titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
     }
     
     func configureFloatingLabel(for label: UILabel, with title: String) {
@@ -135,6 +141,7 @@ private extension AuthViewController {
         label.font = .systemFont(ofSize: 12)
         label.textColor = Constants.Color.errorLabel
         label.isHidden = true
+        label.text = "Поле не может быть пустым"
     }
     
     private func configureAuthTextField(for textField: UITextField, with keyboardType: UIKeyboardType, isSecureTextEntry: Bool, returnKeyType: UIReturnKeyType, tag: TextFieldTag) {
@@ -197,6 +204,7 @@ private extension AuthViewController {
     func configureButtonActivityIndicator() {
         loadingIndicatorImage.image = Constants.Image.loadingIndicator
         loadingIndicatorImage.isHidden = true
+        loadingIndicatorImage.contentMode = .scaleAspectFill
     }
     
     func configureLoginButton() {
@@ -204,9 +212,25 @@ private extension AuthViewController {
         loginButton.titleLabel?.textColor = .white
         loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         loginButton.setTitle("Войти", for: .normal)
+        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         
         configureButtonActivityIndicator()
-        
+    }
+    
+    func showErrorEmptyTextField() {
+        errorLoginLabel.isHidden = !(loginTF.text?.isEmpty ?? true)
+        errorPasswordLabel.isHidden = !(passwordTF.text?.isEmpty ?? true)
+    }
+    
+    func isInputCorrect() -> Bool {
+        if loginTF.text?.isEmpty ?? true || passwordTF.text?.isEmpty ?? true{
+            showErrorEmptyTextField()
+            return false
+        } else {
+            loginButton.titleLabel?.isHidden = true
+            loadingIndicatorImage.startAnimationLoading()
+            return true
+        }
     }
 }
 
@@ -218,9 +242,11 @@ extension AuthViewController: UITextFieldDelegate {
         
         switch TextFieldTag(rawValue: textField.tag) {
         case .loginFieldTag:
+            errorLoginLabel.isHidden = true
             movingUp(for: loginFloatingLabel, to: loginLabelMoveTopConstraint)
             
         case .passwordFieldTag:
+            errorPasswordLabel.isHidden = true
             movingUp(for: passwordFloatingLabel, to: passwordTitleLabelMoveTopConstraint)
             passwordSecurityButton.isHidden = false
         case .none:
