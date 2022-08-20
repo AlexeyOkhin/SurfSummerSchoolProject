@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="SurfSummerSchoolProject" customModuleProvider="target">
             <connections>
+                <outlet property="collectionView" destination="8cr-tt-QS9" id="gxj-a0-SNK"/>
                 <outlet property="placeholderImage" destination="8iJ-MF-zeu" id="mnW-Lo-FSO"/>
                 <outlet property="placeholderLabel" destination="M1g-uC-ZTp" id="Bej-dM-P8P"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -33,17 +34,31 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="8cr-tt-QS9">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9Ay-ii-LbC">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="M1g-uC-ZTp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="0A9-PF-vT8"/>
+                <constraint firstItem="8cr-tt-QS9" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="NrL-hB-agt"/>
+                <constraint firstItem="8cr-tt-QS9" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="UUx-DS-roo"/>
                 <constraint firstItem="M1g-uC-ZTp" firstAttribute="top" secondItem="8iJ-MF-zeu" secondAttribute="bottom" constant="16" id="Yip-ZB-mh0"/>
+                <constraint firstItem="8cr-tt-QS9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bKe-b5-RbP"/>
                 <constraint firstItem="8iJ-MF-zeu" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="200" id="eNG-xw-BGT"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="M1g-uC-ZTp" secondAttribute="trailing" constant="16" id="egk-DX-fFB"/>
+                <constraint firstItem="8cr-tt-QS9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="rRA-Zm-RMN"/>
                 <constraint firstItem="8iJ-MF-zeu" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="vfe-iW-Mm6"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="147"/>
+            <point key="canvasLocation" x="137.68115942028987" y="145.98214285714286"/>
         </view>
     </objects>
     <resources>

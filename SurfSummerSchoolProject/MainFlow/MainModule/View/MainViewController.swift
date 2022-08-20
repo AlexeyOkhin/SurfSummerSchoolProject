@@ -16,15 +16,12 @@ final class MainViewController: UIViewController {
     
     //MARK: - Properties
     
-    var searchBarIsEmpty = true
-    var filteredItems = [DetailItemModel]()
-    var isFiltering = false
+    let model: MainModel = .init()
     
     //MARK: - Private Properties
     
-    let model: MainModel = .init()
     private var isEmptyView = UIView()
-    /// pull refresh
+
     private lazy var picturePullRefresh: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(pullRefresh(sender:)), for: .valueChanged)
@@ -69,7 +66,6 @@ private extension MainViewController {
             ]
             self?.navigationController?.navigationBar.tintColor = .white
             self?.navigationItem.prompt = self?.model.errorMessage
-            //self?.navigationController?.navigationBar.prefersLargeTitles = true
             self?.view.backgroundColor = Constants.Color.errorNavBar
             self?.title = "Попробуйте позже"
             self?.navigationItem.rightBarButtonItem = nil
@@ -100,7 +96,7 @@ private extension MainViewController {
     func configureModel() {
         model.didItemsUpdated = { [weak self] in
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 self?.loadingIndicatorView.stopAnimating()
                 self?.collectionView.reloadData()
                 self?.checkForEmptyModel(isModelEmpty: self?.model.items.isEmpty ?? true)
@@ -149,7 +145,6 @@ private extension MainViewController {
     
     //MARK: - Action for buttons
     
-    /// pull refresh func
     @objc private func pullRefresh(sender: UIRefreshControl) {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -170,8 +165,8 @@ private extension MainViewController {
     }
     
     @objc func tapSearchButton(param: UIBarButtonItem) {
-        /// implement presenter routing
-        let vc = SearchViewController()
+        let vc = SearchViewController() as SearchViewController
+        vc.model = model
         vc.tabBarController?.tabBar.isHidden = true
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -182,25 +177,15 @@ private extension MainViewController {
     
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    ///DataSource
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if isFiltering {
-            return filteredItems.count
-        } else {
             return model.items.count
-        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MainCollectionViewCell.self)", for: indexPath)
         if let cell = cell as? MainCollectionViewCell {
             var item: DetailItemModel
-            if isFiltering {
-                item = filteredItems[indexPath.item]
-            } else {
-                item = model.items[indexPath.item]
-            }
+            item = model.items[indexPath.item]
             cell.configure(model: item)
             cell.didFavoriteTapped = { [weak self] in
             self?.model.items[indexPath.item].isFavorite.toggle()
@@ -208,9 +193,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
         return cell
     }
-    
-    ///FlowLayout delegate
-    
+  
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemWidth = (view.frame.width - Constants.Size.horisontalInset * 2 - Constants.Size.spaceBetweenElements) / 2
         let itemHeight = itemWidth * Constants.Size.aspectRatioMain
@@ -228,12 +211,8 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
         let pictureItem: DetailItemModel
-                    if isFiltering {
-                        pictureItem = filteredItems[indexPath.item]
-                    } else {
-                        pictureItem = model.items[indexPath.item]
-                    }
-
+        pictureItem = model.items[indexPath.item]
+        
         let detailVC = DetailViewController()
         detailVC.model = pictureItem
         navigationController?.pushViewController(detailVC, animated: true)
