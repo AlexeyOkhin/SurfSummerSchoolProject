@@ -13,7 +13,6 @@ enum NetworkMethod: String {
     case post
 }
 
-
 extension NetworkMethod {
     
     var method: String {

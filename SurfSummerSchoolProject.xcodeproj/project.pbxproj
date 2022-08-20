@@ -30,6 +30,8 @@
 		0CD425F7289EF3BC00240C71 /* DetailImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CD425F5289EF3BC00240C71 /* DetailImageTableViewCell.xib */; };
 		0CE11B3E28B0B4A700DCABEF /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE11B3D28B0B4A700DCABEF /* UIView + Extensions.swift */; };
 		0CE11B4028B0D0FB00DCABEF /* UIString + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE11B3F28B0D0FB00DCABEF /* UIString + Extensions.swift */; };
+		0CE11B4628B0E7B600DCABEF /* TitleInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE11B4428B0E7B600DCABEF /* TitleInfoView.swift */; };
+		0CE11B4728B0E7B600DCABEF /* PhotoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE11B4528B0E7B600DCABEF /* PhotoCardView.swift */; };
 		0CE7634A289BC19100C633C5 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE76349289BC19100C633C5 /* MainModel.swift */; };
 		0CE7634C289BF44C00C633C5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7634B289BF44C00C633C5 /* Constants.swift */; };
 		0CE76350289C034B00C633C5 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7634E289C034B00C633C5 /* MainCollectionViewCell.swift */; };
@@ -89,6 +91,8 @@
 		0CD425F5289EF3BC00240C71 /* DetailImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailImageTableViewCell.xib; sourceTree = "<group>"; };
 		0CE11B3D28B0B4A700DCABEF /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		0CE11B3F28B0D0FB00DCABEF /* UIString + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIString + Extensions.swift"; sourceTree = "<group>"; };
+		0CE11B4428B0E7B600DCABEF /* TitleInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleInfoView.swift; sourceTree = "<group>"; };
+		0CE11B4528B0E7B600DCABEF /* PhotoCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCardView.swift; sourceTree = "<group>"; };
 		0CE76349289BC19100C633C5 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		0CE7634B289BF44C00C633C5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0CE7634E289C034B00C633C5 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -254,6 +258,15 @@
 			path = ImageCell;
 			sourceTree = "<group>";
 		};
+		0CE11B4328B0E7B600DCABEF /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				0CE11B4428B0E7B600DCABEF /* TitleInfoView.swift */,
+				0CE11B4528B0E7B600DCABEF /* PhotoCardView.swift */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
 		0CE7634D289C02F500C633C5 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,6 +421,7 @@
 		0CF52B95289A72190066DC84 /* ProfileModule */ = {
 			isa = PBXGroup;
 			children = (
+				0CE11B4328B0E7B600DCABEF /* Elements */,
 				0CF52BA4289AFBC40066DC84 /* ProfileViewController.swift */,
 				0CF52BA5289AFBC40066DC84 /* ProfileViewController.xib */,
 			);
@@ -528,9 +542,11 @@
 				0CF3D71728A17CD600B4709D /* BaseNetworkTask.swift in Sources */,
 				0CF3D72928A1918600B4709D /* PictureResponseModel.swift in Sources */,
 				0CF3D72328A190F500B4709D /* TokenStorage.swift in Sources */,
+				0CE11B4628B0E7B600DCABEF /* TitleInfoView.swift in Sources */,
 				0CABD4C228A4FC1B001F888D /* UIButton + Extension.swift in Sources */,
 				0CF3D70428A160F300B4709D /* DetailContentTableViewCell.swift in Sources */,
 				0CCE86AC289F8A7300765F62 /* UITableView + Extension.swift in Sources */,
+				0CE11B4728B0E7B600DCABEF /* PhotoCardView.swift in Sources */,
 				0C14B4D228AD0DB400C8422F /* UITextField + Extensions.swift in Sources */,
 				0CCE86AE289F8D9400765F62 /* DetailItemModel.swift in Sources */,
 				0CF3D71928A17CE500B4709D /* EmptyModel.swift in Sources */,

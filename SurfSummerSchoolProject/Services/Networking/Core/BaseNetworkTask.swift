@@ -87,6 +87,38 @@ extension BaseNetworkTask where Input == EmptyModel {
 
 }
 
+//MARK: - For Logout
+
+extension BaseNetworkTask {
+    func performRequestWithoutResponse(
+        input: AbstractInput,
+        _ onResponseWasReceived: @escaping (_ result: Result<String, Error>) -> Void) {
+            do {
+                let request = try getRequest(with: input)
+                session.dataTask(with: request) { data, response, error in
+                    if let error = error {
+                        onResponseWasReceived(.failure(error))
+                    } else if let response = response {
+                        if let httpResponse = response as? HTTPURLResponse {
+                            switch httpResponse.statusCode {
+                            case 204:
+                                let success = "The logout is completed"
+                                onResponseWasReceived(.success(success))
+                            case 401: onResponseWasReceived(.failure(NetworkTaskError.exitFailed))
+                            default: onResponseWasReceived(.failure(NetworkTaskError.unknownError))
+                            }
+                        }
+                    } else {
+                        onResponseWasReceived(.failure(NetworkTaskError.unknownError))
+                    }
+                }
+                .resume()
+            } catch {
+                onResponseWasReceived(.failure(NetworkTaskError.unknownError))
+            }
+        }
+}
+
 //MARK: - For cleare cache for develop
 
 extension BaseNetworkTask {
@@ -94,7 +126,6 @@ extension BaseNetworkTask {
     func cleareCache() {
         urlCache.removeAllCachedResponses()
     }
-    
 }
 
 //MARK: - Cache logic
@@ -124,6 +155,7 @@ private extension BaseNetworkTask {
         case urlWasNotFound
         case urlComponentWasNotCreated
         case parametersIsNotValidJsonObject
+        case exitFailed
     }
 
     func getRequest(with parameters: AbstractInput) throws -> URLRequest {

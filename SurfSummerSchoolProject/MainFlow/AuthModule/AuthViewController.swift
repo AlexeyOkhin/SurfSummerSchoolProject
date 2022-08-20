@@ -322,7 +322,9 @@ private extension AuthViewController {
         if isInputCorrect() {
             view.endEditing(true)
             loginButton.titleLabel?.isHidden = true
-            let tempCredentials = AuthRequestModel(phone: loginTF.text?.applyPatternOnNumbers(pattern: "+###########", replacementCharacter: "#") ?? "", password: passwordTF.text ?? "")
+            let loginFormate = loginTF.text?.applyPatternOnNumbers(pattern: "+###########", replacementCharacter: "#") ?? ""
+            let passwordText = passwordTF.text ?? ""
+            let tempCredentials = AuthRequestModel(phone: loginFormate, password: passwordText)
             AuthService().performLoginRequestAndSaveToken(credentials: tempCredentials) { [weak self] result in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                     switch result {
@@ -331,7 +333,6 @@ private extension AuthViewController {
                         let mainTabBar = TabBarConfigurator().configure()
                         mainTabBar.modalPresentationStyle = .fullScreen
                         self?.present(mainTabBar, animated: true)
-                        //let avatar = UserDefaults.standard.string(forKey: "userInfo")
                         self?.loadingIndicatorImage.stopAnimationLoading()
                         
                     case .failure:

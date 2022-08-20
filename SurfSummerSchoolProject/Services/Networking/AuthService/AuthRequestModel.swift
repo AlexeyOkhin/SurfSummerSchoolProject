@@ -13,3 +13,4 @@ struct AuthRequestModel: Encodable {
     let password: String
 
 }
+
