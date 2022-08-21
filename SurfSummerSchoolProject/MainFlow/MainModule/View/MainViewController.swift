@@ -100,7 +100,6 @@ private extension MainViewController {
                 self?.loadingIndicatorView.stopAnimating()
                 self?.collectionView.reloadData()
                 self?.checkForEmptyModel(isModelEmpty: self?.model.items.isEmpty ?? true)
-                print(try! FavoriteStorage().getAllOfFavorites())
             }
         }
     }
@@ -157,7 +156,6 @@ private extension MainViewController {
     }
     
     @objc func restartAction() {
-        print(#function)
         isEmptyView.removeFromSuperview()
         configureLoadingIndicator()
         configureModel()
@@ -192,7 +190,6 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                     self?.model.items[indexPath.item].isFavorite.toggle()
                     try FavoriteStorage().saveFavoriteStatus(by: item.id, new: self?.model.items[indexPath.item].isFavorite ?? false)
                     collectionView.reloadItems(at: [indexPath])
-                    print(try! FavoriteStorage().getAllOfFavorites())
                 } catch let error{
                     print(error)
                 }
@@ -216,7 +213,6 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
         let pictureItem: DetailItemModel
         pictureItem = model.items[indexPath.item]
         

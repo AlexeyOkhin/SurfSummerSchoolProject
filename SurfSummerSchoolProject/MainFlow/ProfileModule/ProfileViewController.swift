@@ -127,7 +127,6 @@ private extension ProfileViewController {
                     authViewController.modalPresentationStyle = .fullScreen
                     self.present(authViewController, animated: true)
                 case .failure:
-                    print("ErrorPointer")
                     self.logoutButton.titleLabel?.isHidden = true
                     self.activityIndicator.stopAnimationLoading()
                 }
