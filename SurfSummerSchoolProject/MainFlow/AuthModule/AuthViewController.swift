@@ -332,9 +332,9 @@ private extension AuthViewController {
             loginButton.titleLabel?.isHidden = true
             let loginFormate = loginTF.text?.applyPatternOnNumbers(pattern: "+###########", replacementCharacter: "#") ?? ""
             let passwordText = passwordTF.text ?? ""
-            let tempCredentials = AuthRequestModel(phone: loginFormate, password: passwordText)
+            let tempCredentials = AuthRequestModel(phone: "+79876543219", password: "qwerty")
             AuthService().performLoginRequestAndSaveToken(credentials: tempCredentials) { [weak self] result in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                     switch result {
                         
                     case .success:

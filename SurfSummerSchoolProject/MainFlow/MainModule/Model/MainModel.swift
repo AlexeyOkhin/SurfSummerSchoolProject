@@ -18,6 +18,7 @@ final class MainModel {
     //MARK: - Propirties
     
     let pictureService = PicturesService()
+    
     var items: [DetailItemModel] = [] {
         didSet {
             self.didItemsUpdated?()
@@ -29,8 +30,8 @@ final class MainModel {
         }
     }
     
-    
     func loadPosts() {
+        
         pictureService.loadPictures { [weak self] result in
             switch result {
             case .success(let pictures):
@@ -39,7 +40,7 @@ final class MainModel {
                         id: pictureModel.id,
                         imageUrlInString: pictureModel.photoUrl,
                         title: pictureModel.title,
-                        isFavorite: false, // TODO: - Need adding `FavoriteService`
+                        isFavorite: (try? FavoriteStorage().getIsFavoriteStatus(by: pictureModel.id)) ?? false,
                         content: pictureModel.content,
                         dateCreation: pictureModel.date
                     )

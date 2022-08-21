@@ -42,9 +42,6 @@ struct UserInfoStorage {
         else {
             return nil
         }
-        
         return infoItem
     }
-    
-    
 }

@@ -32,14 +32,14 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(#function, #file)
+        collectionView.refreshControl = picturePullRefresh
         configureLoadingIndicator()
         configureNavigationBar()
         configureApireance()
         showErrorMessage()
-        configureModel()
         model.loadPosts()
-        collectionView.refreshControl = picturePullRefresh
+        configureModel()
+        print(try! FavoriteStorage().getAllOfFavorites())
         
     }
     
@@ -100,6 +100,8 @@ private extension MainViewController {
                 self?.loadingIndicatorView.stopAnimating()
                 self?.collectionView.reloadData()
                 self?.checkForEmptyModel(isModelEmpty: self?.model.items.isEmpty ?? true)
+                print("модель изменилась")
+                print(try! FavoriteStorage().getAllOfFavorites())
             }
         }
     }
@@ -151,6 +153,8 @@ private extension MainViewController {
             self.collectionView.reloadData()
             self.checkForEmptyModel(isModelEmpty: self.model.items.isEmpty)
             self.showErrorMessage()
+            print("модель из пул рефреша")
+            print(try! FavoriteStorage().getAllOfFavorites())
         }
         sender.endRefreshing()
     }
@@ -188,7 +192,15 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             item = model.items[indexPath.item]
             cell.configure(model: item)
             cell.didFavoriteTapped = { [weak self] in
-            self?.model.items[indexPath.item].isFavorite.toggle()
+                DispatchQueue.main.async {
+                    do {
+                        self?.model.items[indexPath.item].isFavorite.toggle()
+                        try FavoriteStorage().saveFavoriteStatus(by: item.id, new: self?.model.items[indexPath.item].isFavorite ?? false)
+                        collectionView.reloadItems(at: [indexPath])
+                    } catch let error{
+                        print(error)
+                    }
+                }
             }
         }
         return cell

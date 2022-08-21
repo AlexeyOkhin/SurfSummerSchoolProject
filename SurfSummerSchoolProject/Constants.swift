@@ -28,7 +28,7 @@ struct Constants {
         static let closeEye = UIImage(systemName: "eye.slash")!
     }
     
-    //MARK: - Size for item collectionView
+    //MARK: - Size for items
     
     struct Size {
         static let horisontalInset: CGFloat = 16
@@ -55,7 +55,5 @@ struct Constants {
         static let deviderTF = #colorLiteral(red: 0.8745098039, green: 0.8745098039, blue: 0.8745098039, alpha: 1)
         static let placeHolderTF = #colorLiteral(red: 0.7019607843, green: 0.7019607843, blue: 0.7019607843, alpha: 1)
         static let errorLabel = #colorLiteral(red: 1, green: 0, blue: 0.1803921569, alpha: 1)
-        
-        
     }
 }

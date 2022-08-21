@@ -21,9 +21,9 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Calculated
     
-    var buttonImage: UIImage? {
-        return isFavorite ? Constants.Image.favoriteTrue : Constants.Image.favoriteFalse
-    }
+//    var buttonImage: UIImage? {
+//        return isFavorite ? Constants.Image.favoriteTrue : Constants.Image.favoriteFalse
+//    }
     
     //MARK: - Animation cell
     
@@ -35,13 +35,17 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Properties
 
-    var isFavorite: Bool = false
-
+    var isFavorite: Bool = false {
+        didSet {
+            let image = isFavorite ? Constants.Image.favoriteTrue : Constants.Image.favoriteFalse
+            favoriteButton.setImage(image , for: .normal)
+        }
+    }
     //MARK: - Actions
     
     @IBAction func favoriteAction(_ sender: UIButton) {
         didFavoriteTapped?()
-        isFavorite.toggle()
+        //isFavorite.toggle()
     }
     
     //MARK: - UICollectionViewCell
@@ -49,6 +53,11 @@ class MainCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         configureAppearence()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
     }
     
     //MARK: - Methods
@@ -62,7 +71,7 @@ class MainCollectionViewCell: UICollectionViewCell {
         }
         imageView.loadImage(from: url)
         isFavorite = model.isFavorite
-        favoriteButton.setImage(buttonImage, for: .normal)
+        //favoriteButton.setImage(buttonImage, for: .normal)
     }
 
 }
@@ -80,7 +89,7 @@ private extension MainCollectionViewCell {
         
         favoriteButton.tintColor = .white
         
-        isFavorite = false
+        favoriteButton.imageView?.image = Constants.Image.favoriteFalse
     }
     
     func animationTapCell() {
