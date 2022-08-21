@@ -30,19 +30,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         runLaunchScreen()
         
         if let tokenContainer = try? tokenStorage.getToken(), !tokenContainer.isExpired {
-            runMainFlow()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                self?.runMainFlow()
+            }
         } else {
-            // TODO: - Make Auth
+            
             self.window?.rootViewController = AuthViewController()
             
         }
     }
 
     func runMainFlow() {
-       DispatchQueue.main.async {
-            self.window?.rootViewController = TabBarConfigurator().configure()
-           //self.window?.rootViewController = MainViewController()
-        }
+        
+        self.window?.rootViewController = TabBarConfigurator().configure()
     }
     
     func runLaunchScreen() {

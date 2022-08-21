@@ -67,6 +67,7 @@ private extension FavoriteViewController {
         print(#function)
         print("tapSearch")
         let vc = SearchViewController()
+        vc.model = model
         vc.tabBarController?.tabBar.isHidden = true
         navigationController?.pushViewController(vc, animated: true)
     }
