@@ -88,7 +88,7 @@ private extension SearchViewController {
                                          style: .plain,
                                          target: navigationController,
                                          action: #selector(UINavigationController.popViewController(animated:)))
-        backButton.tintColor = .black
+        backButton.tintColor = Constants.Color.appBlack
         navigationItem.leftBarButtonItem = backButton
     }
     

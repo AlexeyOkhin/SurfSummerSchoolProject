@@ -22,8 +22,6 @@ struct ImageLoader {
                 if let data = data, let image = UIImage(data: data) {
                     onLoadWasCompleted(.success(image))
                 }
-            
-            
         }
         .resume()
     }

@@ -75,13 +75,13 @@ class MainCollectionViewCell: UICollectionViewCell {
 private extension MainCollectionViewCell {
     
     func configureAppearence() {
-        titleLabel.textColor = .black
+        titleLabel.textColor = Constants.Color.appBlack
         titleLabel.font = .systemFont(ofSize: 12)
         
         imageView.layer.cornerRadius = 12
         imageView.contentMode = .scaleAspectFill
         
-        favoriteButton.tintColor = .white
+        favoriteButton.tintColor = Constants.Color.appWhite
         favoriteButton.imageView?.image = Constants.Image.favoriteFalse
     }
     

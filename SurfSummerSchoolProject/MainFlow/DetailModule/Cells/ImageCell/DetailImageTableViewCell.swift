@@ -20,6 +20,11 @@ class DetailImageTableViewCell: UITableViewCell {
         configureAppearance()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cartImageView.image = nil
+    }
+    
     func configure(model: DetailItemModel) {
         guard let url = URL(string: model.imageUrlInString) else {
             return

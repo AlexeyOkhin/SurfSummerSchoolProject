@@ -41,7 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func runMainFlow() {
-        
         self.window?.rootViewController = TabBarConfigurator().configure()
     }
     

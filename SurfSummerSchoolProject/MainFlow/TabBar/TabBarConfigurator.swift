@@ -25,9 +25,9 @@ final class TabBarConfigurator {
 private extension TabBarConfigurator {
     func getTabBarController() -> UITabBarController {
         let tabBarController = UITabBarController()
-        tabBarController.tabBar.tintColor = .black
+        tabBarController.tabBar.tintColor = Constants.Color.appBlack
         tabBarController.tabBar.unselectedItemTintColor = .lightGray
-        tabBarController.tabBar.backgroundColor = .white
+        tabBarController.tabBar.backgroundColor = Constants.Color.appWhite
         tabBarController.viewControllers = getControllers()
         return tabBarController
     }
@@ -58,7 +58,7 @@ private extension TabBarConfigurator {
     
     func generationNavigationController(for rootViewController: UIViewController) -> UIViewController {
         let navigation = UINavigationController(rootViewController: rootViewController)
-        navigation.navigationBar.backgroundColor = .white
+        navigation.navigationBar.backgroundColor = Constants.Color.appWhite
         return navigation
     }
 }

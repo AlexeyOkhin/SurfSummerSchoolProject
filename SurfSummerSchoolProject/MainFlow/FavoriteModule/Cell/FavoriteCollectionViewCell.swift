@@ -68,15 +68,15 @@ private extension FavoriteCollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         
         titleLabel.font = .systemFont(ofSize: 16)
-        titleLabel.textColor = .black
+        titleLabel.textColor = Constants.Color.appBlack
         
         dateLabel.font = .systemFont(ofSize: 10, weight: .light)
         dateLabel.textColor = Constants.Color.dateText
         
         contentLabel.font = .systemFont(ofSize: 12)
-        contentLabel.textColor = .black
+        contentLabel.textColor = Constants.Color.appBlack
         
-        favoriteButton.tintColor = .white
+        favoriteButton.tintColor = Constants.Color.appWhite
         favoriteButton.setImage(Constants.Image.favoriteTrue, for: .normal )
     }
     

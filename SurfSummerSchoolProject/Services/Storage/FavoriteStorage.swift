@@ -18,8 +18,8 @@ struct FavoriteStorage {
     //MARK: - Private Properties
     
     private let storage: UserDefaults
-    private let favoritesKeyInStorage = "Favorites"
-    private let suiteName = "com.favorites.pictures"
+    private let favoritesKeyInStorage = "FavoritePictures"
+    private let suiteName = "com.favorite.images"
     
     //MARK: -  Initialization
     

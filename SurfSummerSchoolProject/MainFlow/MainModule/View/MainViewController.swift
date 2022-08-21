@@ -62,10 +62,10 @@ private extension MainViewController {
     func showErrorMessage() {
         model.didGetError = { [weak self] in
             self?.navigationController?.navigationBar.titleTextAttributes = [
-                .foregroundColor: UIColor.white,
+                .foregroundColor: Constants.Color.appWhite,
                 .font: UIFont.systemFont(ofSize: 12)
             ]
-            self?.navigationController?.navigationBar.tintColor = .white
+            self?.navigationController?.navigationBar.tintColor = Constants.Color.appWhite
             self?.navigationItem.prompt = self?.model.errorMessage
             self?.view.backgroundColor = Constants.Color.errorNavBar
             self?.title = "Попробуйте позже"
@@ -84,7 +84,7 @@ private extension MainViewController {
     
     func configureNavigationBar() {
         tabBarController?.tabBar.isHidden = false
-        navigationItem.rightBarButtonItem = createBarButton(image: Constants.Image.searchNavBar, tintColor: .black)
+        navigationItem.rightBarButtonItem = createBarButton(image: Constants.Image.searchNavBar, tintColor: Constants.Color.appBlack)
     }
     
     func configureApireance() {
@@ -101,7 +101,6 @@ private extension MainViewController {
                 self?.loadingIndicatorView.stopAnimating()
                 self?.collectionView.reloadData()
                 self?.checkForEmptyModel(isModelEmpty: self?.model.items.isEmpty ?? true)
-                print("модель изменилась")
                 print(try! FavoriteStorage().getAllOfFavorites())
             }
         }
@@ -120,7 +119,7 @@ private extension MainViewController {
         let emptyMessageLabel = UILabel(name: "Не удалось загрузить ленту \n Обновите экран или попробуйте позже")
         emptyMessageLabel.textColor = Constants.Color.dateText
         
-        let restartButton = UIButton(title: "Обновить", backgroundCollor: .black, titleColor: .white)
+        let restartButton = UIButton(title: "Обновить", backgroundCollor: Constants.Color.appBlack, titleColor: Constants.Color.appWhite)
         restartButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         restartButton.addTarget(self, action: #selector(restartAction), for: .touchUpInside)
         

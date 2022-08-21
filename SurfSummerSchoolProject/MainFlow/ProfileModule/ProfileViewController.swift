@@ -67,9 +67,9 @@ private extension ProfileViewController {
         
 
         logoutButton.setTitle("Выход", for: .normal)
-        logoutButton.backgroundColor = .black
+        logoutButton.backgroundColor = Constants.Color.appBlack
         logoutButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        logoutButton.titleLabel?.textColor = .white
+        logoutButton.titleLabel?.textColor = Constants.Color.appWhite
         
         activityIndicator.image = Constants.Image.loadingIndicator
         activityIndicator.isHidden = true
@@ -95,7 +95,6 @@ private extension ProfileViewController {
         let alert = UIAlertController(title: "Внимание", message: "Вы точно хотите выйти из приложения?", preferredStyle: .alert)
         let buttonActionCancel = UIAlertAction(title: "Нет", style: .cancel)
         let buttonActionAccept = UIAlertAction(title: "Да, точно", style: .default) { _ in
-            print("Logic Exit")
             self.logout()
         }
         alert.addAction(buttonActionCancel)
@@ -121,13 +120,14 @@ private extension ProfileViewController {
                 case .success:
                     do {
                         try FavoriteStorage().resetFavoriteStorage()
+                        try UserInfoStorage().resetUserStorage()
                     } catch let error {
                         print(error)
                     }
+                    self.activityIndicator.stopAnimationLoading()
                     let authViewController = AuthViewController()
                     authViewController.modalPresentationStyle = .fullScreen
                     self.present(authViewController, animated: true)
-                    self.activityIndicator.stopAnimationLoading()
                 case .failure:
                     print("ErrorPointer")
                     self.logoutButton.titleLabel?.isHidden = true

@@ -14,7 +14,7 @@ final class PhotoCard: UIView {
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.layer.borderColor = UIColor.black.cgColor
+        image.layer.borderColor = Constants.Color.appBlack.cgColor
         image.layer.cornerRadius = 12
        return image
     }()
@@ -24,7 +24,7 @@ final class PhotoCard: UIView {
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 18)
-        label.textColor = .black
+        label.textColor = Constants.Color.appBlack
         return label
     }()
     

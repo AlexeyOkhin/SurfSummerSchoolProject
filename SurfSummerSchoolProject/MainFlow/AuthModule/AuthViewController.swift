@@ -197,8 +197,8 @@ private extension AuthViewController {
     }
     
     func configureLoginButton() {
-        loginButton.backgroundColor = .black
-        loginButton.titleLabel?.textColor = .white
+        loginButton.backgroundColor = Constants.Color.appBlack
+        loginButton.titleLabel?.textColor = Constants.Color.appWhite
         loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         loginButton.setTitle("Войти", for: .normal)
         loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
@@ -304,7 +304,7 @@ private extension AuthViewController {
         
         titleLabel.text = message
         titleLabel.font = UIFont.systemFont(ofSize: 14)
-        titleLabel.textColor = .white
+        titleLabel.textColor = Constants.Color.appWhite
         titleLabel.backgroundColor = Constants.Color.errorNavBar
         
         NSLayoutConstraint.activate([
@@ -320,8 +320,8 @@ private extension AuthViewController {
             errorLoginView.removeFromSuperview()
             titleLabel.text = setTitle
             titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-            titleLabel.textColor = .black
-            titleLabel.backgroundColor = .white
+            titleLabel.textColor = Constants.Color.appBlack
+            titleLabel.backgroundColor = Constants.Color.appWhite
             isError = false
         }
     }
@@ -332,7 +332,7 @@ private extension AuthViewController {
             loginButton.titleLabel?.isHidden = true
             let loginFormate = loginTF.text?.applyPatternOnNumbers(pattern: "+###########", replacementCharacter: "#") ?? ""
             let passwordText = passwordTF.text ?? ""
-            let tempCredentials = AuthRequestModel(phone: "+79876543219", password: "qwerty")
+            let tempCredentials = AuthRequestModel(phone: loginFormate, password: passwordText)
             AuthService().performLoginRequestAndSaveToken(credentials: tempCredentials) { [weak self] result in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                     switch result {
@@ -347,7 +347,6 @@ private extension AuthViewController {
                         self?.loginButton.titleLabel?.isHidden = false
                         self?.loadingIndicatorImage.stopAnimationLoading()
                         self?.showErrorLogin(withMessage: "Логин или пароль введен неправильно")
-                        print("no token \(#function)")
                         // TODO: - Handle error, if token was not received
                         break
                     }

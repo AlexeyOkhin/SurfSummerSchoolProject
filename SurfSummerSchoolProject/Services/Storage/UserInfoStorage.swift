@@ -44,4 +44,8 @@ struct UserInfoStorage {
         }
         return infoItem
     }
+    
+    func resetUserStorage() {
+        storage.removeObject(forKey: userInfoKeyInStorage)
+    }
 }

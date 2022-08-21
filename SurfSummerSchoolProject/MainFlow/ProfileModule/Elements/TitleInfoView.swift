@@ -21,7 +21,7 @@ final class TitleInfoView: UIView {
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         subtitleLabel.numberOfLines = 1
         subtitleLabel.font = UIFont.systemFont(ofSize: 18)
-        subtitleLabel.textColor = .black
+        subtitleLabel.textColor = Constants.Color.appBlack
         
         let bottomBorder = UIView(frame: .zero)
         //bottomBorder.backgroundColor = Constants.Color.borderCollor

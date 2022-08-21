@@ -32,7 +32,7 @@ class DetailContentTableViewCell: UITableViewCell {
         selectionStyle = .none
         contentLabel.font = .systemFont(ofSize: 12, weight: .light)
         contentLabel.numberOfLines = 0
-        contentLabel.textColor = .black
+        contentLabel.textColor = Constants.Color.appBlack
     }
     
 }

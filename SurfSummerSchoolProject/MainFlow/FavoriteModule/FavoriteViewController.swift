@@ -39,7 +39,7 @@ final class FavoriteViewController: UIViewController {
 private extension FavoriteViewController {
     
     func configureNavigationBar() {
-        navigationItem.rightBarButtonItem = createBarButton(image: Constants.Image.searchNavBar, tintColor: .black)
+        navigationItem.rightBarButtonItem = createBarButton(image: Constants.Image.searchNavBar, tintColor: Constants.Color.appBlack)
     }
     
     func configureApireance() {
