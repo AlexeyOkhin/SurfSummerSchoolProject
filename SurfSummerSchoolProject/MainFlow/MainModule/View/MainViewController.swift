@@ -37,8 +37,8 @@ final class MainViewController: UIViewController {
         configureNavigationBar()
         configureApireance()
         showErrorMessage()
-        model.loadPosts()
         configureModel()
+        model.loadPosts()
         print(try! FavoriteStorage().getAllOfFavorites())
         
     }
@@ -46,6 +46,7 @@ final class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
+        //collectionView.reloadData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -192,15 +193,16 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             item = model.items[indexPath.item]
             cell.configure(model: item)
             cell.didFavoriteTapped = { [weak self] in
-                DispatchQueue.main.async {
+                //DispatchQueue.main.async {
                     do {
                         self?.model.items[indexPath.item].isFavorite.toggle()
                         try FavoriteStorage().saveFavoriteStatus(by: item.id, new: self?.model.items[indexPath.item].isFavorite ?? false)
-                        collectionView.reloadItems(at: [indexPath])
+                        //collectionView.reloadItems(at: [indexPath])
+                        //collectionView.reloadData()
                     } catch let error{
                         print(error)
                     }
-                }
+                //}
             }
         }
         return cell

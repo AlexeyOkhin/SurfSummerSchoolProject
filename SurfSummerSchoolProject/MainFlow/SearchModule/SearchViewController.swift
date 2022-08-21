@@ -20,6 +20,7 @@ final class SearchViewController: UIViewController {
     private var searchController = UISearchController()
     private var searchBarIsEmpty = true
     private var filteredItems = [DetailItemModel]()
+    private var emptyView = UIView()
     
     //MARK: - Properties
     
@@ -33,6 +34,7 @@ final class SearchViewController: UIViewController {
         configureApireance()
         setupSearchBar()
         leftSwipeForPop()
+        showEmptyView(with: Constants.Image.magnifire, and: "Введите ваш запрос")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,13 +58,17 @@ extension SearchViewController: UISearchResultsUpdating {
         searchBarIsEmpty = searchText.isEmpty
         
         if searchBarIsEmpty {
+            //showEmptyView()
             filteredItems = []
             collectionView.reloadData()
         } else {
+            emptyView.removeFromSuperview()
             filteredItems = model.items.filter({ (item: DetailItemModel) -> Bool in
                 return item.title.lowercased().contains(searchText.lowercased())
             })
-            
+            if filteredItems.isEmpty {
+                showEmptyView(with: Constants.Image.emptyMain, and: "По этому запросу нет результатов \n попробуйте другой запрос")
+            }
             collectionView.reloadData()
         }
     }
@@ -125,6 +131,29 @@ private extension SearchViewController {
         placeholderLabel.textColor = Constants.Color.placeholderSearch
         placeholderLabel.textAlignment = .center
     }
+    
+    func createEmptyView(with image: UIImage, and message: String) -> UIView {
+        let imageEmpty = UIImageView()
+        imageEmpty.image = image
+        
+        let emptyMessageLabel = UILabel(name: message)
+        emptyMessageLabel.textColor = Constants.Color.dateText
+        
+        let emptyView = SearchEmptyState(imageEmpty: imageEmpty, label: emptyMessageLabel)
+        
+        return emptyView
+    }
+    
+    func showEmptyView(with image: UIImage, and message: String) {
+        emptyView = createEmptyView(with: image, and: message)
+        self.view.addSubview(emptyView)
+        
+        NSLayoutConstraint.activate([
+            emptyView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            emptyView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            emptyView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
+        ])
+    }
 }
 
 extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -135,12 +164,24 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MainCollectionViewCell.self)", for: indexPath)
-        if let cell = cell as? MainCollectionViewCell {
+        if let cell = cell as? MainCollectionViewCell
+           //let model = model
+        {
             var item: DetailItemModel
             item = filteredItems[indexPath.item]
             cell.configure(model: item)
-            cell.didFavoriteTapped = { [weak self] in
-                self?.model?.items[indexPath.item].isFavorite.toggle()
+            cell.didFavoriteTapped = {
+            //DispatchQueue.main.async {
+                do {
+                    //self.model?.items.isFavorite.toggle()
+                    self.filteredItems[indexPath.item].isFavorite.toggle()
+                    try FavoriteStorage().saveFavoriteStatus(by: item.id, new: self.filteredItems[indexPath.item].isFavorite)
+                    collectionView.reloadData()
+                } catch let error{
+                    print(error)
+                }
+            //}
+                
             }
         }
         return cell
