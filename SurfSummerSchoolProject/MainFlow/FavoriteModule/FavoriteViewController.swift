@@ -98,12 +98,20 @@ private extension FavoriteViewController {
         ])
     }
     
-    func alertForTapFavorites() {
+    func alertForTapFavorites(forIndex: IndexPath, item: DetailItemModel) {
         let alert = UIAlertController(title: "Внимание", message: "Вы точно хотите удалить из избранного?", preferredStyle: .alert)
         let buttonActionCancel = UIAlertAction(title: "Нет", style: .cancel)
         let buttonActionAccept = UIAlertAction(title: "Да, точно", style: .default) { _ in
-            print("логика удаления из избранного")
-            
+            if let indexMain = (self.model.items.enumerated().first{ $1.id == item.id })?.offset {
+                self.model.items[indexMain].isFavorite.toggle()
+            }
+            do {
+                try FavoriteStorage().saveFavoriteStatus(by: self.favoritesPictures[forIndex.row].id, new: false)
+                self.favoritesPictures.remove(at: forIndex.row)
+                self.collectionView.reloadData()
+            } catch let error {
+                print(error)
+            }
         }
         
         alert.addAction(buttonActionCancel)
@@ -128,7 +136,7 @@ extension FavoriteViewController: UICollectionViewDataSource, UICollectionViewDe
             let item = favoritesPictures[indexPath.item]
             cell.configure(model: item)
             cell.tapForFavorites = {
-                self.alertForTapFavorites()
+                self.alertForTapFavorites(forIndex: indexPath, item: item)
             }
         }
         return cell

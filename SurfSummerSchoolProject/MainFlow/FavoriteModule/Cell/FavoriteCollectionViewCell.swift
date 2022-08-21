@@ -54,8 +54,6 @@ final class FavoriteCollectionViewCell: UICollectionViewCell {
             return
         }
         imageView.loadImage(from: url)
-//        isFavorite = model.isFavorite
-//        favoriteButton.setImage(buttonImage, for: .normal)
     }
 
 }
