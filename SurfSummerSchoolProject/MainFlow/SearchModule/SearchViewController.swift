@@ -161,31 +161,28 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredItems.count
     }
-    
+ 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MainCollectionViewCell.self)", for: indexPath)
-        if let cell = cell as? MainCollectionViewCell
-           //let model = model
-        {
-            var item: DetailItemModel
-            item = filteredItems[indexPath.item]
-            cell.configure(model: item)
-            cell.didFavoriteTapped = {
-            //DispatchQueue.main.async {
-                do {
-                    //self.model?.items.isFavorite.toggle()
-                    self.filteredItems[indexPath.item].isFavorite.toggle()
-                    try FavoriteStorage().saveFavoriteStatus(by: item.id, new: self.filteredItems[indexPath.item].isFavorite)
-                    collectionView.reloadData()
-                } catch let error{
-                    print(error)
-                }
-            //}
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MainCollectionViewCell.self)", for: indexPath)
+            if let cell = cell as? MainCollectionViewCell {
+                let item = filteredItems[indexPath.item]
+                cell.configure(model: item)
+                cell.didFavoriteTapped = { [weak self] in
+                    self?.filteredItems[indexPath.item].isFavorite.toggle()
+                    self?.collectionView.reloadItems(at: [indexPath])
+
+                    if let indexMain = (self?.model?.items.enumerated().first{ $1.id == item.id })?.offset {
                 
+                        self?.model?.items[indexMain].isFavorite.toggle()
+    
+                        if let item = self?.model?.items[indexMain] {
+                            try? FavoriteStorage().saveFavoriteStatus(by: item.id, new: item.isFavorite)
+                        }
+                    }
+                }
             }
+            return cell
         }
-        return cell
-    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemWidth = (view.frame.width - Constants.Size.horisontalInset * 2 - Constants.Size.spaceBetweenElements) / 2
@@ -202,6 +199,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.view.endEditing(true)
         let pictureItem: DetailItemModel
         pictureItem = filteredItems[indexPath.item]
         
