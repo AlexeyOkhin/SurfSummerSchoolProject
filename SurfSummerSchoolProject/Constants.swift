@@ -47,14 +47,15 @@ struct Constants {
     //MARK: - Colors
     
     struct Color {
-        static let serchColor = #colorLiteral(red: 0.9607843137, green: 0.9607843137, blue: 0.9607843137, alpha: 1)
-        static let dateText = #colorLiteral(red: 0.7019607843, green: 0.7019607843, blue: 0.7019607843, alpha: 1)
-        static let placeholderSearch = #colorLiteral(red: 0.7438805699, green: 0.7438805699, blue: 0.7438805699, alpha: 1)
-        static let errorNavBar = #colorLiteral(red: 0.9529411765, green: 0.3450980392, blue: 0.3450980392, alpha: 1)
-        static let textField = #colorLiteral(red: 0.9843137255, green: 0.9843137255, blue: 0.9843137255, alpha: 1)
-        static let deviderTF = #colorLiteral(red: 0.8745098039, green: 0.8745098039, blue: 0.8745098039, alpha: 1)
-        static let placeHolderTF = #colorLiteral(red: 0.7019607843, green: 0.7019607843, blue: 0.7019607843, alpha: 1)
-        static let errorLabel = #colorLiteral(red: 1, green: 0, blue: 0.1803921569, alpha: 1)
-        
+        static let serchColor = UIColor(rgb: 0xF5F5F5)
+        static let dateText = UIColor(rgb: 0xB3B3B3)
+        static let placeholderSearch = UIColor(rgb: 0xBEBEBE)
+        static let errorNavBar = UIColor(rgb: 0xF35858)
+        static let textField = UIColor(rgb: 0xFBFBFB)
+        static let deviderTF = UIColor(rgb: 0xDFDFDF)
+        static let placeHolderTF = UIColor(rgb: 0xB3B3B3)
+        static let errorLabel = UIColor(rgb: 0xFF002E)
+        static let appBlack = UIColor.black
+        static let appWhite = UIColor.white
     }
 }
