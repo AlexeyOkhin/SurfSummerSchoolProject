@@ -18,6 +18,10 @@ final class FavoriteCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var favoriteButton: UIButton!
     @IBOutlet private weak var stackView: UIStackView!
     
+    //MARK: - Private Property
+    
+    var tapForFavorites: (()-> Void)?
+    
     //MARK: - Animation cell
     
     override var isHighlighted: Bool {
@@ -29,7 +33,7 @@ final class FavoriteCollectionViewCell: UICollectionViewCell {
     //MARK: - Actions
     
     @IBAction func favoriteButtonAction(_ sender: UIButton) {
-        
+        tapForFavorites?()
     }
     
     //MARK: -  UICollectionViewCell

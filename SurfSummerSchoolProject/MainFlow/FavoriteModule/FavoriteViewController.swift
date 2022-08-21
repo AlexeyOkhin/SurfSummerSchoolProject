@@ -97,7 +97,22 @@ private extension FavoriteViewController {
             emptyView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
         ])
     }
+    
+    func alertForTapFavorites() {
+        let alert = UIAlertController(title: "Внимание", message: "Вы точно хотите удалить из избранного?", preferredStyle: .alert)
+        let buttonActionCancel = UIAlertAction(title: "Нет", style: .cancel)
+        let buttonActionAccept = UIAlertAction(title: "Да, точно", style: .default) { _ in
+            print("логика удаления из избранного")
+            
+        }
+        
+        alert.addAction(buttonActionCancel)
+        alert.addAction(buttonActionAccept)
+        alert.preferredAction = buttonActionAccept
+        self.present(alert, animated: true)
+    }
 }
+
     
     //MARK: -  UICollectionViewController DataSource
     
@@ -112,6 +127,9 @@ extension FavoriteViewController: UICollectionViewDataSource, UICollectionViewDe
         if let cell = cell as? FavoriteCollectionViewCell {
             let item = favoritesPictures[indexPath.item]
             cell.configure(model: item)
+            cell.tapForFavorites = {
+                self.alertForTapFavorites()
+            }
         }
         return cell
     }
