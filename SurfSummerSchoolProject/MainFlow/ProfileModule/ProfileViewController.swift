@@ -9,14 +9,31 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    //MARK: - Private Property
+    
     private var infoItem: UserInfo?
-
+    @IBOutlet private weak var activityIndicator: UIImageView!
+    @IBOutlet private weak var logoutButton: UIButton!
+    
+    //MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
         configureAppearence()
+        
     }
+    
+    //MARK: - Private Action
+    
+    @IBAction private func logoutAction(_ sender: UIButton) {
+        
+        exitAction()
+    }
+    
 }
+
+//MARK: - Private Methods
 
 private extension ProfileViewController {
     func configureAppearence() {
@@ -48,10 +65,16 @@ private extension ProfileViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(stackView)
         
-        let exitButton = UIButton(title: "Выйти", backgroundCollor: .black, titleColor: .white)
-        exitButton.translatesAutoresizingMaskIntoConstraints = false
-        exitButton.addTarget(self, action: #selector(exitAction), for: .touchUpInside)
-        self.view.addSubview(exitButton)
+
+        logoutButton.setTitle("Выход", for: .normal)
+        logoutButton.backgroundColor = .black
+        logoutButton.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        logoutButton.titleLabel?.textColor = .white
+        
+        activityIndicator.image = Constants.Image.loadingIndicator
+        activityIndicator.isHidden = true
+        
+        
         
         NSLayoutConstraint.activate([
             photoCard.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 35),
@@ -65,12 +88,6 @@ private extension ProfileViewController {
             stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
         ])
         
-        NSLayoutConstraint.activate([
-            exitButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
-            exitButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
-            exitButton.heightAnchor.constraint(equalToConstant: 48),
-            exitButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -24)
-        ])
     }
     
     @objc func exitAction() {
@@ -90,23 +107,31 @@ private extension ProfileViewController {
     func getData() {
         do {
             infoItem = try UserInfoStorage().getUserInfo()
-        } catch {
-            
+        } catch let error{
+            print(error)
         }
     }
     
     func logout() {
-        
+        logoutButton.titleLabel?.isHidden = true
+        activityIndicator.startAnimationLoading()
         AuthService().performLogoutRequestWithResetData(credentials: EmptyModel(), { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success:
-                    print("succc")
-                    let authVC = AuthViewController()
-                    authVC.modalPresentationStyle = .fullScreen
-                    self.present(authVC, animated: true)
+                    do {
+                        try FavoriteStorage().resetFavoriteStorage()
+                    } catch let error {
+                        print(error)
+                    }
+                    let authViewController = AuthViewController()
+                    authViewController.modalPresentationStyle = .fullScreen
+                    self.present(authViewController, animated: true)
+                    self.activityIndicator.stopAnimationLoading()
                 case .failure:
                     print("ErrorPointer")
+                    self.logoutButton.titleLabel?.isHidden = true
+                    self.activityIndicator.stopAnimationLoading()
                 }
             }
         })

@@ -51,10 +51,7 @@ final class MainViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        if tabBarController?.tabBar.tag == 0 {
-            let vc = FavoriteViewController()
-            
-        }
+       
     }
 }
 
@@ -196,15 +193,13 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             item = model.items[indexPath.item]
             cell.configure(model: item)
             cell.didFavoriteTapped = { [weak self] in
-                //DispatchQueue.main.async {
-                    do {
-                        self?.model.items[indexPath.item].isFavorite.toggle()
-                        try FavoriteStorage().saveFavoriteStatus(by: item.id, new: self?.model.items[indexPath.item].isFavorite ?? false)
-                        collectionView.reloadItems(at: [indexPath])
-                    } catch let error{
-                        print(error)
-                    }
-                //}
+                do {
+                    self?.model.items[indexPath.item].isFavorite.toggle()
+                    try FavoriteStorage().saveFavoriteStatus(by: item.id, new: self?.model.items[indexPath.item].isFavorite ?? false)
+                    collectionView.reloadItems(at: [indexPath])
+                } catch let error{
+                    print(error)
+                }
             }
         }
         return cell

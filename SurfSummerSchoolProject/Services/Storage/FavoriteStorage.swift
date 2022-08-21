@@ -62,4 +62,8 @@ struct FavoriteStorage {
         }
         storage.set(encodeData, forKey: favoritesKeyInStorage)
     }
+    
+    func resetFavoriteStorage() {
+        storage.removeObject(forKey: favoritesKeyInStorage)
+    }
 }

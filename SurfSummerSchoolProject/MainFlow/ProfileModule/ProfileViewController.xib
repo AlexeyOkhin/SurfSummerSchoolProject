@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="SurfSummerSchoolProject" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="h02-Fm-ZB9" id="kJ5-ld-LE7"/>
+                <outlet property="logoutButton" destination="Nnw-RR-BQi" id="Xkb-wC-HcA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,9 +19,38 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nnw-RR-BQi">
+                    <rect key="frame" x="16" y="790" width="382" height="48"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="4ue-Uy-MIs"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain"/>
+                    <connections>
+                        <action selector="logoutAction:" destination="-1" eventType="touchUpInside" id="fT4-9b-GuM"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h02-Fm-ZB9">
+                    <rect key="frame" x="199" y="806" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="Hlm-Fb-HSh"/>
+                        <constraint firstAttribute="height" constant="16" id="JNM-cc-MD5"/>
+                    </constraints>
+                </imageView>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <point key="canvasLocation" x="139" y="152"/>
+            <constraints>
+                <constraint firstItem="Nnw-RR-BQi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="FRF-Vg-0Vh"/>
+                <constraint firstItem="h02-Fm-ZB9" firstAttribute="centerX" secondItem="Nnw-RR-BQi" secondAttribute="centerX" id="Oxx-OJ-Krv"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Nnw-RR-BQi" secondAttribute="bottom" constant="24" id="ad6-8x-dCS"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Nnw-RR-BQi" secondAttribute="trailing" constant="16" id="aeU-eY-xpo"/>
+                <constraint firstItem="h02-Fm-ZB9" firstAttribute="centerY" secondItem="Nnw-RR-BQi" secondAttribute="centerY" id="vK9-Xx-Aya"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="151.33928571428569"/>
         </view>
     </objects>
     <resources>
