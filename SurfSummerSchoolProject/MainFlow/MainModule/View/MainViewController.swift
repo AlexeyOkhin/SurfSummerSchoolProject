@@ -9,9 +9,9 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
-    //MARK: -  IBOutlet
+    //MARK: -  Private IBOutlet
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var loadingIndicatorView: UIActivityIndicatorView!
     
     //MARK: - Properties
@@ -39,7 +39,6 @@ final class MainViewController: UIViewController {
         showErrorMessage()
         configureModel()
         model.loadPosts()
-        print(try! FavoriteStorage().getAllOfFavorites())
         
     }
     
@@ -153,8 +152,6 @@ private extension MainViewController {
             self.collectionView.reloadData()
             self.checkForEmptyModel(isModelEmpty: self.model.items.isEmpty)
             self.showErrorMessage()
-            print("модель из пул рефреша")
-            print(try! FavoriteStorage().getAllOfFavorites())
         }
         sender.endRefreshing()
     }

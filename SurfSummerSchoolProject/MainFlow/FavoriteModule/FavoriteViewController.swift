@@ -9,10 +9,10 @@ import UIKit
 
 final class FavoriteViewController: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
 
     //MARK: - Private Properties
     
+    @IBOutlet private weak var collectionView: UICollectionView!
     private var emptyView = UIView()
     private var favoritesPictures = [DetailItemModel]()
     private var model = MainModel.shared
@@ -23,7 +23,6 @@ final class FavoriteViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureApireance()
-        //configureModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,7 +121,6 @@ private extension FavoriteViewController {
         self.present(alert, animated: true)
     }
 }
-
     
     //MARK: -  UICollectionViewController DataSource
     

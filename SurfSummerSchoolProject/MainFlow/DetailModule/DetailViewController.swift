@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
     
     //MARK: -  IBOutlet
     
@@ -16,7 +16,10 @@ class DetailViewController: UIViewController {
     //MARK: - Properties
     
     var model: DetailItemModel?
-    let arrayWithTypeOfCells: [UITableViewCell] = [DetailImageTableViewCell(), DetailTitleTableViewCell(), DetailContentTableViewCell()]
+    
+    //MARK: - Private Properties
+    
+    private let arrayWithTypeOfCells: [UITableViewCell] = [DetailImageTableViewCell(), DetailTitleTableViewCell(), DetailContentTableViewCell()]
     
     //MARK: - LifeCycle
     

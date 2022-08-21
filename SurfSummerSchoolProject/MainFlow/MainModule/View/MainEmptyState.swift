@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainEmptyState: UIView {
+final class MainEmptyState: UIView {
     
     init(imageEmpty: UIImageView, label: UILabel, button: UIButton) {
         super.init(frame: .zero)

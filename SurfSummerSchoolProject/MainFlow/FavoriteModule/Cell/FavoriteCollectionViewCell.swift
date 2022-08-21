@@ -9,7 +9,7 @@ import UIKit
 
 final class FavoriteCollectionViewCell: UICollectionViewCell {
     
-    //MARK: -  IBOutlets
+    //MARK: - Private IBOutlets
     
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!

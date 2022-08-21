@@ -7,9 +7,9 @@
 
 import UIKit
 
-class MainCollectionViewCell: UICollectionViewCell {
+final class MainCollectionViewCell: UICollectionViewCell {
     
-    //MARK: - IBOUTlet
+    //MARK: - Privates IBOUTlet
 
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var favoriteButton: UIButton!

@@ -24,7 +24,6 @@ final class TitleInfoView: UIView {
         subtitleLabel.textColor = Constants.Color.appBlack
         
         let bottomBorder = UIView(frame: .zero)
-        //bottomBorder.backgroundColor = Constants.Color.borderCollor
         bottomBorder.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(titleLabel)

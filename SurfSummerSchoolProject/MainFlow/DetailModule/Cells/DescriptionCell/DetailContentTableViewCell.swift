@@ -7,11 +7,11 @@
 
 import UIKit
 
-class DetailContentTableViewCell: UITableViewCell {
+final class DetailContentTableViewCell: UITableViewCell {
     
     //MARK: - IBOutlets
     
-    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet private weak var contentLabel: UILabel!
     
     //MARK: - UITableViewCell
     

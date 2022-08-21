@@ -58,13 +58,13 @@ final class PhotoCard: UIView {
         NSLayoutConstraint.activate([
             fioLabel.topAnchor.constraint(equalTo: self.topAnchor),
             fioLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 16),
-            //fioLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            
         ])
         
         NSLayoutConstraint.activate([
             aboutLabel.topAnchor.constraint(equalTo: fioLabel.bottomAnchor, constant: 8),
             aboutLabel.leadingAnchor.constraint(equalTo: photoImageView.trailingAnchor, constant: 16),
-            //aboutLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -24)
+            
         ])
         
         
@@ -82,11 +82,4 @@ final class PhotoCard: UIView {
         aboutLabel.text = about
         fioLabel.text = name
     }
-    
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        photoImageView.layer.masksToBounds = true
-//        photoImageView.layer.cornerRadius = 12
-//
-//    }
 }

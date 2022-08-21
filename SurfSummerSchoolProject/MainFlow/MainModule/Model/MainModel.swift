@@ -19,7 +19,6 @@ final class MainModel {
     
     //MARK: - Propirties
     
-    let pictureService = PicturesService()
     
     var items: [DetailItemModel] = []
     
@@ -28,6 +27,11 @@ final class MainModel {
             self.didGetError?()
         }
     }
+    //MARK: - Private Properties
+    
+    private let pictureService = PicturesService()
+    
+    //MARK: - Methods
     
     func loadPosts() {
         

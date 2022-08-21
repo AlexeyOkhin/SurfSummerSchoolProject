@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
     
     //MARK: - Private Property
     
@@ -73,8 +73,6 @@ private extension ProfileViewController {
         
         activityIndicator.image = Constants.Image.loadingIndicator
         activityIndicator.isHidden = true
-        
-        
         
         NSLayoutConstraint.activate([
             photoCard.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 35),

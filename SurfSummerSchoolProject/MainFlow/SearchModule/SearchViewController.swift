@@ -11,7 +11,7 @@ final class SearchViewController: UIViewController {
     
     //MARK: - IBOutlets
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     //MARK: - Private Properties
     
@@ -51,7 +51,6 @@ extension SearchViewController: UISearchResultsUpdating {
         searchBarIsEmpty = searchText.isEmpty
         
         if searchBarIsEmpty {
-            //showEmptyView()
             filteredItems = []
             collectionView.reloadData()
         } else {

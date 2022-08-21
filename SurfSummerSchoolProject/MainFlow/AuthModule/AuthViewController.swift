@@ -21,7 +21,7 @@ final class AuthViewController: UIViewController {
     @IBOutlet private weak var passwordTitleLabelMoveTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var loginLabelMoveTopConstraint: NSLayoutConstraint!
     
-    //MARK: - IBOutlets Views
+    //MARK: - Private IBOutlets
     
     @IBOutlet private weak var titleLabel: UILabel!
     
@@ -210,11 +210,11 @@ private extension AuthViewController {
         errorLoginLabel.isHidden = !(loginTF.text?.isEmpty ?? true)
         errorPasswordLabel.isHidden = !(passwordTF.text?.isEmpty ?? true)
         devidedLoginTextField.backgroundColor = loginTF.text?.isEmpty ?? true
-                                            ? Constants.Color.errorLabel
-                                            : Constants.Color.deviderTF
+        ? Constants.Color.errorLabel
+        : Constants.Color.deviderTF
         deviderPasswordTextField.backgroundColor = passwordTF.text?.isEmpty ?? true
-                                               ? Constants.Color.errorLabel
-                                               : Constants.Color.deviderTF
+        ? Constants.Color.errorLabel
+        : Constants.Color.deviderTF
     }
     
     func isInputCorrect() -> Bool {
