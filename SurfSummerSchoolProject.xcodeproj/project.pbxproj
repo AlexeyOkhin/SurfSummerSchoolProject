@@ -32,6 +32,7 @@
 		0CE11B4028B0D0FB00DCABEF /* UIString + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE11B3F28B0D0FB00DCABEF /* UIString + Extensions.swift */; };
 		0CE11B4628B0E7B600DCABEF /* TitleInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE11B4428B0E7B600DCABEF /* TitleInfoView.swift */; };
 		0CE11B4728B0E7B600DCABEF /* PhotoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE11B4528B0E7B600DCABEF /* PhotoCardView.swift */; };
+		0CE11B4928B2018000DCABEF /* FavoriteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE11B4828B2018000DCABEF /* FavoriteStorage.swift */; };
 		0CE7634A289BC19100C633C5 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE76349289BC19100C633C5 /* MainModel.swift */; };
 		0CE7634C289BF44C00C633C5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7634B289BF44C00C633C5 /* Constants.swift */; };
 		0CE76350289C034B00C633C5 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7634E289C034B00C633C5 /* MainCollectionViewCell.swift */; };
@@ -93,6 +94,7 @@
 		0CE11B3F28B0D0FB00DCABEF /* UIString + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIString + Extensions.swift"; sourceTree = "<group>"; };
 		0CE11B4428B0E7B600DCABEF /* TitleInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleInfoView.swift; sourceTree = "<group>"; };
 		0CE11B4528B0E7B600DCABEF /* PhotoCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCardView.swift; sourceTree = "<group>"; };
+		0CE11B4828B2018000DCABEF /* FavoriteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStorage.swift; sourceTree = "<group>"; };
 		0CE76349289BC19100C633C5 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		0CE7634B289BF44C00C633C5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0CE7634E289C034B00C633C5 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				0CF3D72428A1910E00B4709D /* TokenContainer.swift */,
 				0CF3D72628A1912000B4709D /* BaseTokenStorage.swift */,
 				0C81DBB028AEB89400A4528E /* UserInfoStorage.swift */,
+				0CE11B4828B2018000DCABEF /* FavoriteStorage.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -556,6 +559,7 @@
 				0CF3D72528A1910E00B4709D /* TokenContainer.swift in Sources */,
 				0CE76350289C034B00C633C5 /* MainCollectionViewCell.swift in Sources */,
 				0CF52B9A289A74710066DC84 /* TabBarConfigurator.swift in Sources */,
+				0CE11B4928B2018000DCABEF /* FavoriteStorage.swift in Sources */,
 				0C14B4CF28ACF4BB00C8422F /* AuthViewController.swift in Sources */,
 				0CABD4C028A4E3CF001F888D /* MainEmptyState.swift in Sources */,
 				0CF3D72B28A191F400B4709D /* PicturesService.swift in Sources */,

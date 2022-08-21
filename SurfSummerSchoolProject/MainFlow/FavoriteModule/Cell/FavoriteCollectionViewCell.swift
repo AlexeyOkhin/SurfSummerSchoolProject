@@ -29,6 +29,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     //MARK: - Actions
     
     @IBAction func favoriteButtonAction(_ sender: UIButton) {
+        
     }
     
     //MARK: -  UICollectionViewCell
@@ -43,6 +44,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     func configure(model: DetailItemModel) {
         titleLabel.text = model.title
         contentLabel.text = model.content
+        dateLabel.text = model.dateCreation
         let imageUrl = model.imageUrlInString
         guard let url = URL(string: imageUrl) else {
             return
