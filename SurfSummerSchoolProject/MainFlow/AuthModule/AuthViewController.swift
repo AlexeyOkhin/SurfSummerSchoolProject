@@ -138,6 +138,7 @@ private extension AuthViewController {
         textField.delegate = self
         textField.leftPadding(size: 16)
         textField.backgroundColor = Constants.Color.textField
+        textField.tintColor = Constants.Color.appBlack
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
         textField.isSecureTextEntry = isSecureTextEntry

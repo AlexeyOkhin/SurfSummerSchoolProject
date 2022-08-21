@@ -110,6 +110,7 @@ private extension SearchViewController {
         searchBar.searchTextField.layer.cornerRadius = 22
         searchBar.searchTextField.layer.masksToBounds = true
         searchBar.searchTextField.backgroundColor = Constants.Color.serchColor
+        searchBar.tintColor = Constants.Color.appBlack
         searchBar.placeholder = "Поиск"
         searchBar.searchTextField.font = .systemFont(ofSize: 14)
         searchBar.showsCancelButton = false
