@@ -25,19 +25,14 @@ final class FavoriteViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationBar()
         configureApireance()
-        configureModel()
-        print(model)
+        //configureModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
         configureModel()
-        if favoritesPictures.isEmpty {
-            showEmptyView(with: Constants.Image.emptyMain, and: "В избранном пусто")
-        } else {
-            emptyView.removeFromSuperview()
-        }
+        showEmptyView()
     }
 }
 
@@ -87,7 +82,7 @@ private extension FavoriteViewController {
         return emptyView
     }
     
-    func showEmptyView(with image: UIImage, and message: String) {
+    func configureEmptyView(with image: UIImage, and message: String) {
         emptyView = createEmptyView(with: image, and: message)
         self.view.addSubview(emptyView)
         
@@ -96,6 +91,14 @@ private extension FavoriteViewController {
             emptyView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
             emptyView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
         ])
+    }
+    
+    func showEmptyView() {
+        if favoritesPictures.isEmpty {
+            configureEmptyView(with: Constants.Image.emptyMain, and: "В избранном пусто")
+        } else {
+            emptyView.removeFromSuperview()
+        }
     }
     
     func alertForTapFavorites(forIndex: IndexPath, item: DetailItemModel) {
@@ -109,6 +112,7 @@ private extension FavoriteViewController {
                 try FavoriteStorage().saveFavoriteStatus(by: self.favoritesPictures[forIndex.row].id, new: false)
                 self.favoritesPictures.remove(at: forIndex.row)
                 self.collectionView.reloadData()
+                self.showEmptyView()
             } catch let error {
                 print(error)
             }
