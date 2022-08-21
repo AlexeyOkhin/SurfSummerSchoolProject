@@ -11,13 +11,11 @@ final class FavoriteViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
-    
     //MARK: - Private Properties
     
     private var emptyView = UIView()
     private var favoritesPictures = [DetailItemModel]()
     private var model = MainModel.shared
-    
     
     //MARK: - LifeCycle
     
