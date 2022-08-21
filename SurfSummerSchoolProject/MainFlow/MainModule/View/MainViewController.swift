@@ -16,7 +16,7 @@ final class MainViewController: UIViewController {
     
     //MARK: - Properties
     
-    let model: MainModel = .init()
+    let model = MainModel.shared
     
     //MARK: - Private Properties
     
@@ -170,10 +170,9 @@ private extension MainViewController {
     }
     
     @objc func tapSearchButton(param: UIBarButtonItem) {
-        let vc = SearchViewController() as SearchViewController
-        vc.model = model
-        vc.tabBarController?.tabBar.isHidden = true
-        navigationController?.pushViewController(vc, animated: true)
+        let searchViewController = SearchViewController()
+        searchViewController.tabBarController?.tabBar.isHidden = true
+        navigationController?.pushViewController(searchViewController, animated: true)
     }
     
 }
@@ -197,6 +196,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                     self?.model.items[indexPath.item].isFavorite.toggle()
                     try FavoriteStorage().saveFavoriteStatus(by: item.id, new: self?.model.items[indexPath.item].isFavorite ?? false)
                     collectionView.reloadItems(at: [indexPath])
+                    print(try! FavoriteStorage().getAllOfFavorites())
                 } catch let error{
                     print(error)
                 }
@@ -224,9 +224,9 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let pictureItem: DetailItemModel
         pictureItem = model.items[indexPath.item]
         
-        let detailVC = DetailViewController()
-        detailVC.model = pictureItem
-        navigationController?.pushViewController(detailVC, animated: true)
+        let detailViewController = DetailViewController()
+        detailViewController.model = pictureItem
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
     
 }

@@ -19,11 +19,7 @@ final class SearchViewController: UIViewController {
     private var searchBarIsEmpty = true
     private var filteredItems = [DetailItemModel]()
     private var emptyView = UIView()
-    
-    //MARK: - Properties
-    
-    var model: MainModel?
-    
+    private var model = MainModel.shared
     
     //MARK: - Life Cycle
     
@@ -51,7 +47,7 @@ final class SearchViewController: UIViewController {
 
 extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text, let model = model else { return }
+        guard let searchText = searchController.searchBar.text else { return }
         searchBarIsEmpty = searchText.isEmpty
         
         if searchBarIsEmpty {
@@ -159,11 +155,11 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
                     self?.filteredItems[indexPath.item].isFavorite.toggle()
                     self?.collectionView.reloadItems(at: [indexPath])
 
-                    if let indexMain = (self?.model?.items.enumerated().first{ $1.id == item.id })?.offset {
+                    if let indexMain = (self?.model.items.enumerated().first{ $1.id == item.id })?.offset {
                 
-                        self?.model?.items[indexMain].isFavorite.toggle()
+                        self?.model.items[indexMain].isFavorite.toggle()
     
-                        if let item = self?.model?.items[indexMain] {
+                        if let item = self?.model.items[indexMain] {
                             try? FavoriteStorage().saveFavoriteStatus(by: item.id, new: item.isFavorite)
                         }
                     }
@@ -191,9 +187,9 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         let pictureItem: DetailItemModel
         pictureItem = filteredItems[indexPath.item]
         
-        let detailVC = DetailViewController()
-        detailVC.model = pictureItem
-        navigationController?.pushViewController(detailVC, animated: true)
+        let detailViewController = DetailViewController()
+        detailViewController.model = pictureItem
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
     
 }

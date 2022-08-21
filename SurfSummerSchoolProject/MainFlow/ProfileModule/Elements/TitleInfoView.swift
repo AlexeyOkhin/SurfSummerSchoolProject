@@ -8,7 +8,7 @@
 import UIKit
 
 
-class TitleInfoView: UIView {
+final class TitleInfoView: UIView {
     init(titleLabel: UILabel, subtitleLabel: UILabel) {
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false

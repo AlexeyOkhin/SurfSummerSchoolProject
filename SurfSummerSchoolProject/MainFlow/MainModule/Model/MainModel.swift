@@ -9,7 +9,7 @@
 import UIKit
 
 final class MainModel {
-    
+    static let shared = MainModel.init()
     //MARK: - Events
     
     var didItemsUpdated: (() -> Void)?

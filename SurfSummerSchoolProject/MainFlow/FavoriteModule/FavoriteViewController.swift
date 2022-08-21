@@ -10,14 +10,14 @@ import UIKit
 final class FavoriteViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    //MARK: - Properties
-    
-    var model: MainModel?
+
     
     //MARK: - Private Properties
-    var emptyView = UIView()
-    private var favoritesPictures: Set<String>?
+    
+    private var emptyView = UIView()
+    private var favoritesPictures = [DetailItemModel]()
+    private var model = MainModel.shared
+    
     
     //MARK: - LifeCycle
     
@@ -32,8 +32,11 @@ final class FavoriteViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
-        if model == nil {
+        configureModel()
+        if favoritesPictures.isEmpty {
             showEmptyView(with: Constants.Image.emptyMain, and: "В избранном пусто")
+        } else {
+            emptyView.removeFromSuperview()
         }
     }
 }
@@ -54,12 +57,10 @@ private extension FavoriteViewController {
     }
         
     func configureModel() {
-        model?.didItemsUpdated = { [weak self] in
-            DispatchQueue.main.async {
-                self?.collectionView.reloadData()
-            }
-
-        }
+        favoritesPictures = model.items.filter({ item in
+            item.isFavorite == true
+        })
+        collectionView.reloadData()
     }
     
     func createBarButton(image: UIImage, tintColor: UIColor) -> UIBarButtonItem {
@@ -69,10 +70,9 @@ private extension FavoriteViewController {
     }
     
     @objc func tapSearchButton(param: UIBarButtonItem) {
-        let vc = SearchViewController()
-        vc.model = model
-        vc.tabBarController?.tabBar.isHidden = true
-        navigationController?.pushViewController(vc, animated: true)
+        let searchViewController = SearchViewController()
+        searchViewController.tabBarController?.tabBar.isHidden = true
+        navigationController?.pushViewController(searchViewController, animated: true)
     }
     
     func createEmptyView(with image: UIImage, and message: String) -> UIView {
@@ -104,14 +104,14 @@ private extension FavoriteViewController {
 extension FavoriteViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
  
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        model?.items.count ?? 0
+        favoritesPictures.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(FavoriteCollectionViewCell.self)", for: indexPath)
         if let cell = cell as? FavoriteCollectionViewCell {
-            let item = model?.items[indexPath.item]
-            cell.configure(model: item!)
+            let item = favoritesPictures[indexPath.item]
+            cell.configure(model: item)
         }
         return cell
     }
@@ -128,9 +128,9 @@ extension FavoriteViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let detailVC = DetailViewController()
-        detailVC.model = model?.items[indexPath.item]
-        navigationController?.pushViewController(detailVC, animated: true)
+        let detailViewController = DetailViewController()
+        detailViewController.model = favoritesPictures[indexPath.item]
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
     
 }

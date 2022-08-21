@@ -19,11 +19,12 @@ struct FavoriteStorage {
     
     private let storage: UserDefaults
     private let favoritesKeyInStorage = "Favorites"
+    private let suiteName = "com.favorites.pictures"
     
     //MARK: -  Initialization
     
     init() throws {
-        guard let storage = UserDefaults(suiteName: "com.favorite.pictures") else {
+        guard let storage = UserDefaults(suiteName: suiteName) else {
             throw Error.storagePlistWasNotFound
         }
         self.storage = storage
@@ -64,6 +65,9 @@ struct FavoriteStorage {
     }
     
     func resetFavoriteStorage() {
+        
         storage.removeObject(forKey: favoritesKeyInStorage)
+        storage.removeSuite(named: suiteName)
+       
     }
 }

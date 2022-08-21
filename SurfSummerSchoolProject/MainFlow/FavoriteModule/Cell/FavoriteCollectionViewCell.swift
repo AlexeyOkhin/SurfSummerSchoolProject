@@ -7,16 +7,16 @@
 
 import UIKit
 
-class FavoriteCollectionViewCell: UICollectionViewCell {
+final class FavoriteCollectionViewCell: UICollectionViewCell {
     
     //MARK: -  IBOutlets
     
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var contentLabel: UILabel!
-    @IBOutlet weak var favoriteButton: UIButton!
-    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var contentLabel: UILabel!
+    @IBOutlet private weak var favoriteButton: UIButton!
+    @IBOutlet private weak var stackView: UIStackView!
     
     //MARK: - Animation cell
     

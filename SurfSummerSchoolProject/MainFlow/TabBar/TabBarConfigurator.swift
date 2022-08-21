@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabBarConfigurator {
+final class TabBarConfigurator {
     
     //MARK: - Private property
     

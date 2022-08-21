@@ -10,7 +10,6 @@
 		0C14B4CF28ACF4BB00C8422F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14B4CD28ACF4BB00C8422F /* AuthViewController.swift */; };
 		0C14B4D028ACF4BB00C8422F /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C14B4CE28ACF4BB00C8422F /* AuthViewController.xib */; };
 		0C14B4D228AD0DB400C8422F /* UITextField + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14B4D128AD0DB400C8422F /* UITextField + Extensions.swift */; };
-		0C81DBAF28AEABFD00A4528E /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C81DBAE28AEABFD00A4528E /* AuthModel.swift */; };
 		0C81DBB128AEB89400A4528E /* UserInfoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C81DBB028AEB89400A4528E /* UserInfoStorage.swift */; };
 		0CABD4C028A4E3CF001F888D /* MainEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CABD4BF28A4E3CF001F888D /* MainEmptyState.swift */; };
 		0CABD4C228A4FC1B001F888D /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CABD4C128A4FC1B001F888D /* UIButton + Extension.swift */; };
@@ -72,7 +71,6 @@
 		0C14B4CD28ACF4BB00C8422F /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		0C14B4CE28ACF4BB00C8422F /* AuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthViewController.xib; sourceTree = "<group>"; };
 		0C14B4D128AD0DB400C8422F /* UITextField + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extensions.swift"; sourceTree = "<group>"; };
-		0C81DBAE28AEABFD00A4528E /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		0C81DBB028AEB89400A4528E /* UserInfoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoStorage.swift; sourceTree = "<group>"; };
 		0CABD4BF28A4E3CF001F888D /* MainEmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEmptyState.swift; sourceTree = "<group>"; };
 		0CABD4C128A4FC1B001F888D /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
@@ -148,7 +146,6 @@
 			children = (
 				0C14B4CD28ACF4BB00C8422F /* AuthViewController.swift */,
 				0C14B4CE28ACF4BB00C8422F /* AuthViewController.xib */,
-				0C81DBAE28AEABFD00A4528E /* AuthModel.swift */,
 			);
 			path = AuthModule;
 			sourceTree = "<group>";
@@ -574,7 +571,6 @@
 				0CF52B97289A72DE0066DC84 /* TabBarModel.swift in Sources */,
 				0CF3D72728A1912000B4709D /* BaseTokenStorage.swift in Sources */,
 				0CF3D71B28A1844700B4709D /* AuthService.swift in Sources */,
-				0C81DBAF28AEABFD00A4528E /* AuthModel.swift in Sources */,
 				0CF52B7F289A70210066DC84 /* AppDelegate.swift in Sources */,
 				0CE7634A289BC19100C633C5 /* MainModel.swift in Sources */,
 				0CCE86A5289F846600765F62 /* DetailTitleTableViewCell.swift in Sources */,
