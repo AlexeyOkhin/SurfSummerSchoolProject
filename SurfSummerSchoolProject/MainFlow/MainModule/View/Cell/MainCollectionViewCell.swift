@@ -19,12 +19,6 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     var didFavoriteTapped: (() -> Void)?
     
-    //MARK: - Calculated
-    
-//    var buttonImage: UIImage? {
-//        return isFavorite ? Constants.Image.favoriteTrue : Constants.Image.favoriteFalse
-//    }
-    
     //MARK: - Animation cell
     
     override var isHighlighted: Bool {
@@ -45,7 +39,6 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     @IBAction func favoriteAction(_ sender: UIButton) {
         
-        //isFavorite.toggle()
         didFavoriteTapped?()
     }
     
@@ -72,7 +65,7 @@ class MainCollectionViewCell: UICollectionViewCell {
         }
         imageView.loadImage(from: url)
         isFavorite = model.isFavorite
-        //favoriteButton.setImage(buttonImage, for: .normal)
+        
     }
 
 }
@@ -89,7 +82,6 @@ private extension MainCollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         
         favoriteButton.tintColor = .white
-        
         favoriteButton.imageView?.image = Constants.Image.favoriteFalse
     }
     

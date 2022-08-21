@@ -19,11 +19,8 @@ final class MainModel {
     
     let pictureService = PicturesService()
     
-    var items: [DetailItemModel] = [] {
-        didSet {
-            self.didItemsUpdated?()
-        }
-    }
+    var items: [DetailItemModel] = []
+    
     var errorMessage: String? {
         didSet {
             self.didGetError?()
@@ -45,10 +42,10 @@ final class MainModel {
                         dateCreation: pictureModel.date
                     )
                 }
+                self?.didItemsUpdated?()
+                
             case .failure(let error):
-                
-                // TODO: - Implement error state there
-                
+   
                 DispatchQueue.main.async {
                     self?.errorMessage = error.localizedDescription
                 }
