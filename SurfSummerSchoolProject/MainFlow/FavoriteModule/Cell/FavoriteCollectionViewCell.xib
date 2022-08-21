@@ -40,7 +40,7 @@
                         </subviews>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93t-Ci-bct">
-                        <rect key="frame" x="0.0" y="514.5" width="335" height="20.5"/>
+                        <rect key="frame" x="0.0" y="514.5" width="305" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -68,7 +68,7 @@
                 <constraint firstItem="zIU-13-eoo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Tyf-ex-Ie6"/>
                 <constraint firstItem="M8c-zb-ekf" firstAttribute="top" secondItem="zIU-13-eoo" secondAttribute="bottom" constant="16" id="Vmh-Tk-zif"/>
                 <constraint firstItem="eB9-Wr-IKe" firstAttribute="trailing" secondItem="zIU-13-eoo" secondAttribute="trailing" constant="-10" id="WL5-2k-2GC"/>
-                <constraint firstAttribute="trailing" secondItem="93t-Ci-bct" secondAttribute="trailing" id="abL-Wo-qDt"/>
+                <constraint firstAttribute="trailing" secondItem="93t-Ci-bct" secondAttribute="trailing" constant="30" id="abL-Wo-qDt"/>
                 <constraint firstItem="eB9-Wr-IKe" firstAttribute="top" secondItem="zIU-13-eoo" secondAttribute="top" constant="10" id="eXu-XO-wXa"/>
                 <constraint firstAttribute="trailing" secondItem="zIU-13-eoo" secondAttribute="trailing" id="gQx-5X-I1V"/>
                 <constraint firstAttribute="trailing" secondItem="M8c-zb-ekf" secondAttribute="trailing" id="rqg-g7-5Yc"/>
