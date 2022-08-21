@@ -51,7 +51,10 @@ final class MainViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        print(#function)
+        if tabBarController?.tabBar.tag == 0 {
+            let vc = FavoriteViewController()
+            
+        }
     }
 }
 

@@ -11,8 +11,6 @@ final class SearchViewController: UIViewController {
     
     //MARK: - IBOutlets
     
-    @IBOutlet weak var placeholderLabel: UILabel!
-    @IBOutlet weak var placeholderImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     //MARK: - Private Properties
@@ -40,7 +38,6 @@ final class SearchViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigationBar()
-        setupPlaceholder()
     }
     
     //MARK: - TouchesBegan
@@ -123,15 +120,6 @@ private extension SearchViewController {
         searchBar.showsCancelButton = false
     }
     
-    func setupPlaceholder() {
-        placeholderImage.image = Constants.Image.magnifire
-        
-        placeholderLabel.text = "Введите ваш запрос"
-        placeholderLabel.font = .systemFont(ofSize: 14)
-        placeholderLabel.textColor = Constants.Color.placeholderSearch
-        placeholderLabel.textAlignment = .center
-    }
-    
     func createEmptyView(with image: UIImage, and message: String) -> UIView {
         let imageEmpty = UIImageView()
         imageEmpty.image = image
@@ -139,7 +127,7 @@ private extension SearchViewController {
         let emptyMessageLabel = UILabel(name: message)
         emptyMessageLabel.textColor = Constants.Color.dateText
         
-        let emptyView = SearchEmptyState(imageEmpty: imageEmpty, label: emptyMessageLabel)
+        let emptyView = EmptyState(imageEmpty: imageEmpty, label: emptyMessageLabel)
         
         return emptyView
     }

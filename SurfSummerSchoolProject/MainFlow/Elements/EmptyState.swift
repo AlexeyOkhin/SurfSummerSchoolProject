@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchEmptyState: UIView {
+final class EmptyState: UIView {
     
     init(imageEmpty: UIImageView, label: UILabel) {
         super.init(frame: .zero)

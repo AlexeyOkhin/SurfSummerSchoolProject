@@ -23,7 +23,6 @@
 		0CD425E5289E728F00240C71 /* UICollectionView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD425E4289E728F00240C71 /* UICollectionView + Extension.swift */; };
 		0CD425E9289E747B00240C71 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD425E7289E747B00240C71 /* SearchViewController.swift */; };
 		0CD425EA289E747B00240C71 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CD425E8289E747B00240C71 /* SearchViewController.xib */; };
-		0CD425EC289E749C00240C71 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD425EB289E749C00240C71 /* SearchPresenter.swift */; };
 		0CD425F0289EE55300240C71 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD425EE289EE55300240C71 /* DetailViewController.swift */; };
 		0CD425F1289EE55300240C71 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CD425EF289EE55300240C71 /* DetailViewController.xib */; };
 		0CD425F6289EF3BC00240C71 /* DetailImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD425F4289EF3BC00240C71 /* DetailImageTableViewCell.swift */; };
@@ -33,7 +32,7 @@
 		0CE11B4628B0E7B600DCABEF /* TitleInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE11B4428B0E7B600DCABEF /* TitleInfoView.swift */; };
 		0CE11B4728B0E7B600DCABEF /* PhotoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE11B4528B0E7B600DCABEF /* PhotoCardView.swift */; };
 		0CE11B4928B2018000DCABEF /* FavoriteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE11B4828B2018000DCABEF /* FavoriteStorage.swift */; };
-		0CE11B4B28B24F4E00DCABEF /* SearchEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE11B4A28B24F4E00DCABEF /* SearchEmptyState.swift */; };
+		0CE11B4B28B24F4E00DCABEF /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE11B4A28B24F4E00DCABEF /* EmptyState.swift */; };
 		0CE7634A289BC19100C633C5 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE76349289BC19100C633C5 /* MainModel.swift */; };
 		0CE7634C289BF44C00C633C5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7634B289BF44C00C633C5 /* Constants.swift */; };
 		0CE76350289C034B00C633C5 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7634E289C034B00C633C5 /* MainCollectionViewCell.swift */; };
@@ -86,7 +85,6 @@
 		0CD425E4289E728F00240C71 /* UICollectionView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView + Extension.swift"; sourceTree = "<group>"; };
 		0CD425E7289E747B00240C71 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0CD425E8289E747B00240C71 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
-		0CD425EB289E749C00240C71 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		0CD425EE289EE55300240C71 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		0CD425EF289EE55300240C71 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		0CD425F4289EF3BC00240C71 /* DetailImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageTableViewCell.swift; sourceTree = "<group>"; };
@@ -96,7 +94,7 @@
 		0CE11B4428B0E7B600DCABEF /* TitleInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleInfoView.swift; sourceTree = "<group>"; };
 		0CE11B4528B0E7B600DCABEF /* PhotoCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCardView.swift; sourceTree = "<group>"; };
 		0CE11B4828B2018000DCABEF /* FavoriteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStorage.swift; sourceTree = "<group>"; };
-		0CE11B4A28B24F4E00DCABEF /* SearchEmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEmptyState.swift; sourceTree = "<group>"; };
+		0CE11B4A28B24F4E00DCABEF /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
 		0CE76349289BC19100C633C5 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		0CE7634B289BF44C00C633C5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0CE7634E289C034B00C633C5 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -228,8 +226,6 @@
 			children = (
 				0CD425E7289E747B00240C71 /* SearchViewController.swift */,
 				0CD425E8289E747B00240C71 /* SearchViewController.xib */,
-				0CD425EB289E749C00240C71 /* SearchPresenter.swift */,
-				0CE11B4A28B24F4E00DCABEF /* SearchEmptyState.swift */,
 			);
 			path = SearchModule;
 			sourceTree = "<group>";
@@ -268,6 +264,14 @@
 			children = (
 				0CE11B4428B0E7B600DCABEF /* TitleInfoView.swift */,
 				0CE11B4528B0E7B600DCABEF /* PhotoCardView.swift */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
+		0CE11B4C28B2629600DCABEF /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				0CE11B4A28B24F4E00DCABEF /* EmptyState.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -394,6 +398,7 @@
 		0CF52B92289A71DD0066DC84 /* MainFlow */ = {
 			isa = PBXGroup;
 			children = (
+				0CE11B4C28B2629600DCABEF /* Elements */,
 				0CD425ED289EE53000240C71 /* DetailModule */,
 				0CD425E6289E743F00240C71 /* SearchModule */,
 				0CF52B98289A72E10066DC84 /* TabBar */,
@@ -536,7 +541,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C81DBB128AEB89400A4528E /* UserInfoStorage.swift in Sources */,
-				0CE11B4B28B24F4E00DCABEF /* SearchEmptyState.swift in Sources */,
+				0CE11B4B28B24F4E00DCABEF /* EmptyState.swift in Sources */,
 				0CD425F0289EE55300240C71 /* DetailViewController.swift in Sources */,
 				0CE11B4028B0D0FB00DCABEF /* UIString + Extensions.swift in Sources */,
 				0CF3D71F28A1903D00B4709D /* AuthRequestModel.swift in Sources */,
@@ -558,7 +563,6 @@
 				0CCE86AE289F8D9400765F62 /* DetailItemModel.swift in Sources */,
 				0CF3D71928A17CE500B4709D /* EmptyModel.swift in Sources */,
 				0CD425E9289E747B00240C71 /* SearchViewController.swift in Sources */,
-				0CD425EC289E749C00240C71 /* SearchPresenter.swift in Sources */,
 				0CF52BA6289AFBC40066DC84 /* ProfileViewController.swift in Sources */,
 				0CF3D72528A1910E00B4709D /* TokenContainer.swift in Sources */,
 				0CE76350289C034B00C633C5 /* MainCollectionViewCell.swift in Sources */,
