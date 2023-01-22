@@ -1,5 +1,5 @@
 # SurfSummerSchoolProject
-Surf summer scool
+Surf summer school
 
 Тестовый проект по созданию приложения включающего в себя:
 1) Авторизацию на сервере
